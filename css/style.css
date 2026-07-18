@@ -258,6 +258,35 @@ nav a:hover { color: var(--accent-gold); }
 .service-card h3 { color: var(--accent-gold); margin-bottom: 20px; font-size: 1.3rem; letter-spacing: 0.5px; }
 .service-card p { color: #ccc; font-weight: 300; font-size: 0.95rem; line-height: 1.5; }
 
+/* --- CASOS FREQUENTES (LONG-TAIL) --- */
+.casos {
+    background-color: #ffffff;
+    padding: 90px 0;
+}
+.casos .eyebrow { text-align: center; }
+.casos h2 { text-align: center; font-size: 2.4rem; margin-bottom: 50px; }
+.casos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 30px;
+}
+.caso-card {
+    border: 1px solid #e5e0d8;
+    border-top: 3px solid var(--accent-gold);
+    padding: 30px;
+    background: #fdfcfa;
+    transition: box-shadow 0.3s ease;
+}
+.caso-card:hover { box-shadow: 0 10px 25px rgba(11, 28, 46, 0.08); }
+.caso-card h3 { font-size: 1.35rem; margin-bottom: 12px; }
+.caso-card p { color: #555; font-size: 0.95rem; margin-bottom: 15px; }
+.caso-card a { color: var(--primary-blue); font-weight: 700; font-size: 0.95rem; border-bottom: 1px solid var(--accent-gold); }
+.caso-card a:hover { color: var(--accent-gold); }
+@media (max-width: 600px) {
+    .casos { padding: 50px 0; }
+    .casos-grid { grid-template-columns: 1fr; gap: 20px; }
+}
+
 /* --- CONTATO --- */
 .contact { padding: 80px 0; background-color: white; }
 .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
