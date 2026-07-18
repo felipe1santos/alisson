@@ -1,0 +1,331 @@
+/* --- CONFIGURAÇÕES GERAIS --- */
+:root {
+    --primary-blue: #0b1c2e;
+    --secondary-blue: #152a40;
+    --darker-blue: #061121;
+    --accent-gold: #cfa76e;
+    --text-light: #f4f4f4;
+    --text-dark: #333333;
+    --font-logo: 'Cinzel', serif;
+    --font-heading: 'Cormorant Garamond', serif;
+    --font-body: 'Lato', sans-serif;
+    --whatsapp-green: #25D366;
+    --whatsapp-dark: #128C7E;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--text-light);
+    color: var(--text-dark);
+    line-height: 1.6;
+    overflow-x: hidden; /* Evita rolagem horizontal indesejada */
+}
+
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--primary-blue);
+    font-weight: 600;
+    letter-spacing: 0.3px;
+}
+
+.eyebrow {
+    display: block;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    margin-bottom: 12px;
+}
+
+a { text-decoration: none; transition: 0.3s; }
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%; /* Garante fluidez */
+}
+
+/* Botão Dourado Padrão */
+.btn-gold {
+    background-color: var(--accent-gold);
+    color: var(--primary-blue);
+    padding: 15px 35px;
+    border-radius: 2px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    border: 2px solid var(--accent-gold);
+    cursor: pointer;
+}
+.btn-gold:hover {
+    background-color: transparent;
+    color: var(--accent-gold);
+}
+
+/* --- HEADER --- */
+header {
+    background-color: #000000;
+    padding: 20px 0;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+    border-bottom: 3px solid var(--accent-gold);
+}
+
+.nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap; /* Permite quebrar linha no mobile */
+}
+
+.logo {
+    font-family: var(--font-logo);
+    color: var(--accent-gold);
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+}
+
+nav a {
+    color: #ffffff;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 700;
+}
+
+nav a:hover { color: var(--accent-gold); }
+
+/* --- HERO SECTION --- */
+.hero {
+    background: linear-gradient(rgba(11, 28, 46, 0.85), rgba(11, 28, 46, 0.75)), url('../bg.webp');
+    background-size: cover;
+    background-position: center;
+    /* Usar min-height permite que a section cresça se o texto for grande no mobile */
+    min-height: 85vh;
+    display: flex;
+    align-items: flex-start;
+    padding-top: 40vh; /* Ajuste para responsividade */
+    padding-bottom: 50px;
+    text-align: center;
+    color: var(--text-light);
+}
+
+.hero-content { width: 100%; }
+.hero-content h1 { color: var(--accent-gold); font-size: 3.5rem; margin-bottom: 20px; line-height: 1.2; }
+.hero-content p { font-size: 1.3rem; max-width: 800px; margin: 0 auto 40px; color: #e0e0e0; font-weight: 300; }
+
+/* --- EXCELÊNCIA JURÍDICA --- */
+.excellence-section {
+    padding: 80px 0 100px;
+    background-color: white;
+    text-align: center;
+}
+
+.excellence-section h2 { font-size: 2.4rem; color: var(--primary-blue); margin-bottom: 30px; }
+.excellence-text { max-width: 900px; margin: 0 auto; font-size: 1.15rem; color: #555; line-height: 1.8; margin-bottom: 60px; }
+
+/* --- CARROSSEL --- */
+.carousel-wide-container {
+    width: 100%;
+    max-width: 1000px;
+    height: 500px;
+    margin: 0 auto;
+    position: relative;
+    background-color: #f0f0f0;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    border-radius: 4px;
+}
+
+.carousel {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    border-radius: 4px;
+}
+
+.carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    height: 100%;
+}
+
+.carousel-slide {
+    min-width: 100%;
+    height: 100%;
+}
+
+.carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(11, 28, 46, 0.8);
+    color: #cfa76e;
+    border: none;
+    padding: 15px 20px;
+    cursor: pointer;
+    z-index: 10;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+.carousel-btn:hover { background-color: var(--accent-gold); color: var(--primary-blue); }
+.prev-btn { left: 0; }
+.next-btn { right: 0; }
+
+.carousel-dots {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+.dot { width: 10px; height: 10px; background-color: #ddd; border-radius: 50%; cursor: pointer; transition: 0.3s; }
+.dot.active { background-color: var(--primary-blue); transform: scale(1.2); }
+
+/* --- ÁREAS DE ATUAÇÃO --- */
+.services {
+    background-color: var(--primary-blue);
+    padding: 100px 0;
+    color: var(--text-light);
+}
+.services h2 { color: var(--accent-gold); text-align: center; margin-bottom: 60px; font-size: 3rem; }
+
+/* O minmax(280px, 1fr) garante que os cards não fiquem muito pequenos no mobile */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+
+.service-card {
+    background: transparent; padding: 30px; border: 1px solid rgba(255, 255, 255, 0.15); transition: all 0.3s ease;
+}
+.service-card:hover { border-color: var(--accent-gold); background-color: rgba(255, 255, 255, 0.02); }
+.service-card h3 { color: var(--accent-gold); margin-bottom: 20px; font-size: 1.3rem; letter-spacing: 0.5px; }
+.service-card p { color: #ccc; font-weight: 300; font-size: 0.95rem; line-height: 1.5; }
+
+/* --- CONTATO --- */
+.contact { padding: 80px 0; background-color: white; }
+.contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+.contact-info h2 { margin-bottom: 30px; font-size: 2.5rem; }
+.info-item { margin-bottom: 25px; display: flex; align-items: flex-start; font-size: 1.05rem; }
+.info-item strong { color: var(--primary-blue); min-width: 90px; display: inline-block; font-weight: 700; }
+
+.map-frame { width: 100%; height: 450px; background-color: #eee; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+.btn-whatsapp-ref {
+    background-color: #cfa76e; color: #333; font-weight: 800; padding: 18px 30px;
+    text-transform: uppercase; letter-spacing: 1px; display: inline-block; text-align: center;
+    width: 100%; max-width: 400px; border: none; font-family: sans-serif; font-size: 0.9rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1); margin-top: 20px; transition: 0.3s;
+    cursor: pointer;
+}
+.btn-whatsapp-ref:hover { background-color: #b8935d; }
+
+/* --- FOOTER --- */
+footer {
+    background-color: var(--primary-blue);
+    color: rgba(255,255,255,0.6);
+    padding: 40px 0;
+    text-align: center;
+    border-top: 3px solid var(--accent-gold);
+}
+
+/* --- MEDIA QUERIES (RESPONSIVIDADE) --- */
+
+/* Tablets e Notebooks Pequenos */
+@media (max-width: 1024px) {
+    .hero-content h1 { font-size: 3rem; }
+    .carousel-wide-container { height: 400px; }
+}
+
+/* Mobile e Tablets Pequenos (Até 900px) */
+@media (max-width: 900px) {
+    /* Header vira coluna */
+    .nav-container { flex-direction: column; gap: 20px; text-align: center; }
+    nav ul { flex-wrap: wrap; justify-content: center; gap: 15px; }
+
+    /* Ajuste de Grid de Contato */
+    .contact-grid { grid-template-columns: 1fr; }
+    .map-frame { height: 350px; }
+
+    /* Fontes menores */
+    .excellence-section h2 { font-size: 2rem; }
+    .services h2 { font-size: 2.5rem; }
+}
+
+/* Celulares (Até 600px) */
+@media (max-width: 600px) {
+    /* Ajuste do Hero (Banner) */
+    .hero { padding-top: 150px; align-items: center; /* Centraliza verticalmente no mobile */ }
+    .hero-content h1 { font-size: 2.2rem; margin-bottom: 15px; }
+    .hero-content p { font-size: 1.1rem; padding: 0 10px; }
+
+    /* Carrossel menor */
+    .carousel-wide-container { height: 250px; }
+    .carousel-btn { padding: 10px 15px; font-size: 1rem; }
+
+    /* Paddings menores nas seções */
+    .excellence-section, .services, .contact { padding: 50px 0; }
+
+    /* Texto e Cartões */
+    .excellence-text { font-size: 1rem; margin-bottom: 40px; }
+    .services-grid { gap: 20px; }
+    .service-card { padding: 20px; }
+
+    /* Modal mais largo */
+    .modal-content { width: 95%; padding: 25px 15px; }
+}
+
+/* --- MODAL --- */
+.modal {
+    display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%;
+    overflow: auto; background-color: rgba(0,0,0,0.7); backdrop-filter: blur(5px);
+}
+.modal-content {
+    background-color: #fff; margin: 5% auto; padding: 40px; border: none; border-radius: 8px;
+    width: 90%; max-width: 500px; position: relative; box-shadow: 0 15px 40px rgba(0,0,0,0.3); text-align: center;
+}
+.close-btn {
+    color: #ccc; float: right; font-size: 28px; font-weight: bold; position: absolute;
+    top: 15px; right: 20px; cursor: pointer; transition: 0.2s;
+}
+.close-btn:hover { color: var(--primary-blue); }
+.modal-header h3 { color: var(--primary-blue); font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 10px; }
+.modal-header p { color: #666; margin-bottom: 25px; font-size: 0.95rem; }
+.form-group { margin-bottom: 15px; text-align: left; }
+.form-group label { display: block; margin-bottom: 5px; color: var(--primary-blue); font-weight: 700; font-size: 0.9rem; }
+.form-group input, .form-group textarea {
+    width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 6px;
+    font-size: 1rem; font-family: var(--font-body); background-color: #f9f9f9;
+}
+.form-group textarea { resize: vertical; min-height: 80px; }
+.form-group input:focus, .form-group textarea:focus {
+    outline: none; border-color: var(--primary-blue); background-color: #fff; box-shadow: 0 0 0 2px rgba(11, 28, 46, 0.1);
+}
+.btn-submit {
+    background-color: var(--whatsapp-green); color: #fff; width: 100%; padding: 15px;
+    border: none; border-radius: 6px; font-weight: 700; text-transform: uppercase; font-size: 1rem;
+    cursor: pointer; transition: 0.3s; margin-top: 10px; box-shadow: 0 4px 6px rgba(37, 211, 102, 0.2);
+}
+.btn-submit:hover {
+    background-color: var(--whatsapp-dark); box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4); transform: translateY(-2px);
+}
