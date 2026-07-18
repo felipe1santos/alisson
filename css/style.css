@@ -118,11 +118,11 @@ nav a:hover { color: var(--accent-gold); }
     background-size: cover;
     background-position: center;
     /* Usar min-height permite que a section cresça se o texto for grande no mobile */
-    min-height: 85vh;
+    min-height: 92vh;
     display: flex;
     align-items: flex-start;
-    padding-top: 40vh; /* Ajuste para responsividade */
-    padding-bottom: 50px;
+    padding-top: 52vh; /* Texto abaixo do centro — logo da marca fica no topo do bg */
+    padding-bottom: 60px;
     text-align: center;
     color: var(--text-light);
 }
