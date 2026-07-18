@@ -508,3 +508,12 @@ footer { background-color: #0a0a0a; color: rgba(255,255,255,0.65); padding: 70px
 .artigo-links li { margin-bottom: 8px; }
 .artigo-links a { color: var(--primary-blue); font-weight: 700; }
 .artigo-links a:hover { color: var(--accent-gold); }
+
+/* --- LANDING PAGES (SERVIÇO LOCAL) --- */
+.landing-trust { background: #fdfcfa; border-left: 3px solid var(--accent-gold); padding: 18px 22px; font-size: 1.05rem; line-height: 1.7; color: #333; margin-bottom: 10px; }
+.landing-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin: 25px 0 10px; padding: 0; list-style: none; }
+.landing-steps li { background: #fdfcfa; border: 1px solid #e5e0d8; border-top: 3px solid var(--accent-gold); padding: 25px 22px; margin: 0; }
+.landing-steps .step-num { display: inline-flex; align-items: center; justify-content: center; width: 34px; height: 34px; border-radius: 50%; background: var(--primary-blue); color: var(--accent-gold); font-weight: 700; margin-bottom: 12px; }
+.landing-steps h3 { font-size: 1.1rem; margin: 0 0 8px; }
+.landing-steps p { font-size: 0.95rem; line-height: 1.6; margin: 0; }
+@media (max-width: 600px) { .landing-steps { grid-template-columns: 1fr; gap: 15px; } }
