@@ -397,13 +397,25 @@ footer { background-color: #0a0a0a; color: rgba(255,255,255,0.65); padding: 70px
 
 /* Celulares (Até 600px) */
 @media (max-width: 600px) {
-    /* Ajuste do Hero (Banner) */
-    .hero { padding-top: 150px; align-items: center; /* Centraliza verticalmente no mobile */ }
+    /* Header compacto: reduz altura do sticky, logo e nav */
+    header { padding: 12px 0; }
+    .nav-container { gap: 12px; }
+    .logo { font-size: 1.2rem; }
+    nav ul { gap: 8px 16px; }
+    nav a { font-size: 0.8rem; letter-spacing: 0.5px; padding: 6px 4px; display: inline-block; }
+
+    /* Ajuste do Hero (Banner) — header menor permite menos padding-top */
+    .hero { padding-top: 120px; align-items: center; /* Centraliza verticalmente no mobile */ }
     .hero-content h1 { font-size: 2.2rem; margin-bottom: 15px; }
     .hero-content p { font-size: 1.1rem; padding: 0 10px; }
 
-    /* Carrossel menor */
-    .carousel-wide-container { height: 250px; }
+    /* Manifesto: CTAs em largura total para melhor toque */
+    .manifesto-ctas { gap: 12px; }
+    .manifesto-ctas .btn-gold,
+    .manifesto-ctas .btn-whatsapp-cta { width: 100%; text-align: center; }
+
+    /* Carrossel maior no mobile (menos letterbox) */
+    .carousel-wide-container { height: 300px; }
     .carousel-btn { padding: 10px 15px; font-size: 1rem; }
 
     /* Paddings menores nas seções */
@@ -563,6 +575,17 @@ footer { background-color: #0a0a0a; color: rgba(255,255,255,0.65); padding: 70px
     .blog-card { flex-direction: column; }
     .blog-card-img { flex-basis: auto; }
     .blog-card-img img { height: 190px; }
+
+    /* Título de hero do blog/landing menor no celular */
+    .blog-hero { padding: 50px 0; }
+    .blog-hero h1 { font-size: 1.9rem; }
+    .blog-lista { margin: 40px auto; }
+
+    /* Artigo: título e paddings ajustados no celular */
+    .artigo-container { padding: 40px 20px; }
+    .artigo-container h1 { font-size: 1.9rem; }
+    .artigo-container h2 { font-size: 1.55rem; }
+    .artigo-cta { padding: 25px 20px; }
 }
 
 /* --- ARTIGO: IMAGEM DE CAPA + LAYOUT COM SIDEBAR --- */
