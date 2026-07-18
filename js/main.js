@@ -38,3 +38,25 @@ if (track) {
     window.currentSlide = (n) => { slideIndex = n; updateCarousel(); };
     setInterval(() => window.moveSlide(1), 5000);
 }
+
+// Cidade do visitante via IP (badge "Atendemos em ...")
+const cidadeEl = document.getElementById("cidade-usuario");
+if (cidadeEl) {
+    const aplicarCidade = (cidade) => {
+        if (cidade && typeof cidade === "string" && cidade.length <= 40) {
+            cidadeEl.textContent = cidade;
+        }
+    };
+    fetch("https://ipapi.co/json/")
+        .then((r) => r.json())
+        .then((d) => {
+            if (d && d.city) { aplicarCidade(d.city); return; }
+            throw new Error("sem cidade");
+        })
+        .catch(() => {
+            fetch("https://ipwho.is/")
+                .then((r) => r.json())
+                .then((d) => { if (d && d.city) aplicarCidade(d.city); })
+                .catch(() => { /* mantém texto padrão */ });
+        });
+}
