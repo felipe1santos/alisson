@@ -349,6 +349,8 @@ footer { background-color: #0a0a0a; color: rgba(255,255,255,0.65); padding: 70px
 .footer-col a:hover { color: var(--accent-gold); }
 .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding: 22px 0; }
 .footer-bottom-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 0.85rem; }
+.footer-disclaimer p { font-size: 0.75rem; color: rgba(255,255,255,0.35); padding: 15px 0 5px; line-height: 1.6; }
+.footer-insta { display: inline-flex; align-items: center; gap: 6px; }
 @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
 @media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; } }
 
