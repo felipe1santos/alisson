@@ -394,3 +394,39 @@ footer {
 .btn-submit:hover {
     background-color: var(--whatsapp-dark); box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4); transform: translateY(-2px);
 }
+
+/* --- FAQ --- */
+.faq { background-color: #f7f5f1; padding: 90px 0; }
+.faq .eyebrow, .faq h2 { text-align: center; display: block; }
+.faq h2 { font-size: 2.4rem; margin-bottom: 50px; }
+.faq-list { max-width: 800px; margin: 0 auto; }
+.faq-item {
+    background: #fff;
+    border: 1px solid #e5e0d8;
+    margin-bottom: 12px;
+    padding: 0;
+}
+.faq-item summary {
+    cursor: pointer;
+    padding: 20px 25px;
+    font-weight: 700;
+    color: var(--primary-blue);
+    font-size: 1.05rem;
+    list-style: none;
+    position: relative;
+    padding-right: 50px;
+}
+.faq-item summary::-webkit-details-marker { display: none; }
+.faq-item summary::after {
+    content: '+';
+    position: absolute;
+    right: 25px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--accent-gold);
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+.faq-item[open] summary::after { content: '–'; }
+.faq-item p { padding: 0 25px 20px; color: #555; }
+@media (max-width: 600px) { .faq { padding: 50px 0; } }
