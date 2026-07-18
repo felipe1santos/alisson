@@ -598,3 +598,14 @@ footer { background-color: #0a0a0a; color: rgba(255,255,255,0.65); padding: 70px
     .artigo-layout { grid-template-columns: 1fr; }
     .artigo-sidebar { position: static; margin-top: 45px; }
 }
+
+/* --- ATENDIMENTO LOCAL (LONG-TAIL) --- */
+.atendimento-local { margin-top: 45px; }
+.atendimento-local h2 { font-size: 1.8rem; margin: 0 0 20px; }
+.local-grid { display: grid; grid-template-columns: repeat(2, 1fr); border: 1px solid #ece7df; border-radius: 2px; overflow: hidden; }
+.local-grid a { padding: 14px 18px; font-size: 0.92rem; color: var(--primary-blue); background: #fdfcfa; border: 1px solid #ece7df; margin: -1px 0 0 -1px; }
+.local-grid a:hover { color: var(--accent-gold); background: #faf7f2; }
+@media (max-width: 600px) { .local-grid { grid-template-columns: 1fr; } }
+
+/* --- FOOTER LOGO --- */
+.footer-logo-img { width: 90px; height: 90px; display: block; margin-bottom: 15px; }
