@@ -10,7 +10,7 @@
     <meta property="og:title" content="Advogado em Vitória ES | Alisson Brandão Advocacia">
     <meta property="og:description" content="Advocacia e consultoria jurídica na Grande Vitória. Atendimento humano, estratégia jurídica rigorosa. Fale no WhatsApp.">
     <meta property="og:url" content="https://alissonbrandao.adv.br/">
-    <meta property="og:image" content="https://alissonbrandao.adv.br/bg.png">
+    <meta property="og:image" content="https://alissonbrandao.adv.br/og-image.jpg">
     <meta property="og:locale" content="pt_BR">
     <meta name="robots" content="index, follow">
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Cormorant+Garamond:wght@500;600;700&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
@@ -23,7 +23,7 @@
         "name": "Alisson Brandão Advocacia e Consultoria Jurídica",
         "description": "Advocacia especializada em direito do consumidor, civil, trabalhista, criminal e de família em Vitória/ES e Grande Vitória.",
         "url": "https://alissonbrandao.adv.br/",
-        "image": "https://alissonbrandao.adv.br/bg.png",
+        "image": "https://alissonbrandao.adv.br/og-image.jpg",
         "telephone": "+55-27-99229-1973",
         "address": {
             "@type": "PostalAddress",
@@ -137,7 +137,7 @@
 
     <section id="inicio" class="hero">
         <div class="container hero-content">
-            <h1>Justiça, Ética e Compromisso</h1>
+            <h1>Advocacia em Vitória/ES — Justiça, Ética e Compromisso</h1>
             <p>Advocacia e consultoria jurídica em Vitória/ES. Atendimento presencial na Grande Vitória e online para todo o Brasil.</p>
             <a href="#contato" class="btn-gold">Agendar Consulta</a>
         </div>
@@ -236,28 +236,28 @@
 
             <div class="carousel-wide-container">
                 <div class="carousel">
-                    <button class="carousel-btn prev-btn" onclick="moveSlide(-1)">❮</button>
+                    <button class="carousel-btn prev-btn" onclick="moveSlide(-1)" aria-label="Foto anterior">❮</button>
 
                     <div class="carousel-track">
                         <div class="carousel-slide">
-                            <img src="fotos/WhatsApp Image 2026-07-17 at 16.16.41.jpeg" alt="Escritório de advocacia Alisson Brandão em Vitória ES" loading="lazy">
+                            <img src="fotos/escritorio-advocacia-vitoria-recepcao.jpeg" alt="Escritório de advocacia Alisson Brandão em Vitória ES" loading="lazy">
                         </div>
                         <div class="carousel-slide">
-                            <img src="fotos/WhatsApp Image 2026-07-17 at 16.16.17.jpeg" alt="Ambiente interno do escritório Alisson Brandão Advocacia em Vitória" loading="lazy">
+                            <img src="fotos/escritorio-advocacia-vitoria-ambiente.jpeg" alt="Ambiente interno do escritório Alisson Brandão Advocacia em Vitória" loading="lazy">
                         </div>
                         <div class="carousel-slide">
-                            <img src="fotos/WhatsApp Image 2026-07-17 at 16.16.17 (1).jpeg" alt="Sala de reuniões do escritório de advocacia no Edifício Bemge, Centro de Vitória" loading="lazy">
+                            <img src="fotos/escritorio-advocacia-vitoria-sala-reunioes.jpeg" alt="Sala de reuniões do escritório de advocacia no Edifício Bemge, Centro de Vitória" loading="lazy">
                         </div>
                     </div>
 
-                    <button class="carousel-btn next-btn" onclick="moveSlide(1)">❯</button>
+                    <button class="carousel-btn next-btn" onclick="moveSlide(1)" aria-label="Próxima foto">❯</button>
                 </div>
             </div>
             
             <div class="carousel-dots">
-                <span class="dot active" onclick="currentSlide(0)"></span>
-                <span class="dot" onclick="currentSlide(1)"></span>
-                <span class="dot" onclick="currentSlide(2)"></span>
+                <button type="button" class="dot active" onclick="currentSlide(0)" aria-label="Ir para foto 1"></button>
+                <button type="button" class="dot" onclick="currentSlide(1)" aria-label="Ir para foto 2"></button>
+                <button type="button" class="dot" onclick="currentSlide(2)" aria-label="Ir para foto 3"></button>
             </div>
 
         </div>

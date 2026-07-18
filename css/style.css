@@ -237,7 +237,7 @@ nav a:hover { color: var(--accent-gold); }
     justify-content: center;
     gap: 10px;
 }
-.dot { width: 10px; height: 10px; background-color: #ddd; border-radius: 50%; cursor: pointer; transition: 0.3s; }
+.dot { width: 10px; height: 10px; background-color: #ddd; border: none; padding: 0; border-radius: 50%; cursor: pointer; transition: 0.3s; }
 .dot.active { background-color: var(--primary-blue); transform: scale(1.2); }
 
 /* --- ÁREAS DE ATUAÇÃO --- */
