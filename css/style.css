@@ -588,6 +588,12 @@ footer { background-color: #0a0a0a; color: rgba(255,255,255,0.65); padding: 70px
 .artigo-faq { margin-top: 45px; }
 .artigo-faq h2 { font-size: 1.8rem; margin: 0 0 20px; }
 
+/* Links no corpo do artigo e no rodapé inferior */
+.artigo-main p a, .artigo-main li a { color: var(--primary-blue); font-weight: 700; border-bottom: 1px solid var(--accent-gold); }
+.artigo-main p a:hover, .artigo-main li a:hover { color: var(--accent-gold); }
+.footer-bottom a { color: rgba(255,255,255,0.75); }
+.footer-bottom a:hover { color: var(--accent-gold); }
+
 @media (max-width: 900px) {
     .artigo-layout { grid-template-columns: 1fr; }
     .artigo-sidebar { position: static; margin-top: 45px; }
