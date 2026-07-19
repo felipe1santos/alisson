@@ -40,23 +40,41 @@ if (track) {
 }
 
 // Cidade do visitante via IP (badge "Atendemos em ...")
+// Dentro da Grande Vitória o atendimento é presencial; fora dela é online.
+// Sem esse aviso, quem acessa de outro estado acha que não é atendido e sai do site.
 const cidadeEl = document.getElementById("cidade-usuario");
-if (cidadeEl) {
-    const aplicarCidade = (cidade) => {
-        if (cidade && typeof cidade === "string" && cidade.length <= 40) {
-            cidadeEl.textContent = cidade;
-        }
+const prefixoEl = document.getElementById("badge-prefixo");
+if (cidadeEl && prefixoEl) {
+    const GRANDE_VITORIA = ["vitoria", "vila velha", "serra", "cariacica", "viana", "guarapari", "fundao"];
+
+    // Remove acentos e caixa para comparar "Vitória" com "vitoria"
+    const normalizar = (s) => String(s || "")
+        .normalize("NFD").replace(new RegExp("[\u0300-\u036f]", "g"), "").toLowerCase().trim();
+
+    const aplicarCidade = (cidade, uf, pais) => {
+        if (!cidade || typeof cidade !== "string" || cidade.length > 40) return;
+        if (pais && normalizar(pais) !== "br") return; // fora do Brasil mantém o texto padrão
+
+        // Só é presencial se for cidade da Grande Vitória E estiver no ES:
+        // existem Viana/MA, Serra/outros estados etc.
+        const ufNorm = normalizar(uf);
+        const noES = ufNorm === "es" || ufNorm === "espirito santo";
+        const presencial = noES && GRANDE_VITORIA.indexOf(normalizar(cidade)) !== -1;
+
+        prefixoEl.textContent = presencial ? "Atendemos em" : "Atendemos online em";
+        cidadeEl.textContent = cidade;
     };
+
     fetch("https://ipapi.co/json/")
         .then((r) => r.json())
         .then((d) => {
-            if (d && d.city) { aplicarCidade(d.city); return; }
+            if (d && d.city) { aplicarCidade(d.city, d.region_code || d.region, d.country_code); return; }
             throw new Error("sem cidade");
         })
         .catch(() => {
             fetch("https://ipwho.is/")
                 .then((r) => r.json())
-                .then((d) => { if (d && d.city) aplicarCidade(d.city); })
+                .then((d) => { if (d && d.city) aplicarCidade(d.city, d.region, d.country_code); })
                 .catch(() => { /* mantém texto padrão */ });
         });
 }
