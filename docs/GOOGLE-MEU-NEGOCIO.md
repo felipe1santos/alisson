@@ -14,20 +14,25 @@ Conta dona: alissonbrandao.adv@gmail.com · 5,0 ★ · 7 avaliações · verific
 Todas as edições abaixo ficam **"pendentes" (~10 min de revisão do Google)** antes de aparecer:
 
 - ✅ **Categorias:** Advogado (principal) + Escritório de advocacia + Advogado de Direito de Família
-- ✅ **Site adicionado:** https://www.alissonbrandao.com.br/ (o campo estava VAZIO)
+- ✅ **Site adicionado:** https://www.alissonbrandao.com.br/ (estava VAZIO — já aparece no perfil)
 - ✅ **Área de cobertura:** Vitória, Vila Velha, Serra, Cariacica, Viana, Guarapari, Fundão
+- ✅ **Atributos:** agendamento on-line = Sim · serviços no local = Sim · idioma Português = Sim
+- ✅ **Serviços (3, com descrição):** "Direito do Consumidor; Trabalhista; Previdenciário e afins" ·
+  "Litígios de direitos civis" · "Direito de Família, Inventário e Testamentos"
+- ✅ **Fotos:** você subiu; **DSC03117 (sala de reunião) confirmada na galeria** — não recolocar
+- ✅ **Horário:** confirmado 09:00–18:00 Seg–Sex (corrigido também no site)
 
-### Falta VOCÊ fazer (não deu pra automatizar):
+### Falta (opcional / só você faz):
 
-- ⛔ **Fotos** — o upload roda dentro de um iframe do Google que a ferramenta não
-  alcança. Suba manualmente (itens 3 abaixo). Arquivos prontos em
-  `C:/projetos/alisson/fotos/` e na raiz do projeto.
-- ✅ **Horário corrigido no site** — Seg–Sex 09:00–18:00 (o schema dizia 08:00). Google já estava certo.
-- ⏳ **Descrição** — mantida a sua atual. Se quiser, troque pela versão otimizada (item 2).
-- ⏳ **Serviços, atributo "Atende online", postagens, responder avaliações** — itens 4–6.
-- ⚠️ **Perfil duplicado** — existe um 2º perfil "Alisson Brandão - Advogado" (Brasil)
-  não verificado no mesmo painel. Duplicado atrapalha o SEO local. Avalie remover/mesclar
-  (Configurações → ou solicitar remoção de duplicado no suporte do Google).
+- ⏳ **Logotipo e foto de capa** — ainda não definidos (upload bloqueado p/ automação).
+  Em Fotos → "Adicionar logotipo" (`icon-512.png`) e "Adicionar foto da capa" (`og-image.jpg` ou a DSC03117).
+- ⏳ **Serviços Criminal e Consultoria Empresarial** — adicione em Editar serviços se quiser.
+- ⏳ **Descrição** — mantida a sua (menciona "10 anos"). Versão SEO no item 2 se quiser trocar.
+- ⏳ **Postagens / responder avaliações** — itens 5–6.
+- 🚚 **Caminhão "por fora"** — Street View oficial do Google (não é foto sua). Some só
+  reportando no Maps (Street View → "Denunciar um problema"). Não urgente.
+- ℹ️ **Perfil duplicado** "Alisson Brandão - Advogado" (Brasil) — está **"Não é visível
+  publicamente"**, não atrapalha o público. Pode deixar ou pedir remoção ao suporte.
 
 ---
 
