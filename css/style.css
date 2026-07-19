@@ -372,8 +372,23 @@ footer { background-color: #0a0a0a; color: rgba(255,255,255,0.65); padding: 70px
 .footer-bottom-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 0.85rem; }
 .footer-disclaimer p { font-size: 0.75rem; color: rgba(255,255,255,0.35); padding: 15px 0 5px; line-height: 1.6; }
 .footer-insta { display: inline-flex; align-items: center; gap: 6px; }
+/* Botão de retorno à Home no fim do rodapé */
+.footer-home { text-align: center; padding-bottom: 45px; }
+.footer-home .btn-gold { display: inline-flex; align-items: center; gap: 10px; }
+.footer-home .btn-gold svg { flex-shrink: 0; }
+
 @media (max-width: 900px) { .footer-grid { grid-template-columns: 1fr 1fr; } }
-@media (max-width: 600px) { .footer-grid { grid-template-columns: 1fr; } }
+@media (max-width: 600px) {
+    /* Duas colunas no celular, com a marca ocupando a linha inteira no topo */
+    .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px 20px; }
+    .footer-col { align-self: start; }
+    .footer-brand { grid-column: 1 / -1; text-align: center; }
+    .footer-brand .footer-logo-img { margin-left: auto; margin-right: auto; }
+    /* Contato ocupa a linha inteira: o endereço não cabe em meia coluna */
+    .footer-grid .footer-col:last-child { grid-column: 1 / -1; }
+    .footer-home { padding-bottom: 35px; }
+    .footer-home .btn-gold { width: 100%; justify-content: center; }
+}
 
 /* --- WHATSAPP FLUTUANTE --- */
 /* WhatsApp flutuante pulsante */
