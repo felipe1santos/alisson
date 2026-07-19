@@ -753,3 +753,87 @@ img { height: auto; }
     .hero-content h1 { font-size: 1.6rem; }
     .hero-content p { font-size: 0.95rem; }
 }
+
+/* --- SELO DE AVALIAÇÃO GOOGLE (MANIFESTO) --- */
+.rating-google {
+    display: flex;
+    width: fit-content;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    color: var(--primary-blue);
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+.rating-google .rating-stars { color: #f5b301; letter-spacing: 1px; font-size: 1rem; }
+.rating-google .rating-num { color: var(--primary-blue); }
+.rating-google .rating-count { color: #6a6a6a; font-weight: 400; border-bottom: 1px solid transparent; }
+.rating-google:hover .rating-count { border-bottom-color: var(--accent-gold); color: var(--primary-blue); }
+
+/* --- SEÇÃO DE AVALIAÇÕES --- */
+.avaliacoes { background-color: #faf7f2; padding: 90px 0; }
+.avaliacoes .eyebrow { text-align: center; }
+.avaliacoes h2 { text-align: center; font-size: 2.4rem; margin-bottom: 20px; }
+.avaliacoes-resumo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-bottom: 50px;
+    color: #555;
+}
+.avaliacoes-resumo .resumo-nota { font-family: var(--font-heading); font-size: 2.6rem; font-weight: 700; color: var(--primary-blue); line-height: 1; }
+.avaliacoes-resumo .resumo-estrelas { color: #f5b301; font-size: 1.5rem; letter-spacing: 2px; }
+.avaliacoes-resumo .resumo-texto { font-size: 1.05rem; }
+.avaliacoes-resumo .resumo-texto strong { color: var(--primary-blue); }
+
+.avaliacoes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 25px;
+    margin-bottom: 45px;
+}
+.avaliacao-card {
+    background: #fff;
+    border: 1px solid #e5e0d8;
+    border-top: 3px solid var(--accent-gold);
+    padding: 28px 26px;
+    display: flex;
+    flex-direction: column;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.avaliacao-card:hover { box-shadow: 0 12px 28px rgba(11, 28, 46, 0.1); transform: translateY(-3px); }
+.avaliacao-estrelas { color: #f5b301; font-size: 1.1rem; letter-spacing: 2px; margin-bottom: 14px; }
+.avaliacao-texto { color: #444; font-size: 1rem; line-height: 1.6; font-style: italic; flex-grow: 1; margin-bottom: 20px; }
+.avaliacao-fonte {
+    display: block;
+    color: #8a8a8a;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    padding-top: 16px;
+    border-top: 1px solid #efe9df;
+}
+
+.avaliacoes-ctas { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
+.btn-outline-gold {
+    background-color: transparent;
+    color: var(--primary-blue);
+    padding: 15px 35px;
+    border-radius: 2px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: inline-block;
+    border: 2px solid var(--accent-gold);
+    cursor: pointer;
+}
+.btn-outline-gold:hover { background-color: var(--accent-gold); color: var(--primary-blue); }
+
+@media (max-width: 600px) {
+    .avaliacoes { padding: 50px 0; }
+    .avaliacoes h2 { font-size: 1.7rem; }
+    .avaliacoes-grid { grid-template-columns: 1fr; gap: 18px; }
+    .avaliacoes-ctas .btn-gold, .avaliacoes-ctas .btn-outline-gold { width: 100%; text-align: center; }
+}

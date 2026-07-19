@@ -45,10 +45,61 @@
         "openingHoursSpecification": {
             "@type": "OpeningHoursSpecification",
             "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-            "opens": "08:00",
+            "opens": "09:00",
             "closes": "18:00"
         },
-        "priceRange": "$$"
+        "priceRange": "$$",
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "5.0",
+            "reviewCount": "7",
+            "bestRating": "5",
+            "worstRating": "1"
+        },
+        "review": [
+            {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Fabio de Moraes Nascimento" },
+                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                "reviewBody": "O serviço da advocacia Alisson Brandão é excelente! Profissionalismo, dedicação e resultados de alta qualidade. Super recomendo!"
+            },
+            {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Soul Shop Br" },
+                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                "reviewBody": "Alisson é referência em atendimento e profissionalismo. Local muito bem localizado. Excelência 100%"
+            },
+            {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Dayvison Brandão" },
+                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                "reviewBody": "Recomendo fortemente para quem busca um atendimento de qualidade, confiança e ética profissional."
+            },
+            {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Francielle Brandão" },
+                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                "reviewBody": "Excelente! Desejo muito sucesso profissional aos colaboradores, ambiente ótimo, super aconchegante e agradável, atendimento impecável!"
+            },
+            {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Patrick Brandão" },
+                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                "reviewBody": "Ótimo advogado, muito atencioso e rápido. Ganha todas!"
+            },
+            {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Dayse Brandão" },
+                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                "reviewBody": "Atendimento excelente, profissionalismo e dedicação em cada detalhe. Recomendo de olhos fechados!"
+            },
+            {
+                "@type": "Review",
+                "author": { "@type": "Person", "name": "Shirley Teixeira Brandão" },
+                "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+                "reviewBody": "Excelente localização e ótimo atendimento. Ambiente Top de linha. Parabéns."
+            }
+        ]
     }
     </script>
     <script type="application/ld+json">
@@ -156,6 +207,11 @@
             </div>
             <div class="manifesto-texto">
                 <p class="badge-local"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg><span id="badge-prefixo">Atendemos em</span> <span id="cidade-usuario">toda a Grande Vitória</span></p>
+                <a href="#avaliacoes" class="rating-google" aria-label="Nota 5,0 de 5 estrelas em 7 avaliações no Google">
+                    <span class="rating-stars" aria-hidden="true">★★★★★</span>
+                    <span class="rating-num">5,0</span>
+                    <span class="rating-count">7 avaliações no Google</span>
+                </a>
                 <span class="eyebrow">Advocacia e Consultoria Jurídica</span>
                 <h2>Não cuidamos apenas de processos.<br>Cuidamos de <em>pessoas</em> atravessando momentos decisivos.</h2>
                 <p>Por trás de cada petição existe uma história, um patrimônio construído com esforço, uma família. Conduzimos cada caso com rigor técnico e com o respeito que esse momento exige.</p>
@@ -281,6 +337,57 @@
                 <button type="button" class="dot" onclick="currentSlide(2)" aria-label="Ir para foto 3"></button>
             </div>
 
+        </div>
+    </section>
+
+    <section id="avaliacoes" class="avaliacoes">
+        <div class="container">
+            <span class="eyebrow">Avaliações</span>
+            <h2>O que dizem quem já foi atendido</h2>
+
+            <div class="avaliacoes-resumo">
+                <span class="resumo-nota">5,0</span>
+                <span class="resumo-estrelas" aria-hidden="true">★★★★★</span>
+                <span class="resumo-texto">Nota máxima em <strong>7 avaliações</strong> no Google</span>
+            </div>
+
+            <div class="avaliacoes-grid">
+                <article class="avaliacao-card">
+                    <div class="avaliacao-estrelas" aria-label="5 de 5 estrelas">★★★★★</div>
+                    <p class="avaliacao-texto">"O serviço da advocacia Alisson Brandão é excelente! Profissionalismo, dedicação e resultados de alta qualidade. Super recomendo!"</p>
+                    <span class="avaliacao-fonte">Avaliação verificada no Google</span>
+                </article>
+                <article class="avaliacao-card">
+                    <div class="avaliacao-estrelas" aria-label="5 de 5 estrelas">★★★★★</div>
+                    <p class="avaliacao-texto">"Alisson é referência em atendimento e profissionalismo. Local muito bem localizado. Excelência 100%"</p>
+                    <span class="avaliacao-fonte">Avaliação verificada no Google</span>
+                </article>
+                <article class="avaliacao-card">
+                    <div class="avaliacao-estrelas" aria-label="5 de 5 estrelas">★★★★★</div>
+                    <p class="avaliacao-texto">"Recomendo fortemente para quem busca um atendimento de qualidade, confiança e ética profissional."</p>
+                    <span class="avaliacao-fonte">Avaliação verificada no Google</span>
+                </article>
+                <article class="avaliacao-card">
+                    <div class="avaliacao-estrelas" aria-label="5 de 5 estrelas">★★★★★</div>
+                    <p class="avaliacao-texto">"Excelente! Desejo muito sucesso profissional aos colaboradores, ambiente ótimo, super aconchegante e agradável, atendimento impecável!"</p>
+                    <span class="avaliacao-fonte">Avaliação verificada no Google</span>
+                </article>
+                <article class="avaliacao-card">
+                    <div class="avaliacao-estrelas" aria-label="5 de 5 estrelas">★★★★★</div>
+                    <p class="avaliacao-texto">"Ótimo advogado, muito atencioso e rápido. Ganha todas!"</p>
+                    <span class="avaliacao-fonte">Avaliação verificada no Google</span>
+                </article>
+                <article class="avaliacao-card">
+                    <div class="avaliacao-estrelas" aria-label="5 de 5 estrelas">★★★★★</div>
+                    <p class="avaliacao-texto">"Atendimento excelente, profissionalismo e dedicação em cada detalhe. Recomendo de olhos fechados!"</p>
+                    <span class="avaliacao-fonte">Avaliação verificada no Google</span>
+                </article>
+            </div>
+
+            <div class="avaliacoes-ctas">
+                <a href="https://www.google.com/maps?cid=13945500836364165631" class="btn-gold" target="_blank" rel="noopener">Ver todas as avaliações no Google →</a>
+                <a href="https://www.google.com/maps?cid=13945500836364165631" class="btn-outline-gold" target="_blank" rel="noopener">Avalie o escritório no Google</a>
+            </div>
         </div>
     </section>
 
@@ -708,6 +815,7 @@
                     <li><a href="#atuacao">Direito Trabalhista</a></li>
                     <li><a href="#atuacao">Direito do Consumidor</a></li>
                     <li><a href="blog.html">Artigos</a></li>
+                    <li><a href="#avaliacoes">Avaliações</a></li>
                     <li><a href="#faq">Perguntas Frequentes</a></li>
                     <li><a href="advogado-extravio-de-bagagem-vitoria-es.html">Extravio de Bagagem</a></li>
                     <li><a href="advogado-emprestimo-indevido-vitoria-es.html">Empréstimo Indevido</a></li>
