@@ -614,13 +614,14 @@ footer { background-color: #0a0a0a; color: rgba(255,255,255,0.65); padding: 70px
 .blog-hero { background-color: var(--primary-blue); padding: 70px 0; text-align: center; }
 .blog-hero h1 { color: var(--accent-gold); font-size: 2.8rem; }
 .blog-hero p { color: #b8c2cc; font-weight: 300; max-width: 650px; margin: 15px auto 0; }
-.blog-lista { max-width: 800px; margin: 60px auto; padding: 0 20px; }
-.blog-card { border: 1px solid #e5e0d8; border-left: 3px solid var(--accent-gold); padding: 30px; margin-bottom: 25px; background: #fdfcfa; }
-.blog-card h2 { font-size: 1.6rem; margin-bottom: 10px; }
+.blog-lista { max-width: 1100px; margin: 60px auto; padding: 0 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; align-items: stretch; }
+.blog-card { border: 1px solid #e5e0d8; border-top: 3px solid var(--accent-gold); padding: 0; margin-bottom: 0; background: #fdfcfa; }
+.blog-card-body { padding: 22px; }
+.blog-card h2 { font-size: 1.3rem; margin-bottom: 8px; }
 .blog-card h2 a { color: var(--primary-blue); }
 .blog-card h2 a:hover { color: var(--accent-gold); }
-.blog-card .blog-meta { color: #999; font-size: 0.85rem; margin-bottom: 12px; }
-.blog-card p { color: #555; }
+.blog-card .blog-meta { color: #999; font-size: 0.85rem; margin-bottom: 10px; }
+.blog-card p { color: #555; font-size: 0.92rem; }
 
 /* --- ARTIGO --- */
 .artigo-container { max-width: 760px; padding: 60px 20px; }
@@ -651,13 +652,13 @@ footer { background-color: #0a0a0a; color: rgba(255,255,255,0.65); padding: 70px
 @media (max-width: 600px) { .landing-steps { grid-template-columns: 1fr; gap: 15px; } }
 
 /* --- BLOG CARDS COM THUMBNAIL --- */
-.blog-card { display: flex; gap: 22px; align-items: stretch; }
-.blog-card-img { flex: 0 0 220px; }
-.blog-card-img img { width: 100%; height: 150px; object-fit: cover; display: block; }
-.blog-card-body { flex: 1; min-width: 0; }
+.blog-card { display: flex; flex-direction: column; }
+.blog-card-img img { width: 100%; height: 170px; object-fit: cover; display: block; }
+@media (max-width: 900px) {
+    .blog-lista { grid-template-columns: repeat(2, 1fr); }
+}
 @media (max-width: 600px) {
-    .blog-card { flex-direction: column; }
-    .blog-card-img { flex-basis: auto; }
+    .blog-lista { grid-template-columns: 1fr; }
     .blog-card-img img { height: 190px; }
 
     /* Título de hero do blog/landing menor no celular */
@@ -713,6 +714,14 @@ footer { background-color: #0a0a0a; color: rgba(255,255,255,0.65); padding: 70px
 .local-grid a { padding: 14px 18px; font-size: 0.92rem; color: var(--primary-blue); background: #fdfcfa; border: 1px solid #ece7df; margin: -1px 0 0 -1px; }
 .local-grid a:hover { color: var(--accent-gold); background: #faf7f2; }
 @media (max-width: 600px) { .local-grid { grid-template-columns: 1fr; } }
+
+/* --- BAIRROS ATENDIDOS (ARTIGO/LANDING DE CIDADE, ACIMA DO RODAPÉ) --- */
+.artigo-bairros { margin-top: 45px; background: #f7f5f1; border: 1px solid #ece7df; border-top: 3px solid var(--accent-gold); padding: 30px 35px; }
+.artigo-bairros h2 { font-size: 1.6rem; margin: 0 0 18px; }
+.artigo-bairros ul { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 18px; padding: 0; margin: 0 0 15px; }
+.artigo-bairros li { color: #555; font-size: 0.88rem; font-weight: 300; }
+.artigo-bairros > p a { color: var(--primary-blue); font-weight: 700; font-size: 0.92rem; border-bottom: 1px solid var(--accent-gold); }
+.artigo-bairros > p a:hover { color: var(--accent-gold); }
 
 /* --- FOOTER LOGO --- */
 .footer-logo-img { width: 140px; height: 140px; display: block; margin-bottom: 15px; }
