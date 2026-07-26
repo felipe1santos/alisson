@@ -343,6 +343,8 @@ nav a:hover { color: var(--accent-gold); }
 .contact-info h2 { margin-bottom: 30px; font-size: 2.5rem; }
 .info-item { margin-bottom: 25px; display: flex; align-items: flex-start; font-size: 1.05rem; }
 .info-item strong { color: var(--primary-blue); min-width: 90px; display: inline-block; font-weight: 700; }
+.info-item a { color: var(--primary-blue); font-weight: 600; border-bottom: 1px solid var(--accent-gold); overflow-wrap: anywhere; }
+.info-item a:hover { color: var(--accent-gold); }
 
 .map-frame { width: 100%; height: 450px; background-color: #eee; border: none; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
 
@@ -366,7 +368,7 @@ footer { background-color: #0a0a0a; color: rgba(255,255,255,0.65); padding: 70px
 .footer-col h4 { color: var(--accent-gold); font-family: var(--font-body); font-size: 0.8rem; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 22px; }
 .footer-col ul { list-style: none; padding: 0; margin: 0; }
 .footer-col li { margin-bottom: 12px; font-size: 0.95rem; font-weight: 300; }
-.footer-col a { color: rgba(255,255,255,0.75); }
+.footer-col a { color: rgba(255,255,255,0.75); overflow-wrap: anywhere; }
 .footer-col a:hover { color: var(--accent-gold); }
 .footer-bottom { border-top: 1px solid rgba(255,255,255,0.1); padding: 22px 0; }
 .footer-bottom-inner { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 10px; font-size: 0.85rem; }
