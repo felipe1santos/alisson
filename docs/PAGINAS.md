@@ -176,12 +176,16 @@ Marcar `[x]` quando a página for criada e mover a linha para a tabela da área 
 - [ ] `blog/reconhecimento-de-uniao-estavel-provas.html` — reconhecimento de união estável e partilha
 - [ ] `blog/usucapiao-familiar-imovel-abandonado.html` — usucapião familiar
 
-## Landings comerciais (raiz)
+## Hubs de área / landings comerciais (raiz) — PRIORIDADE
 
-- [ ] `advogado-previdenciario-vitoria-es.html` — landing de INSS (prioridade: já existem 6 artigos apontando para ela)
-- [ ] `advogado-plano-de-saude-vitoria-es.html` — landing de saúde
-- [ ] `advogado-seguro-negado-vitoria-es.html` — landing de seguros
-- [ ] `advogado-voo-cancelado-vitoria-es.html` — landing de direito aéreo
+Área com 3+ páginas precisa de hub. O hub lista **todas** as páginas da área e substitui o `blog.html` como caminho de navegação daquele silo (ver "Arquitetura de descoberta" no `CLAUDE.md`).
+
+- [ ] `advogado-previdenciario-vitoria-es.html` — **prioridade máxima**: já são 6 páginas de INSS sem hub
+- [ ] `advogado-voo-cancelado-vitoria-es.html` — hub de direito aéreo (6 páginas; hoje só existe a landing de extravio de bagagem)
+- [ ] `advogado-plano-de-saude-vitoria-es.html` — hub de saúde
+- [ ] `advogado-seguro-negado-vitoria-es.html` — hub de seguros
+- [ ] `advogado-familia-sucessoes-vitoria-es.html` — hub de família e sucessões
+- [ ] `advogado-tributario-vitoria-es.html` — hub de tributário (criar quando a área chegar a 3 páginas)
 
 ---
 
@@ -198,4 +202,5 @@ Marcar `[x]` quando a página for criada e mover a linha para a tabela da área 
   - `trabalhador-construcao-brasil.jpg` → comparativo de benefícios por incapacidade
   Substituir por imagens próprias ou de banco livre quando possível.
 - [ ] **Box de autoridade retroativo** — os 17 posts anteriores a 30/07/2026 ainda não têm o bloco `.cta-autor`. Aplicar quando houver oportunidade.
-- [ ] **Apex sem `www`** — corrigido por Redirect Rule 301 no Cloudflare; confirmar no Search Console que o erro 404 de `http://alissonbrandao.com.br/` saiu do relatório.
+- [x] **Apex sem `www`** — resolvido. Verificado em 30/07/2026: `http://alissonbrandao.com.br/` → 301 → `https://alissonbrandao.com.br/` → 301 → `https://www.alissonbrandao.com.br/` → 200. Falta apenas confirmar no Search Console que o erro 404 saiu do relatório "Páginas".
+- [ ] **`blog.html` acima do teto** — o índice tem 29 cards e o teto definido é ~18. Enxugar **depois** de criar os hubs de área, para que nenhuma página perca caminho de navegação. Ordem correta: criar hubs → apontar hubs no rodapé/menu → remover os cards mais antigos do `blog.html`.

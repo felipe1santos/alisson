@@ -42,9 +42,15 @@ Prioridades usadas: `1.0` home · `0.9` landings comerciais · `0.8` artigos · 
 **Sim, o arquivo é atualizado toda vez.** É como o Google descobre a URL, e é uma linha.
 **Não, não é preciso reenviar o sitemap no Search Console toda vez.** O Google rebusca o arquivo sozinho, em geral diariamente. Reenvio manual só quando muda muito (10+ URLs de uma vez) ou quando o relatório de sitemap acusa erro.
 
-## 3. Adicionar o card em `blog.html`
+## 3. Garantir os links internos (e, se couber, o card em `blog.html`)
 
-Novos artigos entram **no topo** da `main.blog-lista`, com thumbnail, título, `blog-meta` (categorias + cidade) e resumo de uma ou duas linhas. Isso garante link interno da página de índice para o artigo.
+**Obrigatório:** no mínimo **2 links internos** de páginas da mesma área do direito apontando para a página nova — nos blocos "Continue lendo" (`artigo-links`) e na `sidebar-guias`. Isso não é opcional: é o que faz a página ser rastreada e receber autoridade.
+
+**Obrigatório quando o hub da área existir:** incluir a página na listagem do hub (`advogado-<area>-vitoria-es.html`).
+
+**Opcional:** card no `blog.html`. O índice é curado, com teto de ~18 cards, e **não** precisa conter todas as páginas do site. Se a página nova estiver entre os artigos mais recentes, entra **no topo** da `main.blog-lista` com thumbnail, título, `blog-meta` (categorias + cidade) e resumo de uma ou duas linhas — e o card mais antigo sai da listagem.
+
+Sair do `blog.html` não desindexa nada: a página segue no `sitemap.xml`, no hub da área e nos links internos. Ver a seção "Arquitetura de descoberta" do `CLAUDE.md`.
 
 ## 4. Atualizar os docs e comitar
 
@@ -111,7 +117,7 @@ O Claude não tem login no Search Console. Duas formas de executar este passo:
 |---|---|---|
 | 1 | Criar HTML com box de autoridade | Claude |
 | 2 | Adicionar URL no `sitemap.xml` | Claude |
-| 3 | Adicionar card em `blog.html` | Claude |
+| 3 | Garantir 2+ links internos e o hub da área (card em `blog.html` é opcional) | Claude |
 | 4 | Atualizar `docs/PAGINAS.md`, commit + push | Claude |
 | 5 | **Clicar Deploy no Coolify** | Usuário |
 | 6 | Verificar HTTP 200 e canonical | Claude |
