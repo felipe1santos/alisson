@@ -35,24 +35,31 @@ Propriedade: **domínio** (`sc-domain:alissonbrandao.com.br`), verificada por TX
 
 - `privacidade.html` — `noindex`, não indexar e não incluir no sitemap.
 
-## Pendentes de solicitação — lote de 30/07/2026
+## Solicitadas em 30/07/2026
 
-12 páginas criadas em 30/07/2026, já no `sitemap.xml`. **Aguardando deploy no Coolify** antes de solicitar indexação. Bate exatamente no limite diário do Search Console.
+Deploy no Coolify confirmado, as 12 páginas responderam HTTP 200 antes da solicitação. Indexação pedida página por página pela Inspeção de URL. Todas retornaram *"O URL foi adicionado a uma fila de rastreamento prioritário"*.
 
-- [ ] https://www.alissonbrandao.com.br/blog/voo-cancelado-companhia-nao-avisou-o-que-fazer.html
-- [ ] https://www.alissonbrandao.com.br/blog/atraso-de-voo-mais-de-4-horas-indenizacao-valor.html
-- [ ] https://www.alissonbrandao.com.br/blog/bagagem-extraviada-voo-internacional-indenizacao.html
-- [ ] https://www.alissonbrandao.com.br/blog/auxilio-doenca-negado-pericia-inss-o-que-fazer.html
-- [ ] https://www.alissonbrandao.com.br/blog/aposentadoria-por-invalidez-incapacidade-permanente.html
-- [ ] https://www.alissonbrandao.com.br/blog/bpc-loas-negado-inss-como-recorrer.html
-- [ ] https://www.alissonbrandao.com.br/blog/inss-nao-analisou-pedido-prazo-acao-judicial.html
-- [ ] https://www.alissonbrandao.com.br/blog/auxilio-doenca-ou-aposentadoria-por-incapacidade-qual-pedir.html
-- [ ] https://www.alissonbrandao.com.br/blog/plano-de-saude-recusou-internacao-liminar.html
-- [ ] https://www.alissonbrandao.com.br/blog/seguro-de-vida-negativa-de-pagamento-o-que-fazer.html
+- [x] https://www.alissonbrandao.com.br/blog/voo-cancelado-companhia-nao-avisou-o-que-fazer.html
+- [x] https://www.alissonbrandao.com.br/blog/atraso-de-voo-mais-de-4-horas-indenizacao-valor.html
+- [x] https://www.alissonbrandao.com.br/blog/bagagem-extraviada-voo-internacional-indenizacao.html
+- [x] https://www.alissonbrandao.com.br/blog/auxilio-doenca-negado-pericia-inss-o-que-fazer.html
+- [x] https://www.alissonbrandao.com.br/blog/aposentadoria-por-invalidez-incapacidade-permanente.html
+- [x] https://www.alissonbrandao.com.br/blog/bpc-loas-negado-inss-como-recorrer.html
+- [x] https://www.alissonbrandao.com.br/blog/inss-nao-analisou-pedido-prazo-acao-judicial.html
+- [x] https://www.alissonbrandao.com.br/blog/auxilio-doenca-ou-aposentadoria-por-incapacidade-qual-pedir.html
+- [x] https://www.alissonbrandao.com.br/blog/plano-de-saude-recusou-internacao-liminar.html
+- [x] https://www.alissonbrandao.com.br/blog/seguro-de-vida-negativa-de-pagamento-o-que-fazer.html
+
+Sitemap `https://www.alissonbrandao.com.br/sitemap.xml` reenviado em 30/07/2026 — retorno "Sitemap enviado". O registro anterior era de 27/07/2026 com 24 páginas encontradas; agora o arquivo tem 35 URLs.
+
+## Bloqueadas pela cota diária — refazer em 31/07/2026
+
+O Search Console recusou as duas últimas com a mensagem *"Não foi possível processar a solicitação porque sua cota diária foi excedida. Tente novamente amanhã."* A cota é por propriedade e por dia, e foi consumida pelas 10 solicitações acima mais algumas repetições durante a operação.
+
 - [ ] https://www.alissonbrandao.com.br/blog/seguro-de-automovel-negativa-de-pagamento-sinistro.html
 - [ ] https://www.alissonbrandao.com.br/blog/isencao-imposto-de-renda-doenca-grave-aposentado.html
 
-Também vale reenviar o `sitemap.xml` nesse dia, porque o arquivo saltou de 23 para 35 URLs de uma vez.
+As duas já estão no ar, no `sitemap.xml` e com links internos — ou seja, seriam descobertas de qualquer forma. A solicitação manual apenas antecipa o rastreamento.
 
 ## Lembretes
 

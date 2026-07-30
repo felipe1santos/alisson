@@ -39,11 +39,11 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
 | `blog/desconto-inss-associativo-indevido.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
-| `blog/auxilio-doenca-negado-pericia-inss-o-que-fazer.html` | ✅ 30/07/2026 | ⏳ | ✅ | ⏳ pendente |
-| `blog/aposentadoria-por-invalidez-incapacidade-permanente.html` | ✅ 30/07/2026 | ⏳ | ✅ | ⏳ pendente |
-| `blog/bpc-loas-negado-inss-como-recorrer.html` | ✅ 30/07/2026 | ⏳ | ✅ | ⏳ pendente |
-| `blog/inss-nao-analisou-pedido-prazo-acao-judicial.html` | ✅ 30/07/2026 | ⏳ | ✅ | ⏳ pendente |
-| `blog/auxilio-doenca-ou-aposentadoria-por-incapacidade-qual-pedir.html` | ✅ 30/07/2026 | ⏳ | ✅ | ⏳ pendente |
+| `blog/auxilio-doenca-negado-pericia-inss-o-que-fazer.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | solicitada 30/07/2026 |
+| `blog/aposentadoria-por-invalidez-incapacidade-permanente.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | solicitada 30/07/2026 |
+| `blog/bpc-loas-negado-inss-como-recorrer.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | solicitada 30/07/2026 |
+| `blog/inss-nao-analisou-pedido-prazo-acao-judicial.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | solicitada 30/07/2026 |
+| `blog/auxilio-doenca-ou-aposentadoria-por-incapacidade-qual-pedir.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | solicitada 30/07/2026 |
 
 ## Direito do Passageiro Aéreo
 
@@ -52,9 +52,9 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 | `advogado-extravio-de-bagagem-vitoria-es.html` (landing) | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 | `blog/extravio-de-bagagem-indenizacao.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 | `blog/voo-cancelado-atrasado-indenizacao.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
-| `blog/voo-cancelado-companhia-nao-avisou-o-que-fazer.html` | ✅ 30/07/2026 | ⏳ | ✅ | ⏳ pendente |
-| `blog/atraso-de-voo-mais-de-4-horas-indenizacao-valor.html` | ✅ 30/07/2026 | ⏳ | ✅ | ⏳ pendente |
-| `blog/bagagem-extraviada-voo-internacional-indenizacao.html` | ✅ 30/07/2026 | ⏳ | ✅ | ⏳ pendente |
+| `blog/voo-cancelado-companhia-nao-avisou-o-que-fazer.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | solicitada 30/07/2026 |
+| `blog/atraso-de-voo-mais-de-4-horas-indenizacao-valor.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | solicitada 30/07/2026 |
+| `blog/bagagem-extraviada-voo-internacional-indenizacao.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | solicitada 30/07/2026 |
 
 ## Bancário e Superendividamento
 
@@ -91,20 +91,20 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
 | `blog/plano-saude-negou-cobertura.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
-| `blog/plano-de-saude-recusou-internacao-liminar.html` | ✅ 30/07/2026 | ⏳ | ✅ | ⏳ pendente |
+| `blog/plano-de-saude-recusou-internacao-liminar.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | solicitada 30/07/2026 |
 
 ## Seguros
 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
-| `blog/seguro-de-vida-negativa-de-pagamento-o-que-fazer.html` | ✅ 30/07/2026 | ⏳ | ✅ | ⏳ pendente |
-| `blog/seguro-de-automovel-negativa-de-pagamento-sinistro.html` | ✅ 30/07/2026 | ⏳ | ✅ | ⏳ pendente |
+| `blog/seguro-de-vida-negativa-de-pagamento-o-que-fazer.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | solicitada 30/07/2026 |
+| `blog/seguro-de-automovel-negativa-de-pagamento-sinistro.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | pendente (cota diária) — refazer 31/07 |
 
 ## Tributário
 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
-| `blog/isencao-imposto-de-renda-doenca-grave-aposentado.html` | ✅ 30/07/2026 | ⏳ | ✅ | ⏳ pendente |
+| `blog/isencao-imposto-de-renda-doenca-grave-aposentado.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | pendente (cota diária) — refazer 31/07 |
 
 ## Consumidor (geral)
 
