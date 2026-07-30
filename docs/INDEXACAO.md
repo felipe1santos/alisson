@@ -1,5 +1,9 @@
 # Controle de Indexação — Google Search Console
 
+> Este arquivo é o **log por data** das solicitações de indexação.
+> O status consolidado de cada página (criada / no ar / sitemap / indexada) fica em **`docs/PAGINAS.md`**, que é a fonte única.
+> O procedimento completo está em **`docs/FLUXO-PUBLICACAO.md`**.
+
 Fluxo: toda página nova criada entra aqui como **pendente**. Quando a indexação for solicitada no Search Console, a página passa para **solicitada** e, uma vez confirmada no relatório "Páginas", para **indexada**.
 
 Legenda: `[ ]` pendente · `[x]` indexação solicitada/confirmada
@@ -31,8 +35,28 @@ Propriedade: **domínio** (`sc-domain:alissonbrandao.com.br`), verificada por TX
 
 - `privacidade.html` — `noindex`, não indexar e não incluir no sitemap.
 
+## Pendentes de solicitação — lote de 30/07/2026
+
+12 páginas criadas em 30/07/2026, já no `sitemap.xml`. **Aguardando deploy no Coolify** antes de solicitar indexação. Bate exatamente no limite diário do Search Console.
+
+- [ ] https://www.alissonbrandao.com.br/blog/voo-cancelado-companhia-nao-avisou-o-que-fazer.html
+- [ ] https://www.alissonbrandao.com.br/blog/atraso-de-voo-mais-de-4-horas-indenizacao-valor.html
+- [ ] https://www.alissonbrandao.com.br/blog/bagagem-extraviada-voo-internacional-indenizacao.html
+- [ ] https://www.alissonbrandao.com.br/blog/auxilio-doenca-negado-pericia-inss-o-que-fazer.html
+- [ ] https://www.alissonbrandao.com.br/blog/aposentadoria-por-invalidez-incapacidade-permanente.html
+- [ ] https://www.alissonbrandao.com.br/blog/bpc-loas-negado-inss-como-recorrer.html
+- [ ] https://www.alissonbrandao.com.br/blog/inss-nao-analisou-pedido-prazo-acao-judicial.html
+- [ ] https://www.alissonbrandao.com.br/blog/auxilio-doenca-ou-aposentadoria-por-incapacidade-qual-pedir.html
+- [ ] https://www.alissonbrandao.com.br/blog/plano-de-saude-recusou-internacao-liminar.html
+- [ ] https://www.alissonbrandao.com.br/blog/seguro-de-vida-negativa-de-pagamento-o-que-fazer.html
+- [ ] https://www.alissonbrandao.com.br/blog/seguro-de-automovel-negativa-de-pagamento-sinistro.html
+- [ ] https://www.alissonbrandao.com.br/blog/isencao-imposto-de-renda-doenca-grave-aposentado.html
+
+Também vale reenviar o `sitemap.xml` nesse dia, porque o arquivo saltou de 23 para 35 URLs de uma vez.
+
 ## Lembretes
 
-- Sitemap: https://www.alissonbrandao.com.br/sitemap.xml — 23 URLs. Reenviado em 27/07/2026 após a inclusão das páginas trabalhistas.
+- Sitemap: https://www.alissonbrandao.com.br/sitemap.xml — **35 URLs** (23 até 27/07/2026 + 12 do lote de 30/07/2026).
+- O `sitemap.xml` é atualizado no mesmo commit de cada página nova. Reenviar no Search Console **não** é necessário toda vez: o Google rebusca o arquivo sozinho. Reenvio manual só em lotes grandes (10+ URLs) ou quando o relatório acusar erro.
 - Limite do Search Console: ~10-12 solicitações manuais/dia.
 - Solicitar indexação não garante nem acelera a posição no ranking: apenas coloca a URL numa fila de rastreamento prioritário.

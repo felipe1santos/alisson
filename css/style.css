@@ -848,3 +848,47 @@ img { height: auto; }
     .avaliacoes-grid { grid-template-columns: 1fr; gap: 18px; }
     .avaliacoes-ctas .btn-gold, .avaliacoes-ctas .btn-outline-gold { width: 100%; text-align: center; }
 }
+
+/* --- BOX DE AUTORIDADE NO CTA DO ARTIGO --- */
+.cta-autor {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    text-align: left;
+    max-width: 520px;
+    margin: 0 auto 22px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+}
+.cta-autor-foto {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 2px solid var(--accent-gold);
+}
+.cta-autor-info p { margin: 0; }
+.cta-autor-nome {
+    font-family: var(--font-heading);
+    color: var(--accent-gold);
+    font-size: 1.2rem;
+    line-height: 1.3;
+}
+.cta-autor-oab {
+    color: #fff;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 2px !important;
+}
+.cta-autor-bio {
+    color: #cfd8e0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    margin-top: 6px !important;
+}
+@media (max-width: 600px) {
+    .cta-autor { flex-direction: column; text-align: center; gap: 12px; }
+    .cta-autor-foto { width: 84px; height: 84px; }
+}
