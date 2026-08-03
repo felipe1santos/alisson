@@ -1,23 +1,24 @@
-# better-sqlite3 é um módulo nativo: precisa de compilador no build,
-# mas não na imagem final.
-FROM node:22-bookworm-slim AS build
-WORKDIR /app
-RUN apt-get update && apt-get install -y --no-install-recommends \
-    python3 make g++ && rm -rf /var/lib/apt/lists/*
-COPY package.json ./
-RUN npm install --omit=dev
+# Sem módulo nativo: o SQLite vem do próprio Node (node:sqlite), então não há
+# estágio de build, nem compilador, nem node-gyp. A única dependência é o Express.
+#
+# O major está pinado de propósito: node:sqlite ainda é marcado experimental e
+# só o src/db.js toca essa API. Ao subir de major, revisar aquele arquivo.
+FROM node:24-bookworm-slim
 
-FROM node:22-bookworm-slim
 WORKDIR /app
 ENV NODE_ENV=production
-COPY --from=build /app/node_modules ./node_modules
-COPY package.json ./
+
+COPY package.json package-lock.json ./
+RUN npm ci --omit=dev && npm cache clean --force
+
 COPY src ./src
 COPY scripts ./scripts
+
 # O volume persistente do Coolify é montado aqui. Sem ele, todo redeploy
 # apaga a base de leads.
 VOLUME ["/data"]
 ENV DB_PATH=/data/leads.db
+
 EXPOSE 3000
 USER node
 CMD ["node", "src/index.js"]
