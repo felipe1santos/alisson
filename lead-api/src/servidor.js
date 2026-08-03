@@ -1,6 +1,7 @@
 'use strict';
 const express = require('express');
 const { criarRotasLead } = require('./rotas-lead');
+const { criarRotasPainel } = require('./rotas-painel');
 const { criarClienteCapi } = require('./capi');
 
 function criarServidor(config, db, deps = {}) {
@@ -13,7 +14,13 @@ function criarServidor(config, db, deps = {}) {
   const capi = deps.capi || criarClienteCapi(config, {});
 
   app.get('/healthz', (req, res) => res.json({ ok: true }));
+
+  // A rota pública vem primeiro de propósito: o router do painel instala
+  // cabeçalhos no-store em tudo que passa por ele, e /api/leads não deve
+  // herdar isso. Como criarRotasLead só casa /api/leads, o /api/panel/*
+  // atravessa e cai no painel logo abaixo.
   app.use('/api', criarRotasLead({ config, db, capi }));
+  app.use('/', criarRotasPainel({ config, db }));
 
   // Corpo malformado ou grande demais vira 400, não stack trace na resposta.
   app.use((err, req, res, next) => {
