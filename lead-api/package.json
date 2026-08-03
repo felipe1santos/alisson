@@ -1,0 +1,17 @@
+{
+  "name": "lead-api",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Captura de leads e painel de consulta — Alisson Brandão Advocacia",
+  "main": "src/index.js",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "start": "node src/index.js",
+    "test": "node --test test/",
+    "hash-senha": "node scripts/hash-senha.js"
+  },
+  "dependencies": {
+    "better-sqlite3": "^11.3.0",
+    "express": "^4.21.0"
+  }
+}
