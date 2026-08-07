@@ -892,3 +892,33 @@ img { height: auto; }
     .cta-autor { flex-direction: column; text-align: center; gap: 12px; }
     .cta-autor-foto { width: 84px; height: 84px; }
 }
+
+/* ==========================================================================
+   TABELA SIMPLES DENTRO DO ARTIGO
+   ========================================================================== */
+.tabela-simples {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 26px 0;
+    font-size: 0.95rem;
+    display: block;
+    overflow-x: auto;
+}
+.tabela-simples thead th {
+    background: var(--primary-blue);
+    color: var(--accent-gold);
+    font-family: var(--font-heading);
+    font-size: 1.05rem;
+    font-weight: 700;
+    text-align: left;
+    padding: 12px 14px;
+    white-space: nowrap;
+}
+.tabela-simples td {
+    padding: 12px 14px;
+    border-bottom: 1px solid #e2e6ea;
+    color: var(--text-dark);
+    vertical-align: top;
+}
+.tabela-simples tbody tr:nth-child(even) { background: #f7f9fb; }
+.tabela-simples tbody tr:last-child td { border-bottom: none; }

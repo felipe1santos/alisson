@@ -11,7 +11,7 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 
 | Área | Páginas publicadas |
 |---|---|
-| Previdenciário (INSS) | 6 |
+| Previdenciário (INSS) | 14 |
 | Direito do Passageiro Aéreo | 6 |
 | Bancário e Superendividamento | 6 |
 | Trabalhista | 5 |
@@ -20,7 +20,7 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 | Seguros | 2 |
 | Tributário | 1 |
 | Consumidor (geral) | 1 |
-| **Total** | **32** (+ home, `blog.html`) |
+| **Total** | **40** (+ home, `blog.html`) |
 
 ---
 
@@ -36,8 +36,18 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 
 ## Previdenciário (INSS)
 
+**Hub da área:** `advogado-previdenciario-vitoria-es.html` — lista todas as páginas do silo e recebe link do rodapé em todas as páginas do site.
+
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
+| `advogado-previdenciario-vitoria-es.html` (hub) | ✅ 07/08/2026 | ⬜ | ✅ | pendente |
+| `advogado-para-processar-o-inss-vitoria-es.html` (landing) | ✅ 07/08/2026 | ⬜ | ✅ | pendente |
+| `advogado-aposentadoria-negada-vitoria-es.html` (landing) | ✅ 07/08/2026 | ⬜ | ✅ | pendente |
+| `blog/pensao-por-morte-inss-negada-uniao-estavel.html` | ✅ 07/08/2026 | ⬜ | ✅ | pendente |
+| `blog/aposentadoria-por-idade-rural-inss-documentos.html` | ✅ 07/08/2026 | ⬜ | ✅ | pendente |
+| `blog/aposentadoria-especial-insalubridade-ppp.html` | ✅ 07/08/2026 | ⬜ | ✅ | pendente |
+| `blog/salario-maternidade-inss-desempregada-mei.html` | ✅ 07/08/2026 | ⬜ | ✅ | pendente |
+| `blog/revisao-de-beneficio-inss-valor-errado.html` | ✅ 07/08/2026 | ⬜ | ✅ | pendente |
 | `blog/desconto-inss-associativo-indevido.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 | `blog/auxilio-doenca-negado-pericia-inss-o-que-fazer.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | solicitada 30/07/2026 |
 | `blog/aposentadoria-por-invalidez-incapacidade-permanente.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | solicitada 30/07/2026 |
@@ -120,11 +130,11 @@ Marcar `[x]` quando a página for criada e mover a linha para a tabela da área 
 
 ## Previdenciário (INSS)
 
-- [ ] `blog/pensao-por-morte-inss-negada-uniao-estavel.html` — pensão por morte negada por falta de prova de união estável
-- [ ] `blog/aposentadoria-por-idade-rural-inss-documentos.html` — trabalhador rural: documentos que provam o tempo de roça
-- [ ] `blog/aposentadoria-especial-insalubridade-ppp.html` — aposentadoria especial, PPP e LTCAT
-- [ ] `blog/revisao-de-beneficio-inss-valor-errado.html` — revisão de benefício concedido com valor abaixo do devido
-- [ ] `blog/salario-maternidade-inss-desempregada-mei.html` — salário-maternidade para desempregada, MEI e autônoma
+- [x] `blog/pensao-por-morte-inss-negada-uniao-estavel.html` — criada em 07/08/2026
+- [x] `blog/aposentadoria-por-idade-rural-inss-documentos.html` — criada em 07/08/2026
+- [x] `blog/aposentadoria-especial-insalubridade-ppp.html` — criada em 07/08/2026
+- [x] `blog/revisao-de-beneficio-inss-valor-errado.html` — criada em 07/08/2026
+- [x] `blog/salario-maternidade-inss-desempregada-mei.html` — criada em 07/08/2026
 - [ ] `blog/auxilio-acidente-sequela-reducao-capacidade.html` — auxílio-acidente por sequela que reduz a capacidade
 - [ ] `blog/tempo-de-contribuicao-nao-reconhecido-cnis.html` — vínculo antigo que não aparece no CNIS
 - [ ] `blog/aposentadoria-pessoa-com-deficiencia-lc-142.html` — aposentadoria da pessoa com deficiência
@@ -180,7 +190,9 @@ Marcar `[x]` quando a página for criada e mover a linha para a tabela da área 
 
 Área com 3+ páginas precisa de hub. O hub lista **todas** as páginas da área e substitui o `blog.html` como caminho de navegação daquele silo (ver "Arquitetura de descoberta" no `CLAUDE.md`).
 
-- [ ] `advogado-previdenciario-vitoria-es.html` — **prioridade máxima**: já são 6 páginas de INSS sem hub
+- [x] `advogado-previdenciario-vitoria-es.html` — criado em 07/08/2026, com link no rodapé de todas as páginas (exceto `privacidade.html`)
+- [x] `advogado-para-processar-o-inss-vitoria-es.html` — landing de intenção "processar o INSS", criada em 07/08/2026
+- [x] `advogado-aposentadoria-negada-vitoria-es.html` — landing de intenção "aposentadoria negada", criada em 07/08/2026
 - [ ] `advogado-voo-cancelado-vitoria-es.html` — hub de direito aéreo (6 páginas; hoje só existe a landing de extravio de bagagem)
 - [ ] `advogado-plano-de-saude-vitoria-es.html` — hub de saúde
 - [ ] `advogado-seguro-negado-vitoria-es.html` — hub de seguros
@@ -201,6 +213,14 @@ Marcar `[x]` quando a página for criada e mover a linha para a tabela da área 
   - `superendividamento-contas-mesa.jpg` → seguro de automóvel
   - `trabalhador-construcao-brasil.jpg` → comparativo de benefícios por incapacidade
   Substituir por imagens próprias ou de banco livre quando possível.
+- [ ] **Imagens de capa recicladas** nas 8 páginas de 07/08/2026 — mesma causa. Reuso atual:
+  - `desconto-inss-idoso-aposentado.jpg` → hub previdenciário, landing de aposentadoria negada **e** aposentadoria rural
+  - `advogado-assinatura-contrato.jpg` → pensão por morte **e** landing de processar o INSS
+  - `trabalhador-construcao-brasil.jpg` → aposentadoria especial/PPP
+  - `pensao-alimenticia-mae-filha.jpg` → salário-maternidade
+  - `emprestimo-consignado-calculadora.jpg` → revisão de benefício
+- [ ] **`privacidade.html` sem o link do hub previdenciário no rodapé** — deixado de fora de propósito, por causa da regra "não mexer sem pedido explícito" do `CLAUDE.md`. É a única página do site com o rodapé desatualizado.
 - [ ] **Box de autoridade retroativo** — os 17 posts anteriores a 30/07/2026 ainda não têm o bloco `.cta-autor`. Aplicar quando houver oportunidade.
 - [x] **Apex sem `www`** — resolvido. Verificado em 30/07/2026: `http://alissonbrandao.com.br/` → 301 → `https://alissonbrandao.com.br/` → 301 → `https://www.alissonbrandao.com.br/` → 200. Falta apenas confirmar no Search Console que o erro 404 saiu do relatório "Páginas".
 - [ ] **`blog.html` acima do teto** — o índice tem 29 cards e o teto definido é ~18. Enxugar **depois** de criar os hubs de área, para que nenhuma página perca caminho de navegação. Ordem correta: criar hubs → apontar hubs no rodapé/menu → remover os cards mais antigos do `blog.html`.
+  Situação em 07/08/2026: **1 de 6 hubs criados** (previdenciário, já com link no rodapé). Faltam os hubs de direito aéreo, saúde, seguros, família e tributário. As 8 páginas novas de 07/08/2026 **não** entraram no `blog.html`, justamente para não agravar o excesso — a descoberta delas vem do `sitemap.xml`, do hub previdenciário e dos links internos.
