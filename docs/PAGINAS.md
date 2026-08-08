@@ -40,20 +40,20 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
-| `advogado-previdenciario-vitoria-es.html` (hub) | ✅ 07/08/2026 | ⬜ | ✅ | pendente |
-| `advogado-para-processar-o-inss-vitoria-es.html` (landing) | ✅ 07/08/2026 | ⬜ | ✅ | pendente |
-| `advogado-aposentadoria-negada-vitoria-es.html` (landing) | ✅ 07/08/2026 | ⬜ | ✅ | pendente |
-| `blog/pensao-por-morte-inss-negada-uniao-estavel.html` | ✅ 07/08/2026 | ⬜ | ✅ | pendente |
-| `blog/aposentadoria-por-idade-rural-inss-documentos.html` | ✅ 07/08/2026 | ⬜ | ✅ | pendente |
-| `blog/aposentadoria-especial-insalubridade-ppp.html` | ✅ 07/08/2026 | ⬜ | ✅ | pendente |
-| `blog/salario-maternidade-inss-desempregada-mei.html` | ✅ 07/08/2026 | ⬜ | ✅ | pendente |
-| `blog/revisao-de-beneficio-inss-valor-errado.html` | ✅ 07/08/2026 | ⬜ | ✅ | pendente |
+| `advogado-previdenciario-vitoria-es.html` (hub) | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | solicitação bloqueada por cota — refazer 08/08/2026 |
+| `advogado-para-processar-o-inss-vitoria-es.html` (landing) | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | solicitação bloqueada por cota — refazer 08/08/2026 |
+| `advogado-aposentadoria-negada-vitoria-es.html` (landing) | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | solicitação bloqueada por cota — refazer 08/08/2026 |
+| `blog/pensao-por-morte-inss-negada-uniao-estavel.html` | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | solicitação bloqueada por cota — refazer 08/08/2026 |
+| `blog/aposentadoria-por-idade-rural-inss-documentos.html` | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | solicitação bloqueada por cota — refazer 08/08/2026 |
+| `blog/aposentadoria-especial-insalubridade-ppp.html` | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | solicitação bloqueada por cota — refazer 08/08/2026 |
+| `blog/salario-maternidade-inss-desempregada-mei.html` | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | solicitação bloqueada por cota — refazer 08/08/2026 |
+| `blog/revisao-de-beneficio-inss-valor-errado.html` | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | solicitação bloqueada por cota — refazer 08/08/2026 |
 | `blog/desconto-inss-associativo-indevido.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
-| `blog/auxilio-doenca-negado-pericia-inss-o-que-fazer.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | solicitada 30/07/2026 |
-| `blog/aposentadoria-por-invalidez-incapacidade-permanente.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | solicitada 30/07/2026 |
-| `blog/bpc-loas-negado-inss-como-recorrer.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | solicitada 30/07/2026 |
-| `blog/inss-nao-analisou-pedido-prazo-acao-judicial.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | solicitada 30/07/2026 |
-| `blog/auxilio-doenca-ou-aposentadoria-por-incapacidade-qual-pedir.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | solicitada 30/07/2026 |
+| `blog/auxilio-doenca-negado-pericia-inss-o-que-fazer.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | indexada (confirmada 04/08/2026) |
+| `blog/aposentadoria-por-invalidez-incapacidade-permanente.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | indexada (confirmada 04/08/2026) |
+| `blog/bpc-loas-negado-inss-como-recorrer.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | indexada (confirmada 04/08/2026) |
+| `blog/inss-nao-analisou-pedido-prazo-acao-judicial.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | indexada (confirmada 04/08/2026) |
+| `blog/auxilio-doenca-ou-aposentadoria-por-incapacidade-qual-pedir.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | indexada (confirmada 04/08/2026) |
 
 ## Direito do Passageiro Aéreo
 
@@ -62,9 +62,9 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 | `advogado-extravio-de-bagagem-vitoria-es.html` (landing) | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 | `blog/extravio-de-bagagem-indenizacao.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 | `blog/voo-cancelado-atrasado-indenizacao.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
-| `blog/voo-cancelado-companhia-nao-avisou-o-que-fazer.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | solicitada 30/07/2026 |
-| `blog/atraso-de-voo-mais-de-4-horas-indenizacao-valor.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | solicitada 30/07/2026 |
-| `blog/bagagem-extraviada-voo-internacional-indenizacao.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | solicitada 30/07/2026 |
+| `blog/voo-cancelado-companhia-nao-avisou-o-que-fazer.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | indexada (confirmada 04/08/2026) |
+| `blog/atraso-de-voo-mais-de-4-horas-indenizacao-valor.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | indexada (confirmada 04/08/2026) |
+| `blog/bagagem-extraviada-voo-internacional-indenizacao.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | indexada (confirmada 04/08/2026) |
 
 ## Bancário e Superendividamento
 
@@ -76,23 +76,23 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 | `blog/negativacao-indevida-nome-sujo.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 | `blog/cartao-consignado-rmc-cancelamento.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 | `blog/superendividamento-renegociacao-dividas.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
-| `blog/golpe-pix-cobranca-indevida-banco.html` | ✅ | ✅ | ✅ | solicitada 27/07/2026 (estava "detectada, não indexada") |
+| `blog/golpe-pix-cobranca-indevida-banco.html` | ✅ | ✅ | ✅ | indexada (confirmada 04/08/2026) |
 
 ## Trabalhista
 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
-| `advogado-trabalhista-vitoria-es.html` (landing) | ✅ | ✅ | ✅ | solicitada 27/07/2026 |
-| `blog/verbas-rescisorias-demissao-sem-justa-causa.html` | ✅ | ✅ | ✅ | solicitada 27/07/2026 |
-| `blog/horas-extras-nao-pagas-como-cobrar.html` | ✅ | ✅ | ✅ | solicitada 27/07/2026 |
-| `blog/assedio-moral-no-trabalho-indenizacao.html` | ✅ | ✅ | ✅ | solicitada 27/07/2026 (rastreada 27/07) |
-| `blog/rescisao-indireta-trabalhista.html` | ✅ | ✅ | ✅ | solicitada 27/07/2026 |
+| `advogado-trabalhista-vitoria-es.html` (landing) | ✅ | ✅ | ✅ | indexada (confirmada 04/08/2026) |
+| `blog/verbas-rescisorias-demissao-sem-justa-causa.html` | ✅ | ✅ | ✅ | indexada (confirmada 04/08/2026) |
+| `blog/horas-extras-nao-pagas-como-cobrar.html` | ✅ | ✅ | ✅ | indexada (confirmada 04/08/2026) |
+| `blog/assedio-moral-no-trabalho-indenizacao.html` | ✅ | ✅ | ✅ | indexada (confirmada 04/08/2026) |
+| `blog/rescisao-indireta-trabalhista.html` | ✅ | ✅ | ✅ | indexada (confirmada 04/08/2026) |
 
 ## Família e Sucessões
 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
-| `blog/divorcio-consensual-cartorio-vitoria.html` | ✅ | ✅ | ✅ | solicitada 27/07/2026 (estava "rastreada, não indexada") |
+| `blog/divorcio-consensual-cartorio-vitoria.html` | ✅ | ✅ | ✅ | indexada (confirmada 04/08/2026) |
 | `blog/pensao-alimenticia-revisao-execucao.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 | `blog/inventario-cartorio-espirito-santo.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 
@@ -101,20 +101,20 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
 | `blog/plano-saude-negou-cobertura.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
-| `blog/plano-de-saude-recusou-internacao-liminar.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | solicitada 30/07/2026 |
+| `blog/plano-de-saude-recusou-internacao-liminar.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | indexada (confirmada 04/08/2026) |
 
 ## Seguros
 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
-| `blog/seguro-de-vida-negativa-de-pagamento-o-que-fazer.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | solicitada 30/07/2026 |
-| `blog/seguro-de-automovel-negativa-de-pagamento-sinistro.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | pendente (cota diária) — refazer 31/07 |
+| `blog/seguro-de-vida-negativa-de-pagamento-o-que-fazer.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | indexada (confirmada 04/08/2026) |
+| `blog/seguro-de-automovel-negativa-de-pagamento-sinistro.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | indexada (confirmada 04/08/2026, sem solicitação manual) |
 
 ## Tributário
 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
-| `blog/isencao-imposto-de-renda-doenca-grave-aposentado.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | pendente (cota diária) — refazer 31/07 |
+| `blog/isencao-imposto-de-renda-doenca-grave-aposentado.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | indexada (confirmada 04/08/2026, sem solicitação manual) |
 
 ## Consumidor (geral)
 
@@ -221,6 +221,8 @@ Marcar `[x]` quando a página for criada e mover a linha para a tabela da área 
   - `emprestimo-consignado-calculadora.jpg` → revisão de benefício
 - [ ] **`privacidade.html` sem o link do hub previdenciário no rodapé** — deixado de fora de propósito, por causa da regra "não mexer sem pedido explícito" do `CLAUDE.md`. É a única página do site com o rodapé desatualizado.
 - [ ] **Box de autoridade retroativo** — os 17 posts anteriores a 30/07/2026 ainda não têm o bloco `.cta-autor`. Aplicar quando houver oportunidade.
-- [x] **Apex sem `www`** — resolvido. Verificado em 30/07/2026: `http://alissonbrandao.com.br/` → 301 → `https://alissonbrandao.com.br/` → 301 → `https://www.alissonbrandao.com.br/` → 200. Falta apenas confirmar no Search Console que o erro 404 saiu do relatório "Páginas".
+- [x] **Apex sem `www`** — resolvido. Verificado em 30/07/2026: `http://alissonbrandao.com.br/` → 301 → `https://alissonbrandao.com.br/` → 301 → `https://www.alissonbrandao.com.br/` → 200.
+  Conferido no Search Console em 07/08/2026 (dados de 04/08): o relatório "Páginas" ainda lista **1** página em "Não encontrado (404)" e **1** em "Página com redirecionamento" — resíduo histórico do apex, que o Google só remove depois de rerrastrear. Nenhuma página real do site está afetada. Não requer ação; reconferir daqui a algumas semanas.
+- [x] **Cobertura de indexação** — em 07/08/2026 o relatório mostrava **35 indexadas · 4 não indexadas**, com "Detectada, mas não indexada" = 0 e "Rastreada, mas não indexada" = 0. Os 4 motivos restantes são o `noindex` proposital de `privacidade.html`, o 404 e o redirect do apex, e 1 variante consolidada por canônica. Ou seja: **todas as páginas reais publicadas até 04/08/2026 estão indexadas.**
 - [ ] **`blog.html` acima do teto** — o índice tem 29 cards e o teto definido é ~18. Enxugar **depois** de criar os hubs de área, para que nenhuma página perca caminho de navegação. Ordem correta: criar hubs → apontar hubs no rodapé/menu → remover os cards mais antigos do `blog.html`.
   Situação em 07/08/2026: **1 de 6 hubs criados** (previdenciário, já com link no rodapé). Faltam os hubs de direito aéreo, saúde, seguros, família e tributário. As 8 páginas novas de 07/08/2026 **não** entraram no `blog.html`, justamente para não agravar o excesso — a descoberta delas vem do `sitemap.xml`, do hub previdenciário e dos links internos.
