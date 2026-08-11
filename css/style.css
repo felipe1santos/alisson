@@ -922,3 +922,31 @@ img { height: auto; }
 }
 .tabela-simples tbody tr:nth-child(even) { background: #f7f9fb; }
 .tabela-simples tbody tr:last-child td { border-bottom: none; }
+
+/* --- BLOCO DE BUSCAS RELACIONADAS (CAUDA LONGA) --- */
+.termos-busca { margin-top: 45px; }
+.termos-busca h2 { font-size: 1.8rem; margin: 0 0 12px; }
+.termos-busca > p { margin: 0 0 20px; color: #5a6b7c; font-size: 0.95rem; }
+.termos-lista {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 0;
+    padding: 0;
+}
+.artigo-container ul.termos-lista { padding-left: 0; }
+.artigo-container .termos-lista li {
+    margin-bottom: 0;
+    padding: 8px 14px;
+    font-size: 0.88rem;
+    line-height: 1.3;
+    color: var(--primary-blue);
+    background: #fdfcfa;
+    border: 1px solid #ece7df;
+    border-radius: 2px;
+}
+.termos-lista li::before { content: none; }
+@media (max-width: 600px) {
+    .termos-lista li { font-size: 0.84rem; padding: 7px 12px; }
+}
