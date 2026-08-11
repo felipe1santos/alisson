@@ -120,9 +120,44 @@ apenas antecipa o rastreamento.
 segundos dispara o erro de cota mesmo com cota disponível. Clicar uma vez e aguardar o
 teste ("Isso pode levar 1 ou 2 minutos") terminar.
 
+## Lote de 11/08/2026 — 5 hubs de área
+
+Criados em 11/08/2026 e adicionados ao `sitemap.xml` no mesmo commit. Todos recebem link
+do rodapé de **todas** as páginas do site (exceto `privacidade.html`).
+
+- [ ] https://www.alissonbrandao.com.br/advogado-voo-cancelado-vitoria-es.html
+- [ ] https://www.alissonbrandao.com.br/advogado-plano-de-saude-vitoria-es.html
+- [ ] https://www.alissonbrandao.com.br/advogado-seguro-negado-vitoria-es.html
+- [ ] https://www.alissonbrandao.com.br/advogado-familia-sucessoes-vitoria-es.html
+- [ ] https://www.alissonbrandao.com.br/advogado-bancario-superendividamento-vitoria-es.html
+
+### Pendentes do lote de 07/08/2026 — refazer neste mesmo dia
+
+As 8 URLs abaixo já estão no ar desde 07/08/2026, mas a solicitação manual foi bloqueada
+pela cota diária naquele dia. A cota é diária e por propriedade, então em 11/08/2026 está
+disponível de novo:
+
+- [ ] https://www.alissonbrandao.com.br/advogado-previdenciario-vitoria-es.html
+- [ ] https://www.alissonbrandao.com.br/advogado-para-processar-o-inss-vitoria-es.html
+- [ ] https://www.alissonbrandao.com.br/advogado-aposentadoria-negada-vitoria-es.html
+- [ ] https://www.alissonbrandao.com.br/blog/pensao-por-morte-inss-negada-uniao-estavel.html
+- [ ] https://www.alissonbrandao.com.br/blog/aposentadoria-por-idade-rural-inss-documentos.html
+- [ ] https://www.alissonbrandao.com.br/blog/aposentadoria-especial-insalubridade-ppp.html
+- [ ] https://www.alissonbrandao.com.br/blog/salario-maternidade-inss-desempregada-mei.html
+- [ ] https://www.alissonbrandao.com.br/blog/revisao-de-beneficio-inss-valor-errado.html
+
+**Total do dia: 13 URLs** — acima do limite prático de ~10-12 solicitações manuais por dia.
+Ordem de prioridade, se a cota estourar: primeiro as 8 do lote de 07/08 (já no ar há dias),
+depois os 5 hubs novos (que só podem ser solicitados após o deploy).
+
+### Sitemap
+
+Passou de 43 para **48 URLs**. Como o acréscimo é menor que 10 URLs, o reenvio manual no
+Search Console não é obrigatório — o Google rebusca o arquivo sozinho.
+
 ## Lembretes
 
-- Sitemap: https://www.alissonbrandao.com.br/sitemap.xml — **43 URLs** (23 até 27/07/2026 + 12 do lote de 30/07/2026 + 8 do lote de 07/08/2026).
+- Sitemap: https://www.alissonbrandao.com.br/sitemap.xml — **48 URLs** (23 até 27/07/2026 + 12 do lote de 30/07/2026 + 8 do lote de 07/08/2026 + 5 hubs do lote de 11/08/2026).
 - O `sitemap.xml` é atualizado no mesmo commit de cada página nova. Reenviar no Search Console **não** é necessário toda vez: o Google rebusca o arquivo sozinho. Reenvio manual só em lotes grandes (10+ URLs) ou quando o relatório acusar erro.
 - Limite do Search Console: ~10-12 solicitações manuais/dia.
 - Solicitar indexação não garante nem acelera a posição no ranking: apenas coloca a URL numa fila de rastreamento prioritário.

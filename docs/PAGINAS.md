@@ -12,15 +12,15 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 | Área | Páginas publicadas |
 |---|---|
 | Previdenciário (INSS) | 14 |
-| Direito do Passageiro Aéreo | 6 |
-| Bancário e Superendividamento | 6 |
+| Direito do Passageiro Aéreo | 7 |
+| Bancário e Superendividamento | 8 |
 | Trabalhista | 5 |
-| Família e Sucessões | 3 |
-| Saúde (planos de saúde) | 2 |
-| Seguros | 2 |
+| Família e Sucessões | 4 |
+| Saúde (planos de saúde) | 3 |
+| Seguros | 3 |
 | Tributário | 1 |
 | Consumidor (geral) | 1 |
-| **Total** | **40** (+ home, `blog.html`) |
+| **Total** | **45** (+ home, `blog.html`) |
 
 ---
 
@@ -57,8 +57,11 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 
 ## Direito do Passageiro Aéreo
 
+**Hub da área:** `advogado-voo-cancelado-vitoria-es.html` — lista todas as páginas do silo e recebe link do rodapé em todas as páginas do site.
+
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
+| `advogado-voo-cancelado-vitoria-es.html` (hub) | ✅ 11/08/2026 | ⏳ aguardando deploy | ✅ | pendente |
 | `advogado-extravio-de-bagagem-vitoria-es.html` (landing) | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 | `blog/extravio-de-bagagem-indenizacao.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 | `blog/voo-cancelado-atrasado-indenizacao.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
@@ -68,8 +71,11 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 
 ## Bancário e Superendividamento
 
+**Hub da área:** `advogado-bancario-superendividamento-vitoria-es.html` — lista todas as páginas do silo e recebe link do rodapé em todas as páginas do site.
+
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
+| `advogado-bancario-superendividamento-vitoria-es.html` (hub) | ✅ 11/08/2026 | ⏳ aguardando deploy | ✅ | pendente |
 | `advogado-emprestimo-indevido-vitoria-es.html` (landing) | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 | `advogado-negativacao-indevida-vitoria-es.html` (landing) | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 | `blog/emprestimo-consignado-nao-contratado.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
@@ -90,23 +96,32 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 
 ## Família e Sucessões
 
+**Hub da área:** `advogado-familia-sucessoes-vitoria-es.html` — lista todas as páginas do silo e recebe link do rodapé em todas as páginas do site.
+
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
+| `advogado-familia-sucessoes-vitoria-es.html` (hub) | ✅ 11/08/2026 | ⏳ aguardando deploy | ✅ | pendente |
 | `blog/divorcio-consensual-cartorio-vitoria.html` | ✅ | ✅ | ✅ | indexada (confirmada 04/08/2026) |
 | `blog/pensao-alimenticia-revisao-execucao.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 | `blog/inventario-cartorio-espirito-santo.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 
 ## Saúde (planos de saúde)
 
+**Hub da área:** `advogado-plano-de-saude-vitoria-es.html` — lista todas as páginas do silo e recebe link do rodapé em todas as páginas do site.
+
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
+| `advogado-plano-de-saude-vitoria-es.html` (hub) | ✅ 11/08/2026 | ⏳ aguardando deploy | ✅ | pendente |
 | `blog/plano-saude-negou-cobertura.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 | `blog/plano-de-saude-recusou-internacao-liminar.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | indexada (confirmada 04/08/2026) |
 
 ## Seguros
 
+**Hub da área:** `advogado-seguro-negado-vitoria-es.html` — lista todas as páginas do silo e recebe link do rodapé em todas as páginas do site.
+
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
+| `advogado-seguro-negado-vitoria-es.html` (hub) | ✅ 11/08/2026 | ⏳ aguardando deploy | ✅ | pendente |
 | `blog/seguro-de-vida-negativa-de-pagamento-o-que-fazer.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | indexada (confirmada 04/08/2026) |
 | `blog/seguro-de-automovel-negativa-de-pagamento-sinistro.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | indexada (confirmada 04/08/2026, sem solicitação manual) |
 
@@ -193,10 +208,11 @@ Marcar `[x]` quando a página for criada e mover a linha para a tabela da área 
 - [x] `advogado-previdenciario-vitoria-es.html` — criado em 07/08/2026, com link no rodapé de todas as páginas (exceto `privacidade.html`)
 - [x] `advogado-para-processar-o-inss-vitoria-es.html` — landing de intenção "processar o INSS", criada em 07/08/2026
 - [x] `advogado-aposentadoria-negada-vitoria-es.html` — landing de intenção "aposentadoria negada", criada em 07/08/2026
-- [ ] `advogado-voo-cancelado-vitoria-es.html` — hub de direito aéreo (6 páginas; hoje só existe a landing de extravio de bagagem)
-- [ ] `advogado-plano-de-saude-vitoria-es.html` — hub de saúde
-- [ ] `advogado-seguro-negado-vitoria-es.html` — hub de seguros
-- [ ] `advogado-familia-sucessoes-vitoria-es.html` — hub de família e sucessões
+- [x] `advogado-voo-cancelado-vitoria-es.html` — hub de direito aéreo, criado em 11/08/2026
+- [x] `advogado-plano-de-saude-vitoria-es.html` — hub de saúde, criado em 11/08/2026
+- [x] `advogado-seguro-negado-vitoria-es.html` — hub de seguros, criado em 11/08/2026
+- [x] `advogado-familia-sucessoes-vitoria-es.html` — hub de família e sucessões, criado em 11/08/2026
+- [x] `advogado-bancario-superendividamento-vitoria-es.html` — hub de bancário e superendividamento, criado em 11/08/2026
 - [ ] `advogado-tributario-vitoria-es.html` — hub de tributário (criar quando a área chegar a 3 páginas)
 
 ---
@@ -219,10 +235,17 @@ Marcar `[x]` quando a página for criada e mover a linha para a tabela da área 
   - `trabalhador-construcao-brasil.jpg` → aposentadoria especial/PPP
   - `pensao-alimenticia-mae-filha.jpg` → salário-maternidade
   - `emprestimo-consignado-calculadora.jpg` → revisão de benefício
-- [ ] **`privacidade.html` sem o link do hub previdenciário no rodapé** — deixado de fora de propósito, por causa da regra "não mexer sem pedido explícito" do `CLAUDE.md`. É a única página do site com o rodapé desatualizado.
+- [ ] **`privacidade.html` com o rodapé desatualizado** — não tem os links dos 6 hubs de área (previdenciário, aéreo, saúde, seguros, família, bancário). Deixada de fora de propósito, por causa da regra "não mexer sem pedido explícito" do `CLAUDE.md`. É a única página do site com o rodapé antigo.
 - [ ] **Box de autoridade retroativo** — os 17 posts anteriores a 30/07/2026 ainda não têm o bloco `.cta-autor`. Aplicar quando houver oportunidade.
 - [x] **Apex sem `www`** — resolvido. Verificado em 30/07/2026: `http://alissonbrandao.com.br/` → 301 → `https://alissonbrandao.com.br/` → 301 → `https://www.alissonbrandao.com.br/` → 200.
   Conferido no Search Console em 07/08/2026 (dados de 04/08): o relatório "Páginas" ainda lista **1** página em "Não encontrado (404)" e **1** em "Página com redirecionamento" — resíduo histórico do apex, que o Google só remove depois de rerrastrear. Nenhuma página real do site está afetada. Não requer ação; reconferir daqui a algumas semanas.
 - [x] **Cobertura de indexação** — em 07/08/2026 o relatório mostrava **35 indexadas · 4 não indexadas**, com "Detectada, mas não indexada" = 0 e "Rastreada, mas não indexada" = 0. Os 4 motivos restantes são o `noindex` proposital de `privacidade.html`, o 404 e o redirect do apex, e 1 variante consolidada por canônica. Ou seja: **todas as páginas reais publicadas até 04/08/2026 estão indexadas.**
-- [ ] **`blog.html` acima do teto** — o índice tem 29 cards e o teto definido é ~18. Enxugar **depois** de criar os hubs de área, para que nenhuma página perca caminho de navegação. Ordem correta: criar hubs → apontar hubs no rodapé/menu → remover os cards mais antigos do `blog.html`.
-  Situação em 07/08/2026: **1 de 6 hubs criados** (previdenciário, já com link no rodapé). Faltam os hubs de direito aéreo, saúde, seguros, família e tributário. As 8 páginas novas de 07/08/2026 **não** entraram no `blog.html`, justamente para não agravar o excesso — a descoberta delas vem do `sitemap.xml`, do hub previdenciário e dos links internos.
+- [ ] **Imagens de capa recicladas** nos 5 hubs de 11/08/2026 — mesma causa. Reuso atual:
+  - `voo-cancelado-painel-aeroporto.jpg` → hub de direito aéreo (3ª página com essa imagem)
+  - `plano-saude-consulta-medica.jpg` → hub de saúde (3ª página)
+  - `advogado-assinatura-contrato.jpg` → hub de seguros (3ª página)
+  - `inventario-cartorio-chaves-contrato.jpg` → hub de família (2ª página)
+  - `superendividamento-contas-mesa.jpg` → hub bancário (3ª página)
+- [ ] **`blog.html` acima do teto** — o índice tem 29 cards e o teto definido é ~18. Enxugar agora que os hubs existem: nenhuma página fica sem caminho de navegação, porque cada uma tem hub de área + sitemap + links internos.
+  Situação em 11/08/2026: **6 de 7 hubs criados** — previdenciário, direito aéreo, saúde, seguros, família e bancário, todos com link no rodapé de todas as páginas (exceto `privacidade.html`). Falta só o de tributário, que aguarda a área chegar a 3 páginas. As 8 páginas de 07/08/2026 e os 5 hubs de 11/08/2026 **não** entraram no `blog.html`, para não agravar o excesso.
+  **Próximo passo recomendado:** reduzir o `blog.html` para ~18 cards, mantendo os mais recentes.
