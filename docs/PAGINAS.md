@@ -40,14 +40,14 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
-| `advogado-previdenciario-vitoria-es.html` (hub) | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | solicitação bloqueada por cota — refazer 08/08/2026 |
-| `advogado-para-processar-o-inss-vitoria-es.html` (landing) | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | solicitação bloqueada por cota — refazer 08/08/2026 |
-| `advogado-aposentadoria-negada-vitoria-es.html` (landing) | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | solicitação bloqueada por cota — refazer 08/08/2026 |
-| `blog/pensao-por-morte-inss-negada-uniao-estavel.html` | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | solicitação bloqueada por cota — refazer 08/08/2026 |
-| `blog/aposentadoria-por-idade-rural-inss-documentos.html` | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | solicitação bloqueada por cota — refazer 08/08/2026 |
-| `blog/aposentadoria-especial-insalubridade-ppp.html` | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | solicitação bloqueada por cota — refazer 08/08/2026 |
-| `blog/salario-maternidade-inss-desempregada-mei.html` | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | solicitação bloqueada por cota — refazer 08/08/2026 |
-| `blog/revisao-de-beneficio-inss-valor-errado.html` | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | solicitação bloqueada por cota — refazer 08/08/2026 |
+| `advogado-previdenciario-vitoria-es.html` (hub) | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | indexada (confirmada por inspeção em 11/08/2026, sem solicitação manual) |
+| `advogado-para-processar-o-inss-vitoria-es.html` (landing) | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | indexada (confirmada por inspeção em 11/08/2026, sem solicitação manual) |
+| `advogado-aposentadoria-negada-vitoria-es.html` (landing) | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | indexada (confirmada por inspeção em 11/08/2026, sem solicitação manual) |
+| `blog/pensao-por-morte-inss-negada-uniao-estavel.html` | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | indexada (confirmada por inspeção em 11/08/2026, sem solicitação manual) |
+| `blog/aposentadoria-por-idade-rural-inss-documentos.html` | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | indexada (confirmada por inspeção em 11/08/2026, sem solicitação manual) |
+| `blog/aposentadoria-especial-insalubridade-ppp.html` | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | indexada (confirmada por inspeção em 11/08/2026, sem solicitação manual) |
+| `blog/salario-maternidade-inss-desempregada-mei.html` | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | indexada (confirmada por inspeção em 11/08/2026, sem solicitação manual) |
+| `blog/revisao-de-beneficio-inss-valor-errado.html` | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | indexada (confirmada por inspeção em 11/08/2026, sem solicitação manual) |
 | `blog/desconto-inss-associativo-indevido.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 | `blog/auxilio-doenca-negado-pericia-inss-o-que-fazer.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | indexada (confirmada 04/08/2026) |
 | `blog/aposentadoria-por-invalidez-incapacidade-permanente.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | indexada (confirmada 04/08/2026) |
@@ -239,6 +239,7 @@ Marcar `[x]` quando a página for criada e mover a linha para a tabela da área 
 - [ ] **Box de autoridade retroativo** — os 17 posts anteriores a 30/07/2026 ainda não têm o bloco `.cta-autor`. Aplicar quando houver oportunidade.
 - [x] **Apex sem `www`** — resolvido. Verificado em 30/07/2026: `http://alissonbrandao.com.br/` → 301 → `https://alissonbrandao.com.br/` → 301 → `https://www.alissonbrandao.com.br/` → 200.
   Conferido no Search Console em 07/08/2026 (dados de 04/08): o relatório "Páginas" ainda lista **1** página em "Não encontrado (404)" e **1** em "Página com redirecionamento" — resíduo histórico do apex, que o Google só remove depois de rerrastrear. Nenhuma página real do site está afetada. Não requer ação; reconferir daqui a algumas semanas.
+- [x] **Cobertura de indexação em 11/08/2026** — relatório "Páginas" com **36 indexadas · 9 não indexadas**, sendo 5 em "Rastreada, mas não indexada". Conferidas uma a uma na Inspeção de URL: **as 8 páginas do lote de 07/08 estão indexadas**. O relatório agregado usa dados de 08/08 e ainda não refletiu. Fica a regra: conferir na Inspeção de URL antes de gastar cota com página que o relatório acusa como não indexada. Detalhes em `docs/INDEXACAO.md`.
 - [x] **Cobertura de indexação** — em 07/08/2026 o relatório mostrava **35 indexadas · 4 não indexadas**, com "Detectada, mas não indexada" = 0 e "Rastreada, mas não indexada" = 0. Os 4 motivos restantes são o `noindex` proposital de `privacidade.html`, o 404 e o redirect do apex, e 1 variante consolidada por canônica. Ou seja: **todas as páginas reais publicadas até 04/08/2026 estão indexadas.**
 - [ ] **Imagens de capa recicladas** nos 5 hubs de 11/08/2026 — mesma causa. Reuso atual:
   - `voo-cancelado-painel-aeroporto.jpg` → hub de direito aéreo (3ª página com essa imagem)

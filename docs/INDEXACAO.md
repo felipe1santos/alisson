@@ -131,24 +131,47 @@ do rodapé de **todas** as páginas do site (exceto `privacidade.html`).
 - [ ] https://www.alissonbrandao.com.br/advogado-familia-sucessoes-vitoria-es.html
 - [ ] https://www.alissonbrandao.com.br/advogado-bancario-superendividamento-vitoria-es.html
 
-### Pendentes do lote de 07/08/2026 — refazer neste mesmo dia
+### Pendentes do lote de 07/08/2026 — RESOLVIDAS SOZINHAS, nenhuma cota gasta
 
-As 8 URLs abaixo já estão no ar desde 07/08/2026, mas a solicitação manual foi bloqueada
-pela cota diária naquele dia. A cota é diária e por propriedade, então em 11/08/2026 está
-disponível de novo:
+As 8 URLs do lote de 07/08 ficaram sem solicitação manual porque a cota daquele dia já
+estava esgotada. Em 11/08/2026 foram inspecionadas uma a uma pela Inspeção de URL: **as 8
+retornaram "O URL está no Google" e "A página está indexada"**. Foram descobertas e
+indexadas pelo `sitemap.xml` e pelos links internos, sem nenhuma solicitação manual.
 
-- [ ] https://www.alissonbrandao.com.br/advogado-previdenciario-vitoria-es.html
-- [ ] https://www.alissonbrandao.com.br/advogado-para-processar-o-inss-vitoria-es.html
-- [ ] https://www.alissonbrandao.com.br/advogado-aposentadoria-negada-vitoria-es.html
-- [ ] https://www.alissonbrandao.com.br/blog/pensao-por-morte-inss-negada-uniao-estavel.html
-- [ ] https://www.alissonbrandao.com.br/blog/aposentadoria-por-idade-rural-inss-documentos.html
-- [ ] https://www.alissonbrandao.com.br/blog/aposentadoria-especial-insalubridade-ppp.html
-- [ ] https://www.alissonbrandao.com.br/blog/salario-maternidade-inss-desempregada-mei.html
-- [ ] https://www.alissonbrandao.com.br/blog/revisao-de-beneficio-inss-valor-errado.html
+- [x] https://www.alissonbrandao.com.br/advogado-previdenciario-vitoria-es.html
+- [x] https://www.alissonbrandao.com.br/advogado-para-processar-o-inss-vitoria-es.html
+- [x] https://www.alissonbrandao.com.br/advogado-aposentadoria-negada-vitoria-es.html
+- [x] https://www.alissonbrandao.com.br/blog/pensao-por-morte-inss-negada-uniao-estavel.html
+- [x] https://www.alissonbrandao.com.br/blog/aposentadoria-por-idade-rural-inss-documentos.html
+- [x] https://www.alissonbrandao.com.br/blog/aposentadoria-especial-insalubridade-ppp.html
+- [x] https://www.alissonbrandao.com.br/blog/salario-maternidade-inss-desempregada-mei.html
+- [x] https://www.alissonbrandao.com.br/blog/revisao-de-beneficio-inss-valor-errado.html
 
-**Total do dia: 13 URLs** — acima do limite prático de ~10-12 solicitações manuais por dia.
-Ordem de prioridade, se a cota estourar: primeiro as 8 do lote de 07/08 (já no ar há dias),
-depois os 5 hubs novos (que só podem ser solicitados após o deploy).
+Consequência prática: a cota de 11/08 ficou **inteira** disponível para os 5 hubs novos.
+
+### O relatório "Páginas" tem lag — não confundir com o estado real do índice
+
+Consultado em 11/08/2026, o relatório mostrava **36 indexadas · 9 não indexadas**, sendo
+**5 em "Rastreada, mas não indexada no momento"** — categoria que estava zerada em 07/08.
+As 5 listadas são exatamente:
+
+1. `advogado-para-processar-o-inss-vitoria-es.html`
+2. `blog/aposentadoria-especial-insalubridade-ppp.html`
+3. `blog/aposentadoria-por-idade-rural-inss-documentos.html`
+4. `blog/salario-maternidade-inss-desempregada-mei.html`
+5. `blog/pensao-por-morte-inss-negada-uniao-estavel.html`
+
+Todas com "último rastreamento: 8 de ago. de 2026" — e **todas apareceram como indexadas na
+Inspeção de URL ao vivo, em 11/08**. Ou seja: foram rastreadas em 08/08 sem indexar de
+imediato e indexadas depois; o relatório agregado ainda não refletiu isso.
+
+**Regra que sai daqui:** o relatório "Páginas" trabalha com dados de dias atrás. Para saber
+o estado real de uma URL, usar a Inspeção de URL. Não gastar cota reindexando página que o
+relatório acusa como não indexada sem antes conferir na inspeção.
+
+Os outros 4 motivos seguem sendo os mesmos de sempre e nenhum é página real: `noindex` de
+`privacidade.html`, o 404 e o redirect residuais do apex, e 1 variante consolidada por
+canônica.
 
 ### Sitemap
 
