@@ -185,21 +185,52 @@ entraram no `sitemap.xml` no mesmo commit, com `priority` 0.9, e receberam links
 páginas da mesma área. O hub do consumidor ganhou link no rodapé de **todas** as 54 páginas
 do site (exceto `privacidade.html`), no lugar do antigo `index.html#atuacao`.
 
-- [ ] https://www.alissonbrandao.com.br/advogado-trabalhista-vila-velha-es.html
-- [ ] https://www.alissonbrandao.com.br/advogado-trabalhista-cariacica-es.html
-- [ ] https://www.alissonbrandao.com.br/advogado-previdenciario-serra-es.html
-- [ ] https://www.alissonbrandao.com.br/advogado-acidente-de-trabalho-vitoria-es.html
+Deploy no Coolify confirmado pelo usuário em 13/08/2026. As 6 URLs responderam **HTTP 200**
+e o `canonical` de cada uma aponta para ela mesma, na versão `www`.
+
+### Solicitação manual — 4 aceitas, 2 barradas pela cota
+
+Feitas pela Inspeção de URL, uma a uma, com retorno *"Indexação solicitada — O URL foi
+adicionado a uma fila de rastreamento prioritário"*:
+
+- [x] https://www.alissonbrandao.com.br/advogado-trabalhista-vila-velha-es.html
+- [x] https://www.alissonbrandao.com.br/advogado-trabalhista-cariacica-es.html
+- [x] https://www.alissonbrandao.com.br/advogado-previdenciario-serra-es.html
+- [x] https://www.alissonbrandao.com.br/advogado-acidente-de-trabalho-vitoria-es.html
+
+Na 5ª URL o Search Console retornou *"A cota foi excedida — Tente novamente amanhã."*
+**Refazer em 14/08/2026:**
+
 - [ ] https://www.alissonbrandao.com.br/advogado-consumidor-vitoria-es.html
 - [ ] https://www.alissonbrandao.com.br/advogado-acidente-de-transito-vitoria-es.html
 
-Pendentes de 11/08/2026 (os 5 hubs) continuam na fila: já responderam **HTTP 200** em
-13/08/2026, então estão elegíveis para inspeção junto com este lote.
+As duas já estão no ar, no sitemap reenviado e com links internos — o lote de 07/08 mostra
+que a solicitação manual só antecipa o rastreamento, não é indispensável.
 
-### Sitemap
+### Sitemap reenviado — funcionou
 
-Passou de 48 para **54 URLs**. Acréscimo de 6 — abaixo do limiar de 10 que justifica reenvio
-manual, mas como o lote anterior também não foi reenviado, vale reenviar se o relatório de
-sitemap estiver com leitura antiga.
+`https://www.alissonbrandao.com.br/sitemap.xml` reenviado em 13/08/2026: retorno **"Sitemap
+enviado"** e a coluna "Páginas encontradas" saltou de **43 para 54** na hora. O registro
+anterior era de 07/08/2026, com última leitura em 11/08/2026 e 43 páginas — ou seja, **o
+Google ainda não tinha relido o arquivo desde o lote dos hubs**, o que explica os hubs de
+11/08 aparecerem como não detectados.
+
+**Armadilha nova (13/08/2026):** em propriedade de **domínio**, o campo "Adicionar um novo
+sitemap" recusa caminho relativo (`sitemap.xml` → *"Endereço do sitemap inválido"*). É
+preciso colar a URL absoluta completa, com `https://www.`.
+
+### Situação dos 5 hubs de 11/08/2026, conferida por Inspeção de URL em 13/08
+
+| Hub | Situação |
+|---|---|
+| `advogado-voo-cancelado-vitoria-es.html` | **indexada** — "O URL está no Google" |
+| `advogado-plano-de-saude-vitoria-es.html` | **indexada** — "O URL está no Google" |
+| `advogado-seguro-negado-vitoria-es.html` | detectada pelo sitemap, ainda não indexada |
+| `advogado-familia-sucessoes-vitoria-es.html` | detectada pelo sitemap, ainda não indexada |
+| `advogado-bancario-superendividamento-vitoria-es.html` | Google ainda não reconhecia o URL — deve ser resolvido pelo reenvio do sitemap de hoje |
+
+Nenhuma cota foi gasta nessa conferência: **inspecionar não consome cota, só "Solicitar
+indexação" consome.**
 
 ## Lembretes
 

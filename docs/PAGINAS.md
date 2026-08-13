@@ -42,7 +42,7 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
 | `advogado-previdenciario-vitoria-es.html` (hub) | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | indexada (confirmada por inspeção em 11/08/2026, sem solicitação manual) |
-| `advogado-previdenciario-serra-es.html` (landing geo) | ✅ 13/08/2026 | ⏳ aguardando deploy | ✅ | pendente |
+| `advogado-previdenciario-serra-es.html` (landing geo) | ✅ 13/08/2026 | ✅ 13/08/2026 | ✅ | indexação solicitada (13/08/2026) |
 | `advogado-para-processar-o-inss-vitoria-es.html` (landing) | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | indexada (confirmada por inspeção em 11/08/2026, sem solicitação manual) |
 | `advogado-aposentadoria-negada-vitoria-es.html` (landing) | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | indexada (confirmada por inspeção em 11/08/2026, sem solicitação manual) |
 | `blog/pensao-por-morte-inss-negada-uniao-estavel.html` | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | indexada (confirmada por inspeção em 11/08/2026, sem solicitação manual) |
@@ -63,7 +63,7 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
-| `advogado-voo-cancelado-vitoria-es.html` (hub) | ✅ 11/08/2026 | ⏳ aguardando deploy | ✅ | pendente |
+| `advogado-voo-cancelado-vitoria-es.html` (hub) | ✅ 11/08/2026 | ✅ 13/08/2026 | ✅ | indexada (confirmada por inspeção em 13/08/2026, sem solicitação manual) |
 | `advogado-extravio-de-bagagem-vitoria-es.html` (landing) | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 | `blog/extravio-de-bagagem-indenizacao.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 | `blog/voo-cancelado-atrasado-indenizacao.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
@@ -77,7 +77,7 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
-| `advogado-bancario-superendividamento-vitoria-es.html` (hub) | ✅ 11/08/2026 | ⏳ aguardando deploy | ✅ | pendente |
+| `advogado-bancario-superendividamento-vitoria-es.html` (hub) | ✅ 11/08/2026 | ✅ 13/08/2026 | ✅ | ainda não reconhecida pelo Google em 13/08; coberta pelo reenvio do sitemap |
 | `advogado-emprestimo-indevido-vitoria-es.html` (landing) | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 | `advogado-negativacao-indevida-vitoria-es.html` (landing) | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 | `blog/emprestimo-consignado-nao-contratado.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
@@ -91,9 +91,9 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
 | `advogado-trabalhista-vitoria-es.html` (landing) | ✅ | ✅ | ✅ | indexada (confirmada 04/08/2026) |
-| `advogado-trabalhista-vila-velha-es.html` (landing geo) | ✅ 13/08/2026 | ⏳ aguardando deploy | ✅ | pendente |
-| `advogado-trabalhista-cariacica-es.html` (landing geo) | ✅ 13/08/2026 | ⏳ aguardando deploy | ✅ | pendente |
-| `advogado-acidente-de-trabalho-vitoria-es.html` (landing) | ✅ 13/08/2026 | ⏳ aguardando deploy | ✅ | pendente |
+| `advogado-trabalhista-vila-velha-es.html` (landing geo) | ✅ 13/08/2026 | ✅ 13/08/2026 | ✅ | indexação solicitada (13/08/2026) |
+| `advogado-trabalhista-cariacica-es.html` (landing geo) | ✅ 13/08/2026 | ✅ 13/08/2026 | ✅ | indexação solicitada (13/08/2026) |
+| `advogado-acidente-de-trabalho-vitoria-es.html` (landing) | ✅ 13/08/2026 | ✅ 13/08/2026 | ✅ | indexação solicitada (13/08/2026) |
 | `blog/verbas-rescisorias-demissao-sem-justa-causa.html` | ✅ | ✅ | ✅ | indexada (confirmada 04/08/2026) |
 | `blog/horas-extras-nao-pagas-como-cobrar.html` | ✅ | ✅ | ✅ | indexada (confirmada 04/08/2026) |
 | `blog/assedio-moral-no-trabalho-indenizacao.html` | ✅ | ✅ | ✅ | indexada (confirmada 04/08/2026) |
@@ -105,7 +105,7 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
-| `advogado-familia-sucessoes-vitoria-es.html` (hub) | ✅ 11/08/2026 | ⏳ aguardando deploy | ✅ | pendente |
+| `advogado-familia-sucessoes-vitoria-es.html` (hub) | ✅ 11/08/2026 | ✅ 13/08/2026 | ✅ | detectada pelo sitemap, ainda não indexada (13/08/2026) |
 | `blog/divorcio-consensual-cartorio-vitoria.html` | ✅ | ✅ | ✅ | indexada (confirmada 04/08/2026) |
 | `blog/pensao-alimenticia-revisao-execucao.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 | `blog/inventario-cartorio-espirito-santo.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
@@ -116,7 +116,7 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
-| `advogado-plano-de-saude-vitoria-es.html` (hub) | ✅ 11/08/2026 | ⏳ aguardando deploy | ✅ | pendente |
+| `advogado-plano-de-saude-vitoria-es.html` (hub) | ✅ 11/08/2026 | ✅ 13/08/2026 | ✅ | indexada (confirmada por inspeção em 13/08/2026, sem solicitação manual) |
 | `blog/plano-saude-negou-cobertura.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 | `blog/plano-de-saude-recusou-internacao-liminar.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | indexada (confirmada 04/08/2026) |
 
@@ -126,7 +126,7 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
-| `advogado-seguro-negado-vitoria-es.html` (hub) | ✅ 11/08/2026 | ⏳ aguardando deploy | ✅ | pendente |
+| `advogado-seguro-negado-vitoria-es.html` (hub) | ✅ 11/08/2026 | ✅ 13/08/2026 | ✅ | detectada pelo sitemap, ainda não indexada (13/08/2026) |
 | `blog/seguro-de-vida-negativa-de-pagamento-o-que-fazer.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | indexada (confirmada 04/08/2026) |
 | `blog/seguro-de-automovel-negativa-de-pagamento-sinistro.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | indexada (confirmada 04/08/2026, sem solicitação manual) |
 
@@ -142,14 +142,14 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
-| `advogado-consumidor-vitoria-es.html` (hub) | ✅ 13/08/2026 | ⏳ aguardando deploy | ✅ | pendente |
+| `advogado-consumidor-vitoria-es.html` (hub) | ✅ 13/08/2026 | ✅ 13/08/2026 | ✅ | no sitemap; solicitação manual barrada pela cota, refazer em 14/08 |
 | `blog/golpe-falso-advogado.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
 
 ## Trânsito e responsabilidade civil
 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
-| `advogado-acidente-de-transito-vitoria-es.html` (landing) | ✅ 13/08/2026 | ⏳ aguardando deploy | ✅ | pendente |
+| `advogado-acidente-de-transito-vitoria-es.html` (landing) | ✅ 13/08/2026 | ✅ 13/08/2026 | ✅ | no sitemap; solicitação manual barrada pela cota, refazer em 14/08 |
 
 ---
 
@@ -253,6 +253,9 @@ Fonte: autocomplete do Google (`suggestqueries.google.com`, pt-BR/BR) para as se
 ---
 
 # Pendências técnicas conhecidas
+
+- [ ] **2 URLs do lote de 13/08 sem solicitação manual** — a cota diária estourou na 5ª solicitação. Refazer em 14/08/2026: `advogado-consumidor-vitoria-es.html` e `advogado-acidente-de-transito-vitoria-es.html`. As duas já estão no ar e no sitemap reenviado.
+- [x] **O sitemap não estava sendo relido** — em 13/08/2026 o relatório de sitemaps ainda mostrava "última leitura 11/08, 43 páginas encontradas", sem os 5 hubs. Reenviado no mesmo dia: pulou para **54 páginas encontradas**. Lição: quando um lote novo demorar a ser detectado, conferir a data de "última leitura" do sitemap antes de gastar cota de inspeção.
 
 - [ ] **Imagens de capa recicladas** nas 6 landings de 13/08/2026 — mesma causa de sempre, não há imagem temática nova no repo. Reuso atual:
   - `demissao-funcionario-caixa-pertences.jpg` → trabalhista Vila Velha
