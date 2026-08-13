@@ -178,6 +178,29 @@ canônica.
 Passou de 43 para **48 URLs**. Como o acréscimo é menor que 10 URLs, o reenvio manual no
 Search Console não é obrigatório — o Google rebusca o arquivo sozinho.
 
+## Lote de 13/08/2026 — 6 landings de ranqueamento (geo + intenção)
+
+Criadas a partir de pesquisa de palavra-chave no autocomplete do Google (pt-BR/BR). Todas
+entraram no `sitemap.xml` no mesmo commit, com `priority` 0.9, e receberam links internos de
+páginas da mesma área. O hub do consumidor ganhou link no rodapé de **todas** as 54 páginas
+do site (exceto `privacidade.html`), no lugar do antigo `index.html#atuacao`.
+
+- [ ] https://www.alissonbrandao.com.br/advogado-trabalhista-vila-velha-es.html
+- [ ] https://www.alissonbrandao.com.br/advogado-trabalhista-cariacica-es.html
+- [ ] https://www.alissonbrandao.com.br/advogado-previdenciario-serra-es.html
+- [ ] https://www.alissonbrandao.com.br/advogado-acidente-de-trabalho-vitoria-es.html
+- [ ] https://www.alissonbrandao.com.br/advogado-consumidor-vitoria-es.html
+- [ ] https://www.alissonbrandao.com.br/advogado-acidente-de-transito-vitoria-es.html
+
+Pendentes de 11/08/2026 (os 5 hubs) continuam na fila: já responderam **HTTP 200** em
+13/08/2026, então estão elegíveis para inspeção junto com este lote.
+
+### Sitemap
+
+Passou de 48 para **54 URLs**. Acréscimo de 6 — abaixo do limiar de 10 que justifica reenvio
+manual, mas como o lote anterior também não foi reenviado, vale reenviar se o relatório de
+sitemap estiver com leitura antiga.
+
 ## Lembretes
 
 - Sitemap: https://www.alissonbrandao.com.br/sitemap.xml — **48 URLs** (23 até 27/07/2026 + 12 do lote de 30/07/2026 + 8 do lote de 07/08/2026 + 5 hubs do lote de 11/08/2026).

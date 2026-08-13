@@ -11,16 +11,17 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 
 | Área | Páginas publicadas |
 |---|---|
-| Previdenciário (INSS) | 14 |
+| Previdenciário (INSS) | 15 |
 | Direito do Passageiro Aéreo | 7 |
 | Bancário e Superendividamento | 8 |
-| Trabalhista | 5 |
+| Trabalhista | 8 |
 | Família e Sucessões | 4 |
 | Saúde (planos de saúde) | 3 |
 | Seguros | 3 |
+| Consumidor (geral) | 2 |
+| Trânsito e responsabilidade civil | 1 |
 | Tributário | 1 |
-| Consumidor (geral) | 1 |
-| **Total** | **45** (+ home, `blog.html`) |
+| **Total** | **51** (+ home, `blog.html`) |
 
 ---
 
@@ -41,6 +42,7 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
 | `advogado-previdenciario-vitoria-es.html` (hub) | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | indexada (confirmada por inspeção em 11/08/2026, sem solicitação manual) |
+| `advogado-previdenciario-serra-es.html` (landing geo) | ✅ 13/08/2026 | ⏳ aguardando deploy | ✅ | pendente |
 | `advogado-para-processar-o-inss-vitoria-es.html` (landing) | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | indexada (confirmada por inspeção em 11/08/2026, sem solicitação manual) |
 | `advogado-aposentadoria-negada-vitoria-es.html` (landing) | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | indexada (confirmada por inspeção em 11/08/2026, sem solicitação manual) |
 | `blog/pensao-por-morte-inss-negada-uniao-estavel.html` | ✅ 07/08/2026 | ✅ 07/08/2026 | ✅ | indexada (confirmada por inspeção em 11/08/2026, sem solicitação manual) |
@@ -89,6 +91,9 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
 | `advogado-trabalhista-vitoria-es.html` (landing) | ✅ | ✅ | ✅ | indexada (confirmada 04/08/2026) |
+| `advogado-trabalhista-vila-velha-es.html` (landing geo) | ✅ 13/08/2026 | ⏳ aguardando deploy | ✅ | pendente |
+| `advogado-trabalhista-cariacica-es.html` (landing geo) | ✅ 13/08/2026 | ⏳ aguardando deploy | ✅ | pendente |
+| `advogado-acidente-de-trabalho-vitoria-es.html` (landing) | ✅ 13/08/2026 | ⏳ aguardando deploy | ✅ | pendente |
 | `blog/verbas-rescisorias-demissao-sem-justa-causa.html` | ✅ | ✅ | ✅ | indexada (confirmada 04/08/2026) |
 | `blog/horas-extras-nao-pagas-como-cobrar.html` | ✅ | ✅ | ✅ | indexada (confirmada 04/08/2026) |
 | `blog/assedio-moral-no-trabalho-indenizacao.html` | ✅ | ✅ | ✅ | indexada (confirmada 04/08/2026) |
@@ -133,9 +138,18 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 
 ## Consumidor (geral)
 
+**Hub da área:** `advogado-consumidor-vitoria-es.html` — índice guarda-chuva do consumidor. Aponta para os hubs de bancário, saúde, seguros e aéreo, e recebe link do rodapé de todo o site (substituiu `index.html#atuacao` no item "Direito do Consumidor").
+
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
+| `advogado-consumidor-vitoria-es.html` (hub) | ✅ 13/08/2026 | ⏳ aguardando deploy | ✅ | pendente |
 | `blog/golpe-falso-advogado.html` | ✅ | ✅ | ✅ | indexada (27/07/2026) |
+
+## Trânsito e responsabilidade civil
+
+| Página | Criada | No ar | Sitemap | Indexação |
+|---|---|---|---|---|
+| `advogado-acidente-de-transito-vitoria-es.html` (landing) | ✅ 13/08/2026 | ⏳ aguardando deploy | ✅ | pendente |
 
 ---
 
@@ -213,11 +227,42 @@ Marcar `[x]` quando a página for criada e mover a linha para a tabela da área 
 - [x] `advogado-seguro-negado-vitoria-es.html` — hub de seguros, criado em 11/08/2026
 - [x] `advogado-familia-sucessoes-vitoria-es.html` — hub de família e sucessões, criado em 11/08/2026
 - [x] `advogado-bancario-superendividamento-vitoria-es.html` — hub de bancário e superendividamento, criado em 11/08/2026
+- [x] `advogado-consumidor-vitoria-es.html` — hub guarda-chuva do consumidor, criado em 13/08/2026, com link no rodapé de todo o site
+- [x] `advogado-trabalhista-vila-velha-es.html` — landing geo, criada em 13/08/2026
+- [x] `advogado-trabalhista-cariacica-es.html` — landing geo, criada em 13/08/2026
+- [x] `advogado-previdenciario-serra-es.html` — landing geo, criada em 13/08/2026
+- [x] `advogado-acidente-de-trabalho-vitoria-es.html` — landing de intenção, criada em 13/08/2026
+- [x] `advogado-acidente-de-transito-vitoria-es.html` — landing de intenção, criada em 13/08/2026
 - [ ] `advogado-tributario-vitoria-es.html` — hub de tributário (criar quando a área chegar a 3 páginas)
+
+### Próximas landings sugeridas — pesquisa de palavra-chave de 13/08/2026
+
+Fonte: autocomplete do Google (`suggestqueries.google.com`, pt-BR/BR) para as sementes `advogado vitoria es`, `advogado vila velha`, `advogado serra es`, `advogado cariacica`, `advogado para`, `advogado de`, `advogado especialista em`, `quanto custa advogado`. Todas as linhas abaixo saíram de sugestão real do Google.
+
+- [ ] `advogado-previdenciario-vila-velha-es.html` — "advogado previdenciario vila velha" é autocomplete local
+- [ ] `advogado-previdenciario-cariacica-es.html` — "advogado previdenciario cariacica es" é autocomplete local
+- [ ] `advogado-trabalhista-serra-es.html` — "advogado trabalhista serra es" é autocomplete local
+- [ ] `advogado-familia-vitoria-es.html` — "advogado família vitória es" e "advogado de familia vitoria es" são autocomplete local
+- [ ] `advogado-divorcio-vitoria-es.html` — "advogado divorcio vitoria es" é autocomplete local
+- [ ] `advogado-inventario-vitoria-es.html` — casa com "quanto custa advogado inventario"
+- [ ] `advogado-juros-abusivos-vitoria-es.html` — "advogado para juros abusivos" e "advogado dividas bancarias" estão no topo das sugestões
+- [ ] `advogado-para-limpar-nome-vitoria-es.html` — "advogado para limpar nome" é sugestão de topo (checar canibalização com a landing de negativação indevida)
+
+**Áreas descartadas por decisão do escritório (13/08/2026):** criminal e imobiliário, apesar de "advogado criminalista" e "advogado imobiliario vitoria es" terem volume local alto. Não criar páginas dessas áreas.
 
 ---
 
 # Pendências técnicas conhecidas
+
+- [ ] **Imagens de capa recicladas** nas 6 landings de 13/08/2026 — mesma causa de sempre, não há imagem temática nova no repo. Reuso atual:
+  - `demissao-funcionario-caixa-pertences.jpg` → trabalhista Vila Velha
+  - `horas-extras-trabalho-noturno.jpg` → trabalhista Cariacica
+  - `desconto-inss-idoso-aposentado.jpg` → previdenciário Serra (4ª página com essa imagem)
+  - `trabalhador-construcao-brasil.jpg` → acidente de trabalho (3ª página)
+  - `advogado-assinatura-contrato.jpg` → hub do consumidor (4ª página)
+  - `plano-saude-consulta-medica.jpg` → acidente de trânsito (4ª página)
+  Faltam imagens próprias de trânsito/atropelamento e de indústria da Serra.
+- [x] **Erro factual corrigido em 13/08/2026** — `advogado-trabalhista-vitoria-es.html` afirmava haver "Varas do Trabalho em Vitória, Vila Velha, Serra e Cariacica". Conferido no portal do TRT-17: as 15 Varas do Trabalho ficam **todas em Vitória** (Av. Nossa Senhora dos Navegantes, 1245) e concentram a jurisdição de Vitória, Vila Velha, Serra, Cariacica e Viana. Texto ajustado.
 
 - [ ] **Imagens de capa recicladas** nas 12 páginas de 30/07/2026 — não havia imagem temática nova disponível no repo. Reuso atual:
   - `voo-cancelado-painel-aeroporto.jpg` → 2 páginas de voo (cancelamento sem aviso, atraso 4h)
