@@ -12,7 +12,7 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 | Área | Páginas publicadas |
 |---|---|
 | Previdenciário (INSS) | 15 |
-| Direito do Passageiro Aéreo | 7 |
+| Direito do Passageiro Aéreo | 11 |
 | Bancário e Superendividamento | 8 |
 | Trabalhista | 8 |
 | Família e Sucessões | 4 |
@@ -21,7 +21,7 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 | Consumidor (geral) | 2 |
 | Trânsito e responsabilidade civil | 1 |
 | Tributário | 1 |
-| **Total** | **51** (+ home, `blog.html`) |
+| **Total** | **55** (+ home, `blog.html`) |
 
 ---
 
@@ -70,6 +70,10 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 | `blog/voo-cancelado-companhia-nao-avisou-o-que-fazer.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | indexada (confirmada 04/08/2026) |
 | `blog/atraso-de-voo-mais-de-4-horas-indenizacao-valor.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | indexada (confirmada 04/08/2026) |
 | `blog/bagagem-extraviada-voo-internacional-indenizacao.html` | ✅ 30/07/2026 | ✅ 30/07/2026 | ✅ | indexada (confirmada 04/08/2026) |
+| `blog/overbooking-preterido-embarque-indenizacao.html` | ✅ 16/08/2026 | ⏳ aguardando deploy | ✅ | não solicitada |
+| `blog/bagagem-danificada-violada-companhia-aerea.html` | ✅ 16/08/2026 | ⏳ aguardando deploy | ✅ | não solicitada |
+| `blog/conexao-perdida-culpa-companhia-aerea.html` | ✅ 16/08/2026 | ⏳ aguardando deploy | ✅ | não solicitada |
+| `blog/cancelamento-de-passagem-reembolso-taxas.html` | ✅ 16/08/2026 | ⏳ aguardando deploy | ✅ | não solicitada |
 
 ## Bancário e Superendividamento
 
@@ -170,10 +174,12 @@ Marcar `[x]` quando a página for criada e mover a linha para a tabela da área 
 
 ## Direito do Passageiro Aéreo
 
-- [ ] `blog/overbooking-preterido-embarque-indenizacao.html` — overbooking e preterição de embarque
-- [ ] `blog/bagagem-danificada-violada-companhia-aerea.html` — mala arrebentada ou item furtado da bagagem
-- [ ] `blog/conexao-perdida-culpa-companhia-aerea.html` — conexão perdida por atraso do primeiro trecho
-- [ ] `blog/cancelamento-de-passagem-reembolso-taxas.html` — cancelamento pelo passageiro, multa e reembolso de taxas
+- [x] `blog/overbooking-preterido-embarque-indenizacao.html` — criada em 16/08/2026
+- [x] `blog/bagagem-danificada-violada-companhia-aerea.html` — criada em 16/08/2026
+- [x] `blog/conexao-perdida-culpa-companhia-aerea.html` — criada em 16/08/2026
+- [x] `blog/cancelamento-de-passagem-reembolso-taxas.html` — criada em 16/08/2026
+
+Com essas quatro, o silo aéreo passa a ter **11 páginas** e é o segundo maior do site, atrás só do previdenciário.
 
 ## Saúde
 
@@ -253,6 +259,13 @@ Fonte: autocomplete do Google (`suggestqueries.google.com`, pt-BR/BR) para as se
 ---
 
 # Pendências técnicas conhecidas
+
+- [ ] **Imagens de capa recicladas** nas 4 páginas de aéreo de 16/08/2026 — não há imagem temática nova no repo. Reuso atual:
+  - `voo-cancelado-painel-aeroporto.jpg` → overbooking **e** conexão perdida (4ª e 5ª página com essa imagem)
+  - `extravio-bagagem-aeroporto.jpg` → bagagem danificada (3ª página)
+  - `advogado-assinatura-contrato.jpg` → cancelamento de passagem (5ª página)
+  Faltam imagens próprias de balcão de companhia aérea, mala danificada e conexão perdida.
+- [ ] **`.sidebar-autor` retroativo** — o cartão de autoridade na sidebar é obrigatório desde 16/08/2026 (regra 7b do `CLAUDE.md`), mas só as 4 páginas de aéreo criadas nessa data o possuem. Aplicar nas demais quando houver oportunidade, começando pelo silo aéreo e pelo previdenciário.
 
 - [ ] **2 URLs do lote de 13/08 sem solicitação manual** — a cota diária estourou na 5ª solicitação. Refazer em 14/08/2026: `advogado-consumidor-vitoria-es.html` e `advogado-acidente-de-transito-vitoria-es.html`. As duas já estão no ar e no sitemap reenviado.
 - [x] **O sitemap não estava sendo relido** — em 13/08/2026 o relatório de sitemaps ainda mostrava "última leitura 11/08, 43 páginas encontradas", sem os 5 hubs. Reenviado no mesmo dia: pulou para **54 páginas encontradas**. Lição: quando um lote novo demorar a ser detectado, conferir a data de "última leitura" do sitemap antes de gastar cota de inspeção.

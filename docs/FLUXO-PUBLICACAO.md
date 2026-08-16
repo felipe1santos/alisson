@@ -29,6 +29,35 @@ Este é o procedimento obrigatório para toda página nova. Seguir na ordem. Os 
 
 O CSS de `.cta-autor` já está em `css/style.css` (seção "BOX DE AUTORIDADE NO CTA DO ARTIGO"). A linha `cta-autor-bio` pode ser ajustada por área (Previdenciário, Tributário etc.).
 
+### Cartão do autor na sidebar (obrigatório em todo post novo)
+
+Vai dentro da `<aside class="artigo-sidebar">`, **depois** de `.sidebar-guias`. É o bloco de autoridade que acompanha a leitura na coluna da direita e leva o visitante de volta para a Home.
+
+```html
+<div class="sidebar-autor">
+    <h4>Quem escreve</h4>
+    <div class="sidebar-autor-topo">
+        <img src="../fotos/alisson-brandao-advogado.jpg" alt="Alisson Brandão, advogado responsável pelo escritório, OAB/ES 27.871" class="sidebar-autor-foto" width="68" height="68" loading="lazy">
+        <div>
+            <p class="sidebar-autor-nome">Alisson Brandão</p>
+            <p class="sidebar-autor-oab">Advogado · OAB/ES 27.871</p>
+        </div>
+    </div>
+    <p class="sidebar-autor-bio">[bio de 1 a 2 linhas, com a ênfase da área da página]</p>
+    <ul class="sidebar-autor-dados">
+        <li>Av. Gov. Bley, 186, sala 804<br>Edifício Bemge · Centro<br>Vitória/ES · CEP 29010-150</li>
+        <li><a href="tel:+5527992291973">(27) 99229-1973</a></li>
+        <li><a href="mailto:alissonbrandao.adv@gmail.com">alissonbrandao.adv@gmail.com</a></li>
+        <li><a href="https://www.instagram.com/alissonbrandao.adv" rel="noopener" target="_blank">@alissonbrandao.adv</a></li>
+        <li><a href="../index.html#sobre">Perfil completo do advogado</a></li>
+    </ul>
+    <a href="https://wa.me/5527992291973?text=[mensagem%20url-encoded]" class="btn-gold" target="_blank" rel="noopener">Falar no WhatsApp</a>
+    <a href="../index.html" class="sidebar-autor-home">← Ir para a página inicial</a>
+</div>
+```
+
+O CSS de `.sidebar-autor` está em `css/style.css`, na seção "CARTAO DE AUTORIDADE DO AUTOR NA SIDEBAR". Em landing na raiz, os caminhos `../` viram caminhos sem prefixo.
+
 ## 2. Atualizar o `sitemap.xml`
 
 Adicionar a URL no mesmo commit:

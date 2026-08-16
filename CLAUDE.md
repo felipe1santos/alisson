@@ -11,6 +11,7 @@ Site estático (HTML + CSS + JS puro, sem build). Domínio no ar: **https://www.
 5. **`docs/PAGINAS.md` é atualizado no mesmo commit.** É o mapa mestre: status de cada página e backlog do que ainda falta criar. É o primeiro arquivo a ler quando o usuário pedir "veja o que falta e crie".
 6. **`docs/INDEXACAO.md`** registra o log das solicitações de indexação no Google Search Console, por data.
 7. **Todo post novo do blog leva o box de autoridade do Alisson** no CTA de WhatsApp (`.artigo-cta` + `.cta-autor`): foto `fotos/alisson-brandao-advogado.jpg`, nome, `OAB/ES 27.871` e uma linha de credencial. Ver `docs/FLUXO-PUBLICACAO.md` para o HTML padrão.
+7b. **E leva também o cartão `.sidebar-autor`** na coluna da direita (`artigo-sidebar`), com os dados de contato do escritório e link direto para a Home. Os dois blocos coexistem: o `.cta-autor` fecha o artigo, o `.sidebar-autor` acompanha a leitura. HTML padrão em `docs/FLUXO-PUBLICACAO.md`.
 8. **O fluxo completo de publicar → hospedar → indexar está em `docs/FLUXO-PUBLICACAO.md`.** Seguir na ordem.
 
 ## Arquitetura de descoberta — nem toda página entra no `blog.html`
@@ -69,6 +70,7 @@ Copiar de um post existente (`blog/bpc-loas-negado-inss-como-recorrer.html` é u
 - seção `artigo-faq` com 4 `<details>`;
 - seção `artigo-bairros` com ~20–28 bairros da cidade-alvo (fonte: `js/bairros.js`);
 - `artigo-cta` **com o box de autoridade**;
+- `sidebar-autor` na `artigo-sidebar` — cartão "Quem escreve" com foto, nome, OAB/ES 27.871, bio, endereço, telefone, e-mail, Instagram, link para `index.html#sobre`, botão de WhatsApp e link direto para a Home;
 - `artigo-links` "Continue lendo" com 4 links internos;
 - footer e botão flutuante de WhatsApp idênticos aos demais.
 
