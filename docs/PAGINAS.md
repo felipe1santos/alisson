@@ -14,14 +14,14 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 | Previdenciário (INSS) | 15 |
 | Direito do Passageiro Aéreo | 11 |
 | Bancário e Superendividamento | 8 |
-| Trabalhista | 8 |
+| Trabalhista | 9 |
 | Família e Sucessões | 4 |
 | Saúde (planos de saúde) | 3 |
 | Seguros | 3 |
 | Consumidor (geral) | 2 |
 | Trânsito e responsabilidade civil | 1 |
 | Tributário | 1 |
-| **Total** | **55** (+ home, `blog.html`) |
+| **Total** | **56** (+ home, `blog.html`) |
 
 ---
 
@@ -95,6 +95,7 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
 | `advogado-trabalhista-vitoria-es.html` (landing) | ✅ | ✅ | ✅ | indexada (confirmada 04/08/2026) |
+| `advogado-trabalhista-grande-vitoria-es.html` (landing Ads) | ✅ 04/09/2026 | ⏳ aguardando deploy | ✅ | não solicitada |
 | `advogado-trabalhista-vila-velha-es.html` (landing geo) | ✅ 13/08/2026 | ✅ 13/08/2026 | ✅ | indexação solicitada (13/08/2026) |
 | `advogado-trabalhista-cariacica-es.html` (landing geo) | ✅ 13/08/2026 | ✅ 13/08/2026 | ✅ | indexação solicitada (13/08/2026) |
 | `advogado-acidente-de-trabalho-vitoria-es.html` (landing) | ✅ 13/08/2026 | ✅ 13/08/2026 | ✅ | indexação solicitada (13/08/2026) |

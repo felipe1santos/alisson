@@ -1,0 +1,1162 @@
+/* ==========================================================================
+   Landing de captação — Direito Trabalhista / Grande Vitória
+   --------------------------------------------------------------------------
+   Arquivo isolado, carregado DEPOIS de css/style.css e usado apenas pela
+   página advogado-trabalhista-grande-vitoria-es.html. Todo seletor está
+   preso a .lp-* ou ao body.lp-page, para que nenhuma outra página do site
+   mude de aparência por causa deste arquivo.
+
+   Reaproveita os tokens já definidos em style.css (--primary-blue,
+   --accent-gold, --font-heading, --font-body...). Os tokens abaixo são
+   apenas os que faltavam.
+   ========================================================================== */
+
+body.lp-page {
+    --lp-ink: #14202e;
+    --lp-ink-soft: #4a5768;
+    --lp-muted: #6d7889;
+    --lp-line: #e2ddd3;
+    --lp-line-soft: #efebe3;
+    --lp-paper: #ffffff;
+    --lp-paper-2: #f7f5f0;
+    --lp-navy-deep: #081524;
+    --lp-gold-ink: #8a6520;      /* dourado escurecido: contraste AA sobre branco */
+    --lp-erro: #9c2f26;
+    --lp-erro-bg: #fbeceb;
+    --lp-ok: #1f6b48;
+    --lp-ok-bg: #e8f3ed;
+    --lp-radius: 3px;
+    --lp-shadow: 0 1px 2px rgba(11, 28, 46, .06), 0 10px 30px rgba(11, 28, 46, .07);
+
+    background-color: var(--lp-paper);
+    color: var(--lp-ink);
+    font-size: 17px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+}
+
+body.lp-page h1,
+body.lp-page h2,
+body.lp-page h3 { text-wrap: balance; }
+
+.lp-wrap {
+    width: 100%;
+    max-width: 1160px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.lp-narrow { max-width: 820px; }
+
+/* Foco visível para navegação por teclado — vale para a página inteira. */
+body.lp-page a:focus-visible,
+body.lp-page button:focus-visible,
+body.lp-page input:focus-visible,
+body.lp-page select:focus-visible,
+body.lp-page textarea:focus-visible,
+body.lp-page summary:focus-visible {
+    outline: 3px solid var(--accent-gold);
+    outline-offset: 2px;
+    border-radius: var(--lp-radius);
+}
+
+/* Link "pular para o conteúdo" — só aparece com Tab. */
+.lp-skip {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 2000;
+    background: var(--accent-gold);
+    color: var(--primary-blue);
+    padding: 12px 20px;
+    font-weight: 700;
+}
+.lp-skip:focus { left: 0; }
+
+/* ==========================================================================
+   1. CABEÇALHO
+   ========================================================================== */
+
+.lp-header {
+    background-color: var(--lp-navy-deep);
+    border-bottom: 2px solid var(--accent-gold);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    padding: 10px 0;
+}
+
+.lp-header-inner {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
+
+/* A marca é o único item elástico do cabeçalho: telefone e botão têm
+   largura fixa e não podem ser empurrados para fora da tela. */
+.lp-brand {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    flex: 0 1 auto;
+    min-width: 0;
+    color: #fff;
+}
+
+.lp-brand img {
+    width: 40px;
+    height: 40px;
+    flex: none;
+    display: block;
+}
+
+.lp-brand-name {
+    display: block;
+    font-family: var(--font-logo);
+    color: var(--accent-gold);
+    font-size: 1.02rem;
+    line-height: 1.15;
+    letter-spacing: .04em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.lp-brand-sub {
+    display: block;
+    font-family: var(--font-body);
+    font-size: .6rem;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, .55);
+    font-weight: 700;
+    margin-top: 2px;
+}
+
+.lp-nav { margin-left: auto; }
+
+.lp-nav ul {
+    display: flex;
+    gap: 26px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.lp-nav a {
+    color: rgba(255, 255, 255, .85);
+    font-size: .8rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+.lp-nav a:hover { color: var(--accent-gold); }
+
+.lp-header-actions {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex: none;
+}
+
+.lp-header-tel {
+    color: #fff;
+    font-weight: 700;
+    font-size: .96rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    white-space: nowrap;
+}
+.lp-header-tel:hover { color: var(--accent-gold); }
+.lp-header-tel svg { flex: none; }
+
+.lp-btn-header {
+    background-color: var(--accent-gold);
+    color: var(--primary-blue);
+    font-weight: 700;
+    font-size: .82rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    padding: 11px 20px;
+    border-radius: var(--lp-radius);
+    border: 2px solid var(--accent-gold);
+    white-space: nowrap;
+}
+.lp-btn-header:hover { background-color: transparent; color: var(--accent-gold); }
+
+/* O rótulo curto entra abaixo de 560px, onde o texto completo não cabe
+   ao lado da marca e do telefone. */
+.lp-rotulo-curto { display: none; }
+
+/* ==========================================================================
+   2. HERO
+   ========================================================================== */
+
+.lp-hero {
+    background-color: var(--primary-blue);
+    background-image: linear-gradient(160deg, #0e2439 0%, var(--primary-blue) 45%, var(--lp-navy-deep) 100%);
+    color: #fff;
+    padding: 46px 0 52px;
+}
+
+/* Três blocos: apresentação, cartão de identidade e ações.
+   No desktop a identidade ocupa a coluna da direita inteira; no celular a
+   grade vira uma coluna só e a ordem do HTML já é a desejada
+   (título → foto/credencial → botões), sem truque de reordenação. */
+.lp-hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr .85fr;
+    grid-template-areas:
+        "lead  identidade"
+        "acao  identidade";
+    column-gap: 52px;
+    row-gap: 26px;
+    align-items: start;
+}
+
+.lp-hero-lead { grid-area: lead; }
+/* A sobra de altura do cartão de identidade cai nesta linha, e o conteúdo
+   fica ancorado no topo — assim os botões não descolam do subtítulo. */
+.lp-hero-acao { grid-area: acao; align-self: start; }
+.lp-hero-grid > .lp-identity { grid-area: identidade; align-self: center; }
+
+.lp-hero h1 {
+    color: #fff;
+    font-size: clamp(2rem, 4.2vw, 3.05rem);
+    line-height: 1.08;
+    margin: 0 0 16px;
+    letter-spacing: .2px;
+}
+
+.lp-hero-eyebrow {
+    display: block;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    margin-bottom: 14px;
+}
+
+.lp-hero-sub {
+    font-size: 1.06rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, .84);
+    margin: 0 0 26px;
+    max-width: 46ch;
+}
+
+.lp-hero-ctas {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-bottom: 22px;
+}
+
+.lp-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 54px;
+    padding: 14px 28px;
+    border-radius: var(--lp-radius);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: .02em;
+    border: 2px solid transparent;
+    cursor: pointer;
+    font-family: var(--font-body);
+    text-align: center;
+}
+.lp-btn svg { flex: none; }
+
+.lp-btn-wa {
+    background-color: var(--whatsapp-green);
+    border-color: var(--whatsapp-green);
+    color: #08331f;
+}
+.lp-btn-wa:hover { background-color: #1fbd5b; border-color: #1fbd5b; }
+
+.lp-btn-ghost {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, .45);
+    color: #fff;
+}
+.lp-btn-ghost:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+
+.lp-btn-solid {
+    background-color: var(--accent-gold);
+    border-color: var(--accent-gold);
+    color: var(--primary-blue);
+}
+.lp-btn-solid:hover { background-color: transparent; color: var(--accent-gold); }
+
+.lp-hero-nota {
+    font-size: .85rem;
+    color: rgba(255, 255, 255, .58);
+    margin: 0;
+    max-width: 48ch;
+}
+
+/* Cartão de identidade: no desktop é a coluna visual, com retrato grande.
+   No celular vira uma linha horizontal compacta, para caber acima da dobra. */
+.lp-identity {
+    background-color: rgba(255, 255, 255, .05);
+    border: 1px solid rgba(207, 167, 110, .3);
+    border-radius: var(--lp-radius);
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    text-align: center;
+}
+
+/* Sem aspect-ratio e sem object-fit: a foto do Alisson aparece inteira,
+   na proporção original, em qualquer largura. Nada de corte. */
+.lp-identity img {
+    width: 100%;
+    max-width: 260px;
+    height: auto;
+    border-radius: var(--lp-radius);
+    display: block;
+    background-color: #0e2439;
+}
+
+.lp-identity-nome {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.lp-identity-oab {
+    display: inline-block;
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--accent-gold);
+    margin-top: 4px;
+}
+
+.lp-identity-linha {
+    font-size: .9rem;
+    color: rgba(255, 255, 255, .75);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   Blocos de seção genéricos
+   ========================================================================== */
+
+.lp-sec { padding: 62px 0; }
+.lp-sec-alt { background-color: var(--lp-paper-2); }
+
+.lp-sec-head { margin-bottom: 34px; }
+.lp-sec-head.center { text-align: center; }
+
+.lp-eyebrow {
+    display: block;
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--lp-gold-ink);
+    margin-bottom: 11px;
+}
+
+.lp-sec h2 {
+    font-size: clamp(1.6rem, 3vw, 2.25rem);
+    line-height: 1.18;
+    color: var(--lp-ink);
+    margin: 0 0 12px;
+}
+
+.lp-sec-intro {
+    font-size: 1.03rem;
+    color: var(--lp-ink-soft);
+    max-width: 66ch;
+    margin: 0;
+}
+.lp-sec-head.center .lp-sec-intro { margin-left: auto; margin-right: auto; }
+
+/* O style.css zera a margem de tudo com `* { margin: 0 }`, então o ritmo
+   entre parágrafos precisa ser devolvido aqui — sem isso os textos de
+   "Sobre" e "Onde atendemos" ficam colados. */
+.lp-sec p { max-width: 68ch; margin-bottom: 15px; }
+.lp-sec p:last-child { margin-bottom: 0; }
+.lp-sec .lp-sec-intro { margin-bottom: 0; }
+
+/* Todo alvo de âncora precisa folga: o cabeçalho é sticky e cobriria o
+   título da seção ao pular para ela. */
+body.lp-page [id] { scroll-margin-top: 84px; }
+
+/* ==========================================================================
+   3. SITUAÇÕES
+   ========================================================================== */
+
+.lp-situacoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1px;
+    background-color: var(--lp-line);
+    border: 1px solid var(--lp-line);
+    border-radius: var(--lp-radius);
+    overflow: hidden;
+}
+
+/* Cada situação é um link para o formulário, que já chega com o assunto
+   escolhido. Por ser <a> de verdade, o cursor de mão e o foco por teclado
+   vêm do próprio navegador — não são simulados. */
+.lp-situacao {
+    background-color: var(--lp-paper);
+    padding: 22px 22px 24px;
+    display: block;
+    color: inherit;
+    cursor: pointer;
+    position: relative;
+    transition: background-color .18s ease, box-shadow .18s ease;
+}
+
+.lp-situacao::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 3px;
+    background-color: var(--accent-gold);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .22s ease;
+}
+
+.lp-situacao:hover,
+.lp-situacao:focus-visible {
+    background-color: var(--lp-paper-2);
+    box-shadow: inset 0 0 0 1px var(--line);
+}
+.lp-situacao:hover::after,
+.lp-situacao:focus-visible::after { transform: scaleX(1); }
+
+.lp-situacao:hover h3 { color: var(--lp-gold-ink); }
+
+/* Sinal de "leva a algum lugar", visível só no hover para não poluir. */
+.lp-situacao-acao {
+    display: block;
+    margin-top: 12px;
+    font-family: var(--font-body);
+    font-size: .78rem;
+    font-weight: 700;
+    letter-spacing: .09em;
+    text-transform: uppercase;
+    color: var(--lp-gold-ink);
+    opacity: 0;
+    transition: opacity .18s ease;
+}
+.lp-situacao:hover .lp-situacao-acao,
+.lp-situacao:focus-visible .lp-situacao-acao { opacity: 1; }
+
+/* Em telas de toque não existe hover: o rótulo fica sempre visível. */
+@media (hover: none) {
+    .lp-situacao-acao { opacity: 1; }
+}
+
+/* Reserva a altura de duas linhas para que os títulos de uma e de duas
+   linhas deixem os parágrafos começando na mesma altura em toda a fileira. */
+.lp-situacao h3 {
+    font-family: var(--font-body);
+    font-size: 1.02rem;
+    font-weight: 700;
+    color: var(--lp-ink);
+    margin: 0 0 7px;
+    line-height: 1.35;
+    min-height: 2.7em;
+}
+
+/* Precisa vencer o `.lp-sec p { margin-bottom: 15px }`, senão sobra um vão
+   entre o texto e o rótulo de ação do cartão. */
+.lp-sec .lp-situacao p {
+    font-size: .94rem;
+    color: var(--lp-ink-soft);
+    margin: 0;
+    line-height: 1.55;
+}
+
+/* Blocos temáticos dentro de "Situações": dão âncora própria a cada grupo de
+   anúncios sem transformar a página em quatro páginas emendadas. */
+.lp-temas {
+    display: grid;
+    gap: 1px;
+    background-color: var(--lp-line);
+    border: 1px solid var(--lp-line);
+    border-top: 0;
+    border-radius: 0 0 var(--lp-radius) var(--lp-radius);
+    overflow: hidden;
+}
+
+.lp-tema {
+    background-color: var(--lp-paper);
+    padding: 26px 24px 28px;
+}
+
+.lp-tema h3 {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 600;
+    color: var(--lp-ink);
+    margin: 0 0 10px;
+    line-height: 1.25;
+}
+
+.lp-sec .lp-tema p {
+    font-size: 1rem;
+    color: var(--lp-ink-soft);
+    max-width: 78ch;
+    margin: 0 0 18px;
+}
+
+.lp-tema .lp-btn { min-height: 50px; padding: 12px 22px; font-size: .97rem; }
+
+.lp-nota-legal {
+    margin-top: 26px;
+    padding: 16px 20px;
+    background-color: var(--lp-paper-2);
+    border-left: 3px solid var(--accent-gold);
+    font-size: .94rem;
+    color: var(--lp-ink);
+    border-radius: 0 var(--lp-radius) var(--lp-radius) 0;
+}
+.lp-sec-alt .lp-nota-legal { background-color: var(--lp-paper); }
+
+/* ==========================================================================
+   4. ATENDIMENTO PROFISSIONAL
+   ========================================================================== */
+
+.lp-atendimento-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 48px;
+    align-items: center;
+}
+
+.lp-atendimento-figura { margin: 0; }
+
+.lp-atendimento-figura img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: var(--lp-radius);
+    box-shadow: var(--lp-shadow);
+}
+
+.lp-atendimento-figura figcaption {
+    font-size: .82rem;
+    color: var(--lp-muted);
+    margin-top: 10px;
+    line-height: 1.5;
+}
+
+.lp-lista-check {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 15px;
+}
+
+.lp-lista-check li {
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 12px;
+    align-items: start;
+    font-size: 1rem;
+    color: var(--lp-ink-soft);
+    line-height: 1.55;
+}
+
+.lp-lista-check svg {
+    margin-top: 4px;
+    color: var(--lp-gold-ink);
+}
+
+.lp-lista-check strong {
+    color: var(--lp-ink);
+    display: block;
+    font-weight: 700;
+}
+
+/* ==========================================================================
+   5. ETAPAS
+   ========================================================================== */
+
+.lp-etapas {
+    list-style: none;
+    counter-reset: etapa;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.lp-etapas li {
+    counter-increment: etapa;
+    background-color: var(--lp-paper);
+    border: 1px solid var(--lp-line);
+    border-top: 3px solid var(--accent-gold);
+    border-radius: var(--lp-radius);
+    padding: 24px 22px 26px;
+}
+.lp-sec-alt .lp-etapas li { background-color: var(--lp-paper); }
+
+.lp-etapas li::before {
+    content: counter(etapa);
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 1.9rem;
+    font-weight: 700;
+    color: var(--lp-gold-ink);
+    line-height: 1;
+    margin-bottom: 12px;
+}
+
+.lp-etapas h3 {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 700;
+    margin: 0 0 7px;
+    color: var(--lp-ink);
+}
+
+.lp-etapas p {
+    font-size: .93rem;
+    color: var(--lp-ink-soft);
+    margin: 0;
+    line-height: 1.55;
+}
+
+/* ==========================================================================
+   6. SOBRE
+   ========================================================================== */
+
+.lp-sobre-grid {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    gap: 44px;
+    align-items: start;
+}
+
+/* Mesma regra do hero: retrato inteiro, sem recorte. */
+.lp-sobre-foto {
+    width: 100%;
+    height: auto;
+    border-radius: var(--lp-radius);
+    display: block;
+    box-shadow: var(--lp-shadow);
+}
+
+.lp-sobre-dados {
+    list-style: none;
+    padding: 0;
+    margin: 22px 0 0;
+    display: grid;
+    gap: 9px;
+    border-top: 1px solid var(--lp-line);
+    padding-top: 20px;
+}
+
+.lp-sobre-dados li {
+    display: grid;
+    grid-template-columns: 128px 1fr;
+    gap: 14px;
+    font-size: .95rem;
+    color: var(--lp-ink-soft);
+    align-items: baseline;
+}
+
+.lp-sobre-dados dt,
+.lp-sobre-dados .rotulo {
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .13em;
+    text-transform: uppercase;
+    color: var(--lp-muted);
+}
+
+.lp-sobre-dados a { color: var(--lp-gold-ink); font-weight: 700; }
+.lp-sobre-dados a:hover { text-decoration: underline; }
+
+/* ==========================================================================
+   7. LOCALIZAÇÃO
+   ========================================================================== */
+
+.lp-local-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 44px;
+    align-items: start;
+}
+
+.lp-endereco {
+    background-color: var(--lp-paper);
+    border: 1px solid var(--lp-line);
+    border-radius: var(--lp-radius);
+    padding: 26px;
+}
+.lp-endereco address {
+    font-style: normal;
+    font-size: 1.02rem;
+    color: var(--lp-ink-soft);
+    line-height: 1.7;
+}
+.lp-endereco h3 {
+    font-family: var(--font-body);
+    font-size: .74rem;
+    font-weight: 700;
+    letter-spacing: .17em;
+    text-transform: uppercase;
+    color: var(--lp-muted);
+    margin: 0 0 12px;
+}
+.lp-endereco-contatos {
+    margin-top: 20px;
+    padding-top: 18px;
+    border-top: 1px solid var(--lp-line-soft);
+    display: grid;
+    gap: 10px;
+}
+.lp-endereco-contatos a {
+    color: var(--lp-gold-ink);
+    font-weight: 700;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+}
+.lp-endereco-contatos a:hover { text-decoration: underline; }
+
+.lp-cidades {
+    list-style: none;
+    padding: 0;
+    margin: 18px 0 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+}
+
+.lp-cidades li {
+    background-color: var(--lp-paper);
+    border: 1px solid var(--lp-line);
+    border-radius: var(--lp-radius);
+    padding: 12px 14px;
+    font-size: .95rem;
+    font-weight: 700;
+    color: var(--lp-ink);
+}
+.lp-cidades li span {
+    display: block;
+    font-weight: 400;
+    font-size: .84rem;
+    color: var(--lp-muted);
+    margin-top: 2px;
+}
+
+/* ==========================================================================
+   8. FAQ
+   ========================================================================== */
+
+.lp-faq {
+    border-top: 1px solid var(--lp-line);
+    max-width: 860px;
+}
+
+.lp-faq details {
+    border-bottom: 1px solid var(--lp-line);
+}
+
+.lp-faq summary {
+    cursor: pointer;
+    list-style: none;
+    padding: 19px 44px 19px 0;
+    position: relative;
+    font-weight: 700;
+    font-size: 1.03rem;
+    color: var(--lp-ink);
+    line-height: 1.45;
+}
+.lp-faq summary::-webkit-details-marker { display: none; }
+
+.lp-faq summary::after {
+    content: "";
+    position: absolute;
+    right: 12px;
+    top: 50%;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid var(--lp-gold-ink);
+    border-bottom: 2px solid var(--lp-gold-ink);
+    transform: translateY(-70%) rotate(45deg);
+    transition: transform .2s ease;
+}
+.lp-faq details[open] summary::after { transform: translateY(-30%) rotate(225deg); }
+
+.lp-faq details > p {
+    margin: 0;
+    padding: 0 0 22px;
+    color: var(--lp-ink-soft);
+    font-size: 1rem;
+    max-width: 74ch;
+}
+
+/* ==========================================================================
+   9. FORMULÁRIO
+   ========================================================================== */
+
+.lp-form-grid {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    gap: 48px;
+    align-items: start;
+}
+
+.lp-form-aside h2 { margin-bottom: 14px; }
+.lp-form-aside p { color: var(--lp-ink-soft); }
+
+.lp-form-alt {
+    margin-top: 24px;
+    display: grid;
+    gap: 12px;
+}
+.lp-form-alt a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: 700;
+    color: var(--lp-ink);
+    font-size: 1rem;
+}
+.lp-form-alt a:hover { color: var(--lp-gold-ink); }
+.lp-form-alt svg { flex: none; color: var(--lp-gold-ink); }
+
+/* Bloco exibido quando a lead-api não responde. É o estado padrão da página:
+   sem formulário, com os canais que funcionam em destaque. */
+.lp-form-off {
+    background-color: var(--primary-blue);
+    background-image: linear-gradient(160deg, #0e2439 0%, var(--lp-navy-deep) 100%);
+    border: 1px solid var(--lp-line);
+    border-radius: var(--lp-radius);
+    padding: 30px 28px;
+    box-shadow: var(--lp-shadow);
+    display: grid;
+    gap: 14px;
+    justify-items: start;
+}
+.lp-form-off h3 {
+    font-family: var(--font-heading);
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+.lp-sec .lp-form-off p {
+    color: rgba(255, 255, 255, .82);
+    font-size: 1rem;
+    margin: 0 0 4px;
+    max-width: 46ch;
+}
+.lp-form-off .lp-btn { width: 100%; }
+
+.lp-btn-ghost-escuro {
+    background-color: transparent;
+    border-color: rgba(255, 255, 255, .45);
+    color: #fff;
+}
+.lp-btn-ghost-escuro:hover { border-color: var(--accent-gold); color: var(--accent-gold); }
+
+.lp-form {
+    background-color: var(--lp-paper);
+    border: 1px solid var(--lp-line);
+    border-radius: var(--lp-radius);
+    padding: 28px;
+    box-shadow: var(--lp-shadow);
+}
+
+.lp-campos {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+}
+
+.lp-campo { display: flex; flex-direction: column; gap: 6px; }
+.lp-campo-full { grid-column: 1 / -1; }
+
+.lp-campo label {
+    font-size: .84rem;
+    font-weight: 700;
+    color: var(--lp-ink);
+    letter-spacing: .01em;
+}
+
+.lp-campo .opcional {
+    font-weight: 400;
+    color: var(--lp-muted);
+    text-transform: none;
+    letter-spacing: 0;
+}
+
+.lp-campo input,
+.lp-campo select,
+.lp-campo textarea {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    color: var(--lp-ink);
+    background-color: #fff;
+    border: 1px solid #c9c2b6;
+    border-radius: var(--lp-radius);
+    padding: 12px 13px;
+    width: 100%;
+    min-height: 48px;
+}
+
+.lp-campo textarea { min-height: 96px; resize: vertical; line-height: 1.5; }
+
+.lp-campo select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' fill='none' stroke='%236d7889' stroke-width='2' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 13px center;
+    padding-right: 36px;
+}
+
+.lp-campo input:focus,
+.lp-campo select:focus,
+.lp-campo textarea:focus {
+    border-color: var(--lp-gold-ink);
+    outline-offset: 0;
+}
+
+.lp-campo .lp-erro-campo {
+    font-size: .84rem;
+    color: var(--lp-erro);
+    font-weight: 700;
+    min-height: 0;
+}
+
+.lp-campo[data-invalido="true"] input,
+.lp-campo[data-invalido="true"] select,
+.lp-campo[data-invalido="true"] textarea {
+    border-color: var(--lp-erro);
+    background-color: var(--lp-erro-bg);
+}
+
+/* Armadilha de spam: fica fora da tela mas continua no fluxo do formulário.
+   display:none faria alguns robôs ignorarem o campo. */
+.lp-hp {
+    position: absolute !important;
+    left: -9999px !important;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+}
+
+.lp-consent {
+    grid-column: 1 / -1;
+    display: grid;
+    grid-template-columns: 22px 1fr;
+    gap: 11px;
+    align-items: start;
+    font-size: .9rem;
+    color: var(--lp-ink-soft);
+    line-height: 1.5;
+}
+.lp-consent input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    min-height: 20px;
+    margin-top: 2px;
+    accent-color: var(--lp-gold-ink);
+}
+.lp-consent a { color: var(--lp-gold-ink); font-weight: 700; text-decoration: underline; }
+.lp-consent[data-invalido="true"] { color: var(--lp-erro); }
+
+.lp-form .lp-btn { width: 100%; margin-top: 20px; }
+
+.lp-form-status {
+    margin-top: 16px;
+    padding: 14px 16px;
+    border-radius: var(--lp-radius);
+    font-size: .95rem;
+    line-height: 1.55;
+}
+.lp-form-status[hidden] { display: none !important; }
+.lp-form-status.erro { background-color: var(--lp-erro-bg); color: var(--lp-erro); border-left: 3px solid var(--lp-erro); }
+.lp-form-status.ok { background-color: var(--lp-ok-bg); color: var(--lp-ok); border-left: 3px solid var(--lp-ok); }
+.lp-form-status .lp-btn { margin-top: 14px; }
+
+.lp-form-rodape {
+    font-size: .82rem;
+    color: var(--lp-muted);
+    margin-top: 16px;
+    line-height: 1.55;
+}
+
+/* ==========================================================================
+   10. CTA FINAL
+   ========================================================================== */
+
+.lp-cta {
+    background-color: var(--primary-blue);
+    background-image: linear-gradient(160deg, #0e2439 0%, var(--lp-navy-deep) 100%);
+    color: #fff;
+    padding: 62px 0;
+    text-align: center;
+}
+.lp-cta h2 { color: #fff; font-size: clamp(1.6rem, 3vw, 2.2rem); margin: 0 0 14px; }
+.lp-cta p {
+    color: rgba(255, 255, 255, .8);
+    max-width: 58ch;
+    margin: 0 auto 28px;
+    font-size: 1.04rem;
+}
+.lp-cta-botoes {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+}
+/* Precisa da mesma especificidade de `.lp-cta p`, senão a margem inferior
+   daquela regra vence e o telefone cola nos botões. */
+.lp-cta p.lp-cta-tel {
+    display: block;
+    margin: 24px auto 0;
+    color: rgba(255, 255, 255, .8);
+    font-size: 1rem;
+}
+.lp-cta-tel a { color: var(--accent-gold); font-weight: 700; }
+.lp-cta-tel a:hover { text-decoration: underline; }
+
+/* ==========================================================================
+   RESPONSIVO
+   ========================================================================== */
+
+@media (max-width: 1000px) {
+    .lp-nav { display: none; }
+    .lp-header-inner { justify-content: space-between; }
+    .lp-header-actions { margin-left: auto; }
+
+    .lp-hero-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas: "lead" "identidade" "acao";
+        row-gap: 20px;
+    }
+    .lp-atendimento-grid,
+    .lp-local-grid,
+    .lp-form-grid { grid-template-columns: 1fr; gap: 34px; }
+    .lp-sobre-grid { grid-template-columns: 190px 1fr; gap: 30px; }
+    .lp-etapas { grid-template-columns: 1fr 1fr; }
+
+    /* Em coluna única o cartão de identidade vira uma faixa horizontal.
+       Empilhado com o retrato em tamanho cheio ele empurraria os botões
+       para fora da primeira tela. */
+    .lp-identity {
+        flex-direction: row;
+        align-items: center;
+        text-align: left;
+        gap: 18px;
+        padding: 16px 18px;
+    }
+    .lp-identity img { width: 96px; max-width: 96px; flex: none; }
+}
+
+@media (max-width: 720px) {
+    body.lp-page { font-size: 16px; }
+
+    .lp-header { padding: 8px 0; }
+    .lp-header-inner { gap: 10px; }
+    .lp-brand img { width: 34px; height: 34px; }
+    .lp-brand-name { font-size: .88rem; }
+    .lp-brand-sub { font-size: .54rem; letter-spacing: .18em; }
+    .lp-header-tel span { display: none; }         /* fica só o ícone */
+    .lp-header-tel {
+        width: 44px; height: 44px;
+        justify-content: center;
+        border: 1px solid rgba(255,255,255,.3);
+        border-radius: var(--lp-radius);
+    }
+    .lp-btn-header { padding: 12px 15px; font-size: .74rem; }
+
+    /* Hero compacto: título, foto, credencial e botão precisam caber
+       na primeira tela de um celular de 375x667. */
+    .lp-hero { padding: 26px 0 32px; }
+    .lp-hero-eyebrow { font-size: .66rem; margin-bottom: 9px; }
+    .lp-hero h1 { font-size: 1.72rem; margin-bottom: 10px; }
+    .lp-hero-sub { font-size: .97rem; margin-bottom: 18px; }
+
+    .lp-identity { gap: 14px; padding: 13px 14px; }
+    .lp-identity img { width: 68px; max-width: 68px; }
+    .lp-identity-nome { font-size: 1.12rem; }
+    .lp-identity-oab { font-size: .69rem; letter-spacing: .1em; }
+    .lp-identity-linha { font-size: .82rem; }
+
+    .lp-hero-ctas { gap: 10px; margin-bottom: 16px; }
+    .lp-hero-ctas .lp-btn { width: 100%; min-height: 52px; font-size: .98rem; padding: 13px 20px; }
+    .lp-hero-nota { font-size: .8rem; }
+
+    .lp-sec { padding: 44px 0; }
+    .lp-sec-head { margin-bottom: 26px; }
+    .lp-etapas { grid-template-columns: 1fr; gap: 14px; }
+    .lp-etapas li { padding: 18px 18px 20px; }
+    .lp-etapas li::before { font-size: 1.6rem; margin-bottom: 8px; }
+
+    .lp-sobre-grid { grid-template-columns: 1fr; gap: 22px; }
+    .lp-sobre-foto { max-width: 190px; }
+    .lp-sobre-dados li { grid-template-columns: 1fr; gap: 2px; }
+
+    /* Em coluna única não há fileira para alinhar: a altura reservada só
+       abriria um vão sob os títulos de uma linha. */
+    .lp-situacao h3 { min-height: 0; }
+
+    .lp-campos { grid-template-columns: 1fr; gap: 15px; }
+    .lp-form { padding: 20px 18px; }
+
+    .lp-cta { padding: 46px 0; }
+    .lp-cta-botoes .lp-btn { width: 100%; }
+}
+
+@media (max-width: 560px) {
+    .lp-rotulo-longo { display: none; }
+    .lp-rotulo-curto { display: inline; }
+}
+
+/* Telas estreitas: a marca cede espaço para o telefone e o botão, que são
+   os dois elementos com função no cabeçalho de uma landing. */
+@media (max-width: 430px) {
+    .lp-header-inner { gap: 8px; }
+    .lp-header-actions { gap: 8px; }
+    .lp-brand { gap: 8px; }
+    .lp-brand-name { font-size: .8rem; }
+    .lp-brand-sub { display: none; }
+    .lp-header-tel { width: 42px; height: 42px; }
+    .lp-btn-header { padding: 12px 13px; font-size: .72rem; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body.lp-page *,
+    body.lp-page *::before,
+    body.lp-page *::after {
+        animation-duration: .001ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .001ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+@media print {
+    .lp-header, .lp-cta, .whatsapp-float, .lp-form { display: none; }
+}
