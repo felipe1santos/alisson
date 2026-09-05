@@ -21,6 +21,7 @@ body.lp-page {
     --lp-paper-2: #f7f5f0;
     --lp-navy-deep: #081524;
     --lp-gold-ink: #8a6520;      /* dourado escurecido: contraste AA sobre branco */
+    --lp-petroleo: #0f4c5c;      /* azul petroleo: dados do escritorio */
     --lp-erro: #9c2f26;
     --lp-erro-bg: #fbeceb;
     --lp-ok: #1f6b48;
@@ -524,14 +525,21 @@ body.lp-page [id] { scroll-margin-top: 84px; }
 
 .lp-tema .lp-btn { min-height: 50px; padding: 12px 22px; font-size: .97rem; }
 
-.lp-nota-legal {
+/* A nota ocupa a largura inteira da seção: o texto se espalha em poucas
+   linhas em vez de formar uma coluna alta e estreita. O seletor precisa de
+   `.lp-sec p` na frente para vencer o max-width de 68ch da regra geral de
+   parágrafo, que tem especificidade maior que a classe sozinha. */
+.lp-nota-legal,
+.lp-sec p.lp-nota-legal {
     margin-top: 26px;
-    padding: 16px 20px;
+    padding: 16px 22px;
     background-color: var(--lp-paper-2);
     border-left: 3px solid var(--accent-gold);
     font-size: .94rem;
     color: var(--lp-ink);
     border-radius: 0 var(--lp-radius) var(--lp-radius) 0;
+    max-width: none;
+    line-height: 1.6;
 }
 .lp-sec-alt .lp-nota-legal { background-color: var(--lp-paper); }
 
@@ -677,7 +685,8 @@ body.lp-page [id] { scroll-margin-top: 84px; }
     grid-template-columns: 128px 1fr;
     gap: 14px;
     font-size: .95rem;
-    color: var(--lp-ink-soft);
+    color: var(--lp-petroleo);
+    font-weight: 600;
     align-items: baseline;
 }
 
@@ -713,7 +722,8 @@ body.lp-page [id] { scroll-margin-top: 84px; }
 .lp-endereco address {
     font-style: normal;
     font-size: 1.02rem;
-    color: var(--lp-ink-soft);
+    color: var(--lp-petroleo);
+    font-weight: 600;
     line-height: 1.7;
 }
 .lp-endereco h3 {
@@ -1159,342 +1169,49 @@ body.lp-page [id] { scroll-margin-top: 84px; }
 
 @media print {
     .lp-header, .lp-cta, .whatsapp-float, .lp-form { display: none; }
-
-    /* Nenhum efeito de tela pode esconder texto no papel: o que estava
-       recolhido é impresso inteiro e o que esperava aparecer já aparece. */
-    .lp-revelar { opacity: 1 !important; transform: none !important; }
-    .lp-enxuto {
-        display: block !important;
-        overflow: visible !important;
-        -webkit-line-clamp: none !important;
-        line-clamp: none !important;
-    }
-    .lp-mais { display: none !important; }
 }
 
 /* ==========================================================================
-   12. CAMADA MOBILE — reformulação de 04/09/2026
+   9b. ONDE FICA O ESCRITÓRIO — endereço e mapa
    --------------------------------------------------------------------------
-   Tudo aqui vive dentro de @media (max-width: 720px), salvo os elementos
-   novos abaixo — todos declarados display:none acima de 720px, ou neutros
-   por herança. Nenhum deles aparece no desktop:
-
-     .lp-realce / .lp-realce-claro  → herdam peso e cor acima de 720px
-     .lp-identity-chips             → display:none acima de 720px
-     .lp-header-oab                 → display:none acima de 720px
-     .lp-so-mobile                  → display:none acima de 720px
-     .lp-contato-mobile             → display:none acima de 720px
-
-   O desktop é byte a byte o do commit 2fa012a, o bloco de contato incluído:
-   lá continua valendo o #lp-area-form com o formulário em <template>.
+   Substitui o antigo bloco de formulário. Reaproveita .lp-endereco, que já
+   existe na seção de localização, e acrescenta só a moldura do mapa.
    ========================================================================== */
 
-body.lp-page {
-    /* Azul petróleo dos destaques em negrito no celular. Contraste 9,5:1
-       sobre o papel branco e sobre o papel bege das seções alternadas. */
-    --lp-petroleo: #0f4c5c;
-    --lp-petroleo-claro: #93d3e2;
+.lp-mapa-grid {
+    display: grid;
+    grid-template-columns: minmax(280px, 400px) 1fr;
+    gap: 34px;
+    align-items: stretch;
 }
 
-/* Neutros no desktop: <b> perde o negrito do agente de usuário e a cor,
-   para que a tipografia aprovada continue idêntica. */
-.lp-realce,
-.lp-realce-claro { font-weight: inherit; color: inherit; }
+.lp-mapa-grid .lp-endereco {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
 
-.lp-identity-chips,
-.lp-header-oab,
-.lp-so-mobile,
-.lp-contato-mobile { display: none; }
+.lp-mapa {
+    border: 1px solid var(--lp-line);
+    border-radius: var(--lp-radius);
+    overflow: hidden;
+    min-height: 340px;
+    background-color: var(--lp-paper-2);
+}
+
+.lp-mapa iframe {
+    display: block;
+    width: 100%;
+    height: 100%;
+    min-height: 340px;
+    border: 0;
+}
+
+@media (max-width: 1000px) {
+    .lp-mapa-grid { grid-template-columns: 1fr; gap: 24px; }
+}
 
 @media (max-width: 720px) {
-
-    /* ---------------------------------------------------------------
-       12.1  Um único caminho de conversão: o formulário do fim.
-       Cada seletor abaixo apaga um desvio. Todos são elementos que
-       ocupavam linha própria — nenhum deixa lacuna ao sair, porque o
-       espaçamento vem de gap e de margin do próprio elemento.
-       --------------------------------------------------------------- */
-    .lp-header-tel,
-    .lp-btn-header,
-    .lp-header-actions,
-    .lp-hero-ctas,
-    .lp-situacao-acao,
-    .lp-tema .lp-btn,
-    .lp-form-alt,
-    .lp-cta,
-    .whatsapp-float,
-    .lp-so-desktop { display: none !important; }
-
-    /* O cartão de identidade e o rodapé perdem só o telefone clicável;
-       o número segue visível como texto (o JS remove o href). */
-    .lp-endereco-contatos a[href^="tel:"] { pointer-events: none; }
-
-    /* ---------------------------------------------------------------
-       12.2  Cabeçalho compacto — marca à esquerda, inscrição à direita.
-       --------------------------------------------------------------- */
-    .lp-header-inner { justify-content: space-between; align-items: center; }
-    .lp-header-oab {
-        display: inline-block;
-        font-size: .62rem;
-        font-weight: 700;
-        letter-spacing: .16em;
-        text-transform: uppercase;
-        color: var(--accent-gold);
-        white-space: nowrap;
-    }
-
-    /* ---------------------------------------------------------------
-       12.3  Primeira dobra: a fotografia é o elemento central.
-       --------------------------------------------------------------- */
-    .lp-hero { padding: 22px 0 30px; }
-    .lp-hero-grid { row-gap: 18px; }
-    .lp-hero h1 { font-size: 1.78rem; margin-bottom: 10px; }
-    .lp-hero-eyebrow { margin-bottom: 8px; }
-    .lp-hero-sub { font-size: .98rem; margin-bottom: 0; }
-
-    /* Desfaz a faixa horizontal herdada do breakpoint de 1000px: a foto
-       volta a ser vertical e grande. 300px é o teto — o arquivo de origem
-       tem 400px de lado e acima disso a imagem começaria a amolecer. */
-    .lp-identity {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-        gap: 16px;
-        padding: 22px 18px 20px;
-        background-color: rgba(255, 255, 255, .06);
-        border-color: rgba(207, 167, 110, .42);
-    }
-    .lp-identity img {
-        width: 78%;
-        max-width: 300px;
-        min-width: 210px;
-        aspect-ratio: 1 / 1;
-        object-fit: cover;
-        object-position: 50% 22%;
-        border: 1px solid rgba(207, 167, 110, .55);
-        box-shadow: 0 14px 34px rgba(0, 0, 0, .34);
-    }
-    .lp-identity-nome { font-size: 1.62rem; }
-    .lp-identity-oab {
-        border: 1px solid rgba(207, 167, 110, .5);
-        border-radius: 999px;
-        padding: 3px 12px;
-        font-size: .7rem;
-        margin-top: 8px;
-    }
-    .lp-identity-linha { display: none; }   /* dita pelas etiquetas abaixo */
-
-    .lp-identity-chips {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 6px;
-        list-style: none;
-        margin: 12px 0 0;
-        padding: 0;
-    }
-    .lp-identity-chips li {
-        font-size: .74rem;
-        line-height: 1.3;
-        color: rgba(255, 255, 255, .86);
-        background-color: rgba(255, 255, 255, .08);
-        border: 1px solid rgba(255, 255, 255, .16);
-        border-radius: 999px;
-        padding: 5px 11px;
-    }
-
-    .lp-hero-nota { font-size: .78rem; line-height: 1.5; }
-
-    /* ---------------------------------------------------------------
-       12.4  Enxugar sem suprimir: parágrafos longos entram recolhidos
-       e abrem no toque. O texto continua inteiro no HTML — o que muda
-       é quanto dele aparece de primeira.
-       --------------------------------------------------------------- */
-    .lp-enxuto {
-        display: -webkit-box;
-        -webkit-box-orient: vertical;
-        -webkit-line-clamp: var(--lp-linhas, 3);
-        line-clamp: var(--lp-linhas, 3);
-        overflow: hidden;
-    }
-    .lp-enxuto-aberto {
-        display: block;
-        overflow: visible;
-        -webkit-line-clamp: none;
-        line-clamp: none;
-    }
-    .lp-mais {
-        display: inline-flex;
-        align-items: center;
-        gap: 5px;
-        margin-top: 7px;
-        padding: 4px 0;
-        min-height: 32px;
-        background: none;
-        border: 0;
-        font: inherit;
-        font-size: .82rem;
-        font-weight: 700;
-        letter-spacing: .04em;
-        color: var(--lp-petroleo);
-        cursor: pointer;
-    }
-    .lp-mais::after {
-        content: "";
-        width: 7px; height: 7px;
-        border-right: 2px solid currentColor;
-        border-bottom: 2px solid currentColor;
-        transform: translateY(-2px) rotate(45deg);
-        transition: transform .2s ease;
-    }
-    .lp-mais[aria-expanded="true"]::after { transform: translateY(1px) rotate(-135deg); }
-    /* Sobre fundo escuro (o hero) o azul petróleo não teria contraste. */
-    .lp-hero .lp-mais { color: var(--lp-petroleo-claro); }
-
-    .lp-realce { font-weight: 700; color: var(--lp-petroleo); }
-    .lp-realce-claro { font-weight: 700; color: var(--lp-petroleo-claro); }
-
-    .lp-so-mobile { display: inline; }
-
-    /* ---------------------------------------------------------------
-       12.5  Assuntos em sequência vertical, sem botão e sem link.
-       --------------------------------------------------------------- */
-    .lp-sec { padding: 38px 0; }
-    .lp-sec-head { margin-bottom: 20px; }
-    .lp-sec-intro { font-size: .97rem; }
-
-    .lp-situacoes { gap: 10px; }
-    .lp-situacao {
-        padding: 15px 16px;
-        cursor: default;
-        transition: none;
-    }
-    .lp-situacao::after { display: none; }        /* trilho de hover do link */
-    .lp-situacao h3 { font-size: 1.04rem; margin-bottom: 5px; }
-    .lp-situacao p { font-size: .93rem; }
-    .lp-situacao:hover { border-color: var(--lp-line); box-shadow: none; }
-    .lp-situacao:hover h3 { color: inherit; }
-
-    .lp-temas { gap: 14px; margin-top: 20px; }
-    .lp-tema { padding: 18px 17px 20px; }
-    .lp-tema h3 { font-size: 1.12rem; }
-    .lp-tema p { font-size: .95rem; margin-bottom: 0; }
-
-    .lp-nota-legal { font-size: .84rem; }
-
-    /* ---------------------------------------------------------------
-       12.6  Demais seções mais curtas de leitura.
-       --------------------------------------------------------------- */
-    .lp-atendimento-grid { gap: 24px; }
-    .lp-lista-check li { font-size: .95rem; }
-    .lp-etapas li { padding: 15px 16px 17px; }
-    .lp-faq details { padding: 2px 0; }
-    .lp-faq summary { font-size: .97rem; padding: 14px 30px 14px 0; }
-    .lp-cidades { gap: 8px; }
-
-    .lp-sobre-foto { max-width: 168px; }
-
-    /* ---------------------------------------------------------------
-       12.7  Formulário: destino único, com folga para o polegar.
-       --------------------------------------------------------------- */
-    .lp-form { padding: 20px 17px 22px; }
-    .lp-form input,
-    .lp-form select,
-    .lp-form textarea { font-size: 16px; }   /* abaixo disso o iOS dá zoom */
-    .lp-form .lp-btn { min-height: 56px; font-size: 1rem; padding: 14px 18px; }
-    .lp-form-aside h2 { font-size: 1.5rem; }
-
-    /* ---------------------------------------------------------------
-       12.8  Entrada suave dos blocos ao rolar.
-       As classes são postas pelo JS: sem script, nada fica escondido.
-       --------------------------------------------------------------- */
-    .lp-revelar {
-        opacity: 0;
-        transform: translate3d(0, 16px, 0);
-        will-change: opacity, transform;
-    }
-    .lp-revelar.lp-visivel {
-        opacity: 1;
-        transform: none;
-        transition: opacity .45s ease-out, transform .45s cubic-bezier(.22, .68, .32, 1);
-    }
-    /* Realce dourado momentâneo na borda, só nos cartões. */
-    .lp-situacao.lp-revelar.lp-visivel,
-    .lp-tema.lp-revelar.lp-visivel {
-        animation: lp-borda-ouro 1.1s ease-out .12s 1;
-    }
-    @keyframes lp-borda-ouro {
-        0%   { border-color: rgba(207, 167, 110, .85); }
-        100% { border-color: var(--lp-line); }
-    }
-    /* O bloco assume a posição final assim que o efeito acaba, para não
-       ficar com will-change preso na composição. */
-    .lp-revelar.lp-pronto { will-change: auto; transition: none; }
-}
-
-/* Sem animação nenhuma para quem pediu movimento reduzido: o conteúdo
-   aparece direto, no lugar definitivo. */
-@media (prefers-reduced-motion: reduce) {
-    .lp-revelar,
-    .lp-revelar.lp-visivel {
-        opacity: 1 !important;
-        transform: none !important;
-        transition: none !important;
-        animation: none !important;
-    }
-}
-
-/* Telefone que deixou de ser link no celular: continua legível, sem o
-   sublinhado e sem a cor de link, porque não leva a lugar nenhum.
-   Os seletores repetidos vencem .lp-sobre-dados a e .lp-endereco-contatos a,
-   que pintam links de dourado. */
-a.lp-tel-texto,
-.lp-sobre-dados a.lp-tel-texto,
-.lp-endereco-contatos a.lp-tel-texto,
-footer a.lp-tel-texto {
-    color: inherit;
-    font-weight: inherit;
-    text-decoration: none;
-    cursor: default;
-    pointer-events: none;
-}
-
-/* ==========================================================================
-   13. FORMULÁRIO DO CELULAR — direto para o WhatsApp
-   --------------------------------------------------------------------------
-   O bloco inteiro é display:none acima de 720px (declarado na seção 12),
-   então nada aqui alcança o desktop. Reaproveita .lp-form, .lp-campo,
-   .lp-consent e .lp-form-status, que já existem e já estão aprovados.
-   ========================================================================== */
-
-@media (max-width: 720px) {
-
-    .lp-contato-mobile { display: block; }
-
-    /* Acima de 720px vale o bloco aprovado; no celular ele sai de cena
-       inteiro, com o aviso de indisponibilidade e os atalhos de contato. */
-    #lp-area-form { display: none; }
-
-    .lp-form-abertura {
-        margin: 0 0 20px;
-        font-size: .95rem;
-        line-height: 1.55;
-        color: var(--lp-ink-soft);
-    }
-
-    /* Aviso ao lado da descrição: onde a pessoa é lembrada de não escrever
-       documento, senha ou dado de saúde na primeira mensagem. */
-    .lp-aviso-campo {
-        display: block;
-        font-size: .82rem;
-        line-height: 1.5;
-        color: var(--lp-ink-soft);
-        margin-top: 7px;
-        padding-left: 11px;
-        border-left: 2px solid var(--lp-line);
-    }
-    .lp-aviso-campo strong { color: var(--lp-petroleo); font-weight: 700; }
-
-    .lp-contato-mobile .lp-form-rodape { font-size: .8rem; }
-    .lp-contato-mobile .lp-form-rodape strong { color: var(--lp-ink); }
+    .lp-mapa,
+    .lp-mapa iframe { min-height: 280px; }
 }
