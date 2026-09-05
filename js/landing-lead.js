@@ -15,6 +15,15 @@
       que funcionam e nenhum campo é renderizado — ninguém preenche um
       formulário que falharia no envio.
 
+   4. No celular (<= 720px), substituir tudo isso por um caminho único:
+      validar os campos no navegador, montar a mensagem e redirecionar para
+      o WhatsApp. Nenhuma requisição sai da página — sem lead-api, sem
+      Formspree, sem e-mail, sem banco.
+
+   As duas camadas não se cruzam. O que roda acima de 720px é exatamente o
+   que foi aprovado no commit 2fa012a; o que roda abaixo está na seção 6 e
+   não existe no desktop.
+
    Nenhuma tag é criada aqui: o arquivo só escreve no dataLayer. A instalação
    do contêiner do GTM depende de definir qual conta será a proprietária.
 
@@ -41,6 +50,12 @@
 
     var TEMPO_LIMITE_SAUDE = 4000;   // ms
     var WHATSAPP = '5527992291973';
+
+    // Divisor das duas camadas. Acima disto vale o comportamento aprovado;
+    // abaixo, a experiência de celular da seção 6.
+    var MOBILE = window.matchMedia
+        ? window.matchMedia('(max-width: 720px)')
+        : { matches: document.documentElement.clientWidth <= 720 };
     var CHAVE_CAMPANHA = 'ab_campanha';
     var TEMPO_MINIMO_MS = 2500;      // preenchimento humano leva mais que isso
 
@@ -152,7 +167,9 @@
         };
     }
 
-    document.addEventListener('click', function (ev) {
+    // No celular não sobra nenhum atalho de WhatsApp ou telefone para
+    // registrar: a seção 6 os retira da página.
+    if (!MOBILE.matches) document.addEventListener('click', function (ev) {
         var alvo = ev.target && ev.target.closest ? ev.target.closest('a[href]') : null;
         if (!alvo) return;
 
@@ -225,12 +242,16 @@
         return true;
     }
 
-    testarApi().then(function (disponivel) {
-        if (!disponivel) return;          // segue só com WhatsApp e telefone
-        if (!ativarFormulario()) return;
-        ligarCartoesSituacao();
-        iniciarFormulario();
-    });
+    // Só no desktop. No celular nenhuma requisição sai da página: o
+    // formulário da seção 6 não depende de servidor nenhum.
+    if (!MOBILE.matches) {
+        testarApi().then(function (disponivel) {
+            if (!disponivel) return;      // segue só com WhatsApp e telefone
+            if (!ativarFormulario()) return;
+            ligarCartoesSituacao();
+            iniciarFormulario();
+        });
+    }
 
     /* ------------------------------------------------------------------
        5. Formulário
@@ -450,5 +471,415 @@
                 botao.textContent = rotuloOriginal;
             });
         });
+    }
+    /* ==================================================================
+       6. CAMADA DO CELULAR
+       ==================================================================
+       Tudo abaixo de 720px. Duas diferenças de fundo em relação ao que
+       roda no desktop:
+
+         · não existe servidor nenhum. Os campos são validados no
+           navegador, viram uma mensagem e a pessoa segue para o
+           WhatsApp. Nada é gravado, nada é enviado por e-mail, nenhuma
+           requisição sai da página;
+
+         · o caminho de conversão é um só. Os atalhos de WhatsApp e
+           telefone espalhados pela página saem de cena, para que o
+           formulário do fim seja a única saída.
+
+       Nada disto é necessário para o conteúdo aparecer: as classes de
+       recolhimento e de animação são postas por este arquivo, então uma
+       falha de script deixa a página inteira visível e legível.
+       ================================================================== */
+
+    var movimentoReduzido = window.matchMedia
+        ? window.matchMedia('(prefers-reduced-motion: reduce)')
+        : { matches: false };
+
+    function $$(sel, raiz) {
+        return Array.prototype.slice.call((raiz || document).querySelectorAll(sel));
+    }
+
+    /* ------------------------------------------------------------------
+       6.1  Validação
+       ------------------------------------------------------------------ */
+
+    function soDigitos(s) { return (s || '').replace(/\D+/g, ''); }
+
+    /* Telefone brasileiro: DDD de 11 a 99, mais 8 dígitos (fixo) ou 9
+       dígitos começando em 9 (celular). Recusa sequência de dígito
+       repetido, que é o formato do número inventado. */
+    function telefoneValido(valor) {
+        var d = soDigitos(valor);
+        if (d.length > 11 && d.slice(0, 2) === '55') d = d.slice(2);
+        if (d.length !== 10 && d.length !== 11) return false;
+        var ddd = parseInt(d.slice(0, 2), 10);
+        if (!(ddd >= 11 && ddd <= 99)) return false;
+        if (d.length === 11 && d.charAt(2) !== '9') return false;
+        if (/^(\d)\1+$/.test(d.slice(2))) return false;
+        return true;
+    }
+
+    function mascaraTelefone(valor) {
+        var d = soDigitos(valor);
+        /* Quem cola o número do próprio WhatsApp costuma trazer o +55.
+           Sem tirar o código do país, a máscara empurraria o 55 para o
+           lugar do DDD e o número seria recusado. */
+        if (d.length > 11 && d.slice(0, 2) === '55') d = d.slice(2);
+        d = d.slice(0, 11);
+        if (d.length <= 2) return d.length ? '(' + d : '';
+        if (d.length <= 6) return '(' + d.slice(0, 2) + ') ' + d.slice(2);
+        if (d.length <= 10) return '(' + d.slice(0, 2) + ') ' + d.slice(2, 6) + '-' + d.slice(6);
+        return '(' + d.slice(0, 2) + ') ' + d.slice(2, 7) + '-' + d.slice(7);
+    }
+
+    var REGRAS_WA = [
+        { id: 'wa-nome', erro: 'erro-wa-nome',
+          testa: function (v) { return v.trim().length >= 5 && v.trim().indexOf(' ') > 0; },
+          msg: 'Informe seu nome e sobrenome.' },
+        { id: 'wa-telefone', erro: 'erro-wa-telefone',
+          testa: telefoneValido,
+          msg: 'Informe um telefone com DDD, por exemplo (27) 91234-5678.' },
+        { id: 'wa-cidade', erro: 'erro-wa-cidade',
+          testa: function (v) { return v !== ''; },
+          msg: 'Selecione a sua cidade.' },
+        { id: 'wa-assunto', erro: 'erro-wa-assunto',
+          testa: function (v) { return v !== ''; },
+          msg: 'Selecione o assunto.' },
+        { id: 'wa-relato', erro: 'erro-wa-relato',
+          testa: function (v) { return v.trim().length >= 15; },
+          msg: 'Descreva o que aconteceu em pelo menos 15 caracteres.' }
+    ];
+
+    /* O visual de erro fica no invólucro (.lp-campo / .lp-consent), que é
+       onde o CSS já espera o data-invalido. O campo carrega só o
+       aria-invalid, para o leitor de tela. */
+    function marcarErro(campo, alvoErro, msg) {
+        var span = document.getElementById(alvoErro);
+        if (span) span.textContent = msg || '';
+        if (!campo) return;
+
+        if (msg) campo.setAttribute('aria-invalid', 'true');
+        else campo.removeAttribute('aria-invalid');
+
+        var caixa = campo.closest ? campo.closest('.lp-campo, .lp-consent') : null;
+        if (caixa) {
+            if (msg) caixa.setAttribute('data-invalido', 'true');
+            else caixa.removeAttribute('data-invalido');
+        }
+    }
+
+    function validarCampoWa(regra) {
+        var campo = document.getElementById(regra.id);
+        if (!campo) return true;
+        var ok = regra.testa(campo.value);
+        marcarErro(campo, regra.erro, ok ? '' : regra.msg);
+        return ok;
+    }
+
+    /* ------------------------------------------------------------------
+       6.2  Mensagem do WhatsApp
+       ------------------------------------------------------------------
+       Só entra o que a pessoa escreveu. Nada de gclid, UTM ou identificador
+       de campanha: esses ficam para a atribuição, não para a conversa com
+       o advogado.
+       ------------------------------------------------------------------ */
+
+    function montarMensagem(d) {
+        /* O relato quase sempre termina em ponto; somar outro deixaria ".."
+           no meio da mensagem. */
+        var relato = d.relato.replace(/[\s.;,]+$/, '');
+        return 'Olá, sou ' + d.nome + ' e moro em ' + d.cidade + '. ' +
+               'Meu assunto é ' + d.assunto + '. ' +
+               'Resumo: ' + relato + '. ' +
+               'Preenchi o formulário no site e gostaria de solicitar atendimento.';
+    }
+
+    function iniciarFormularioWhatsapp() {
+        var form = document.getElementById('lp-form-wa');
+        if (!form) return;
+
+        var botao = document.getElementById('wa-enviar');
+        var status = document.getElementById('wa-status');
+        var comecou = false;
+        var saindo = false;
+
+        function dizer(texto, classe) {
+            if (!status) return;
+            status.textContent = texto || '';
+            status.className = 'lp-form-status' + (classe ? ' ' + classe : '');
+            status.hidden = !texto;
+        }
+
+        var telefone = document.getElementById('wa-telefone');
+        if (telefone) {
+            telefone.addEventListener('input', function () {
+                var noFim = telefone.selectionStart === telefone.value.length;
+                telefone.value = mascaraTelefone(telefone.value);
+                if (noFim) {
+                    try { telefone.setSelectionRange(telefone.value.length, telefone.value.length); }
+                    catch (e) { /* alguns navegadores recusam em campo tel */ }
+                }
+            });
+        }
+
+        /* lead_form_start: primeiro toque real num campo, uma vez só. */
+        $$('input, select, textarea', form).forEach(function (campo) {
+            campo.addEventListener('focus', function () {
+                if (comecou) return;
+                comecou = true;
+                evento('lead_form_start', origemCampanha());
+            });
+            campo.addEventListener('blur', function () {
+                var regra = REGRAS_WA.filter(function (r) { return r.id === campo.id; })[0];
+                if (regra && campo.value !== '') validarCampoWa(regra);
+            });
+        });
+
+        var consent = document.getElementById('wa-consent');
+        if (consent) {
+            consent.addEventListener('change', function () {
+                if (consent.checked) marcarErro(consent, 'erro-wa-consent', '');
+            });
+        }
+
+        form.addEventListener('submit', function (ev) {
+            ev.preventDefault();
+            if (saindo) return;   // já está indo para o WhatsApp
+
+            var primeiroInvalido = null;
+            var invalidos = [];
+
+            REGRAS_WA.forEach(function (r) {
+                if (!validarCampoWa(r)) {
+                    invalidos.push(r.id);
+                    if (!primeiroInvalido) primeiroInvalido = document.getElementById(r.id);
+                }
+            });
+
+            if (consent) {
+                var ok = consent.checked;
+                marcarErro(consent, 'erro-wa-consent', ok ? '' : 'É preciso concordar para continuar.');
+                if (!ok) {
+                    invalidos.push('wa-consent');
+                    if (!primeiroInvalido) primeiroInvalido = consent;
+                }
+            }
+
+            /* Botão apertado com o formulário inválido não é lead: sai um
+               evento próprio de erro, e o WhatsApp não abre. */
+            if (invalidos.length) {
+                var erro = origemCampanha();
+                erro.lead_campos_invalidos = invalidos.join(',');
+                evento('lead_form_validation_error', erro);
+
+                dizer('Confira os campos destacados antes de continuar.', 'erro');
+                if (primeiroInvalido) {
+                    primeiroInvalido.focus();
+                    if (primeiroInvalido.scrollIntoView) {
+                        primeiroInvalido.scrollIntoView({
+                            block: 'center',
+                            behavior: movimentoReduzido.matches ? 'auto' : 'smooth'
+                        });
+                    }
+                }
+                return;
+            }
+
+            var dados = {
+                nome: textoLimpo(document.getElementById('wa-nome').value, 120),
+                cidade: document.getElementById('wa-cidade').value,
+                assunto: document.getElementById('wa-assunto').value,
+                relato: textoLimpo(document.getElementById('wa-relato').value, 600)
+            };
+
+            saindo = true;
+
+            var base = origemCampanha();
+            base.lead_area = 'trabalhista';
+            base.lead_assunto = dados.assunto;
+            base.lead_cidade = dados.cidade;
+            evento('lead_form_submit', base);
+
+            if (botao) {
+                botao.disabled = true;
+                botao.setAttribute('aria-busy', 'true');
+                botao.textContent = 'Abrindo o WhatsApp…';
+            }
+            dizer('Abrindo o WhatsApp do escritório com a sua mensagem…', 'ok');
+
+            var destino = 'https://wa.me/' + WHATSAPP + '?text=' +
+                          encodeURIComponent(montarMensagem(dados));
+
+            var saida = origemCampanha();
+            saida.lead_area = 'trabalhista';
+            saida.lead_origem = 'formulario-mobile';
+            saida.lead_destino = 'wa.me/' + WHATSAPP;
+            evento('lead_whatsapp_redirect', saida);
+
+            /* Redirecionamento na própria aba. window.open depois do envio
+               de um formulário costuma ser bloqueado no celular. */
+            window.location.assign(destino);
+        });
+
+        /* lead_form_view: o formulário entrou na tela. Carregar a página
+           não conta como visualização de formulário. */
+        if ('IntersectionObserver' in window) {
+            var visto = false;
+            var obs = new IntersectionObserver(function (entradas) {
+                entradas.forEach(function (en) {
+                    if (!en.isIntersecting || visto) return;
+                    visto = true;
+                    obs.disconnect();
+                    evento('lead_form_view', origemCampanha());
+                });
+            }, { threshold: 0.25 });
+            obs.observe(form);
+        }
+    }
+
+    /* ------------------------------------------------------------------
+       6.3  Leitura enxuta
+       ------------------------------------------------------------------
+       Recolhe só o que é texto jurídico complementar — os parágrafos
+       marcados com data-enxuto no HTML. Título, resumo e orientação de
+       cada assunto ficam sempre visíveis, sem exigir toque nenhum.
+       O texto inteiro permanece no HTML: muda quanto dele aparece de
+       primeira, não o que existe na página.
+       ------------------------------------------------------------------ */
+
+    function enxugarTextos() {
+        $$('[data-enxuto]').forEach(function (p, i) {
+            if (p.dataset.enxutoPronto) return;
+
+            var linhas = parseInt(p.getAttribute('data-enxuto'), 10) || 3;
+            p.style.setProperty('--lp-linhas', linhas);
+            p.classList.add('lp-enxuto');
+
+            /* Se o texto já cabe nas linhas previstas, não faz sentido
+               oferecer botão nenhum. */
+            if (p.scrollHeight <= p.clientHeight + 2) {
+                p.classList.remove('lp-enxuto');
+                p.dataset.enxutoPronto = '1';
+                return;
+            }
+
+            if (!p.id) p.id = 'lp-txt-' + i;
+
+            var botao = document.createElement('button');
+            botao.type = 'button';
+            botao.className = 'lp-mais';
+            botao.setAttribute('aria-expanded', 'false');
+            botao.setAttribute('aria-controls', p.id);
+            botao.textContent = 'Ler mais';
+
+            botao.addEventListener('click', function () {
+                var aberto = p.classList.toggle('lp-enxuto-aberto');
+                botao.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+                botao.textContent = aberto ? 'Ler menos' : 'Ler mais';
+            });
+
+            p.parentNode.insertBefore(botao, p.nextSibling);
+            p.dataset.enxutoPronto = '1';
+        });
+    }
+
+    /* ------------------------------------------------------------------
+       6.4  Um caminho só
+       ------------------------------------------------------------------ */
+
+    function neutralizarDesvios() {
+        /* Os cartões de assunto deixam de ser links: no celular eles
+           informam, não conduzem. */
+        $$('a.lp-situacao').forEach(function (a) {
+            a.removeAttribute('href');
+            a.removeAttribute('data-assunto');
+            a.removeAttribute('target');
+            a.setAttribute('role', 'group');
+        });
+
+        /* O telefone deixa de ser clicável, mas o número segue na tela. */
+        $$('a[href^="tel:"]').forEach(function (a) {
+            a.removeAttribute('href');
+            a.classList.add('lp-tel-texto');
+        });
+
+        /* O CSS já esconde todos os atalhos de WhatsApp; isto garante que
+           nenhum deles continue alcançável pelo teclado. */
+        $$('a[href*="wa.me"]').forEach(function (a) {
+            if (a.offsetParent === null) a.setAttribute('tabindex', '-1');
+        });
+    }
+
+    /* ------------------------------------------------------------------
+       6.5  Entrada suave dos blocos
+       ------------------------------------------------------------------ */
+
+    function animarEntrada() {
+        if (movimentoReduzido.matches || !('IntersectionObserver' in window)) return;
+
+        var blocos = $$('.lp-situacao, .lp-tema, .lp-etapas li, .lp-lista-check li, ' +
+                        '.lp-sec-head, .lp-faq details, .lp-cidades li, .lp-endereco, ' +
+                        '.lp-atendimento-figura, .lp-sobre-grid, .lp-contato-mobile .lp-form');
+
+        blocos.forEach(function (el) { el.classList.add('lp-revelar'); });
+
+        function revelar(el) {
+            if (el.classList.contains('lp-visivel')) return;
+            el.classList.add('lp-visivel');
+            /* Depois do efeito o bloco fica parado de vez: sem repetição e
+               sem will-change preso na composição. */
+            window.setTimeout(function () { el.classList.add('lp-pronto'); }, 1500);
+        }
+
+        var obs = new IntersectionObserver(function (entradas) {
+            entradas.forEach(function (en) {
+                if (!en.isIntersecting) return;
+                obs.unobserve(en.target);
+                revelar(en.target);
+            });
+        }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+        blocos.forEach(function (el) { obs.observe(el); });
+
+        /* Rede de segurança. Um bloco só fica escondido enquanto espera a
+           vez de entrar na tela — e há situações em que essa vez não chega:
+           página dentro de um quadro recortado, aba carregada em segundo
+           plano, extensão atrapalhando o observador. Passados três
+           segundos, o que ainda estiver esperando aparece de uma vez.
+           Conteúdo escondido por causa de efeito é conteúdo perdido. */
+        window.setTimeout(function () {
+            obs.disconnect();
+            blocos.forEach(revelar);
+        }, 3000);
+    }
+
+    /* ------------------------------------------------------------------
+       6.6  Partida
+       ------------------------------------------------------------------ */
+
+    function partirMobile() {
+        neutralizarDesvios();
+        animarEntrada();
+        iniciarFormularioWhatsapp();
+
+        /* Recolher parágrafo depende de saber quantas linhas o texto ocupa,
+           e isso só é confiável com a fonte final aplicada. As outras
+           tarefas não esperam: qualquer atraso aqui deixaria blocos em
+           opacidade zero enquanto as fontes viajam pela rede. */
+        if (document.fonts && document.fonts.ready) {
+            document.fonts.ready.then(enxugarTextos).catch(enxugarTextos);
+            window.setTimeout(enxugarTextos, 2500);   // se a fonte nunca resolver
+        } else {
+            window.addEventListener('load', enxugarTextos);
+        }
+    }
+
+    if (MOBILE.matches) {
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', partirMobile);
+        } else {
+            partirMobile();
+        }
     }
 }());

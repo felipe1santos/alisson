@@ -186,6 +186,11 @@
             </ul>
         </nav>
 
+        <!-- No celular o cabeçalho não carrega ação: o único caminho de
+             conversão é o formulário do fim da página. Sobra a inscrição,
+             que informa sem desviar. -->
+        <span class="lp-header-oab" aria-hidden="true">OAB/ES 27.871</span>
+
         <div class="lp-header-actions">
             <a class="lp-header-tel" href="tel:+5527992291973" data-origem="cabecalho" aria-label="Ligar para (27) 99229-1973">
                 <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
@@ -208,7 +213,7 @@
             <div class="lp-hero-lead">
                 <span class="lp-hero-eyebrow">Direito do Trabalho · Grande Vitória</span>
                 <h1>Advogado trabalhista na Grande Vitória</h1>
-                <p class="lp-hero-sub">Orientação e acompanhamento jurídico em questões trabalhistas: o que foi pago no acerto, jornada, condições do contrato e situações de trabalho sem registro. Cada caso é analisado individualmente, a partir dos documentos e do relato.</p>
+                <p class="lp-hero-sub" data-enxuto="3">Orientação e acompanhamento jurídico em questões trabalhistas: <b class="lp-realce-claro">o que foi pago no acerto</b>, jornada, condições do contrato e situações de <b class="lp-realce-claro">trabalho sem registro</b>. Cada caso é analisado individualmente, a partir dos documentos e do relato.</p>
             </div>
 
             <div class="lp-identity">
@@ -219,6 +224,13 @@
                     <p class="lp-identity-nome">Alisson Brandão</p>
                     <span class="lp-identity-oab">OAB/ES 27.871</span>
                     <p class="lp-identity-linha">Atendimento presencial na Grande Vitória e online.</p>
+                    <!-- Credenciais em etiquetas: só aparecem no celular, onde a
+                         primeira dobra precisa comunicar tudo sem parágrafo. -->
+                    <ul class="lp-identity-chips">
+                        <li>Advogado trabalhista</li>
+                        <li>Grande Vitória</li>
+                        <li>Presencial e on-line</li>
+                    </ul>
                 </div>
             </div>
 
@@ -244,7 +256,7 @@
             <div class="lp-sec-head">
                 <span class="lp-eyebrow">Situações trabalhistas</span>
                 <h2>Questões que costumam exigir orientação individual</h2>
-                <p class="lp-sec-intro">A lista abaixo reúne os assuntos mais frequentes no atendimento. Ela serve para você reconhecer a sua situação — não para concluir se existe ou não algo a ser discutido, o que depende dos documentos e do contexto de cada contrato. <strong>Clique no assunto que se parece com o seu caso</strong> para ir ao formulário já preenchido com ele.</p>
+                <p class="lp-sec-intro" data-enxuto="3">A lista abaixo reúne os assuntos mais frequentes no atendimento. Ela serve para você <b class="lp-realce">reconhecer a sua situação</b> — não para concluir se existe ou não algo a ser discutido, o que depende dos documentos e do contexto de cada contrato. <span class="lp-so-desktop"><strong>Clique no assunto que se parece com o seu caso</strong> para ir ao formulário já preenchido com ele.</span><span class="lp-so-mobile">Role a página para reconhecer a sua e, no fim, descreva o caso no formulário.</span></p>
             </div>
 
             <div class="lp-situacoes">
@@ -294,7 +306,7 @@
 
                 <div class="lp-tema" id="demissao-rescisao">
                     <h3>Demissão, verbas rescisórias e justa causa</h3>
-                    <p>Quando o contrato termina, as dúvidas costumam ser sobre o que foi pago, sobre o prazo do acerto e sobre a modalidade registrada nos documentos. A CLT fixa prazo de até dez dias corridos, contados do fim do contrato, para o pagamento das verbas e a entrega da documentação. A justa causa exige que o motivo esteja entre as hipóteses do artigo 482 da CLT, além de proporcionalidade e imediatidade. E quando o descumprimento grave parte do empregador, existe a discussão sobre rescisão indireta — caminho diferente de pedir demissão, com consequências diferentes.</p>
+                    <p data-enxuto="3">Quando o contrato termina, as dúvidas costumam ser sobre o que foi pago, sobre o prazo do acerto e sobre a modalidade registrada nos documentos. A CLT fixa <b class="lp-realce">prazo de até dez dias corridos</b>, contados do fim do contrato, para o pagamento das verbas e a entrega da documentação. A <b class="lp-realce">justa causa</b> exige que o motivo esteja entre as hipóteses do artigo 482 da CLT, além de proporcionalidade e imediatidade. E quando o descumprimento grave parte do empregador, existe a discussão sobre <b class="lp-realce">rescisão indireta</b> — caminho diferente de pedir demissão, com consequências diferentes.</p>
                     <a class="lp-btn lp-btn-wa"
                        href="https://wa.me/5527992291973?text=Ol%C3%A1%2C%20gostaria%20de%20orienta%C3%A7%C3%A3o%20sobre%20a%20minha%20rescis%C3%A3o%20de%20contrato."
                        target="_blank" rel="noopener" data-origem="tema-demissao">
@@ -305,7 +317,7 @@
 
                 <div class="lp-tema" id="acidente-trabalho">
                     <h3>Acidente e doença do trabalho</h3>
-                    <p>A legislação equipara ao acidente de trabalho o acidente de trajeto e a doença ocupacional adquirida pelo exercício da função. A Comunicação de Acidente de Trabalho deve ser emitida pela empresa até o primeiro dia útil seguinte ao acidente; se não for, o próprio trabalhador, os dependentes, o sindicato ou o médico assistente podem comunicar o INSS. O enquadramento como benefício acidentário se relaciona à garantia de emprego prevista no artigo 118 da Lei 8.213/91 e à manutenção dos depósitos de FGTS durante o afastamento.</p>
+                    <p data-enxuto="3">A legislação <b class="lp-realce">equipara ao acidente de trabalho</b> o acidente de trajeto e a doença ocupacional adquirida pelo exercício da função. A <b class="lp-realce">Comunicação de Acidente de Trabalho</b> deve ser emitida pela empresa até o primeiro dia útil seguinte ao acidente; se não for, o próprio trabalhador, os dependentes, o sindicato ou o médico assistente podem comunicar o INSS. O enquadramento como benefício acidentário se relaciona à <b class="lp-realce">garantia de emprego</b> prevista no artigo 118 da Lei 8.213/91 e à manutenção dos depósitos de FGTS durante o afastamento.</p>
                     <a class="lp-btn lp-btn-wa"
                        href="https://wa.me/5527992291973?text=Ol%C3%A1%2C%20gostaria%20de%20orienta%C3%A7%C3%A3o%20sobre%20acidente%20de%20trabalho%20ou%20doen%C3%A7a%20ocupacional."
                        target="_blank" rel="noopener" data-origem="tema-acidente">
@@ -316,7 +328,7 @@
 
                 <div class="lp-tema" id="horas-extras-fgts">
                     <h3>Horas extras, salário atrasado e FGTS</h3>
-                    <p>A jornada padrão é de até oito horas diárias e quarenta e quatro semanais, salvo norma coletiva que estabeleça regime diverso; o que ultrapassa esse limite é hora extra, com adicional mínimo de cinquenta por cento. Também entram nessa análise o intervalo de almoço suprimido, o adicional noturno entre 22h e 5h para o trabalhador urbano, o banco de horas aplicado sem os requisitos legais, o salário pago fora da data e os meses sem depósito no extrato do FGTS. Reconstruir a jornada efetivamente cumprida e compará-la com os registros é o primeiro passo.</p>
+                    <p data-enxuto="3">A jornada padrão é de <b class="lp-realce">até oito horas diárias e quarenta e quatro semanais</b>, salvo norma coletiva que estabeleça regime diverso; o que ultrapassa esse limite é hora extra, com <b class="lp-realce">adicional mínimo de cinquenta por cento</b>. Também entram nessa análise o intervalo de almoço suprimido, o <b class="lp-realce">adicional noturno entre 22h e 5h</b> para o trabalhador urbano, o banco de horas aplicado sem os requisitos legais, o salário pago fora da data e os meses sem depósito no extrato do FGTS. Reconstruir a jornada efetivamente cumprida e compará-la com os registros é o primeiro passo.</p>
                     <a class="lp-btn lp-btn-wa"
                        href="https://wa.me/5527992291973?text=Ol%C3%A1%2C%20gostaria%20de%20orienta%C3%A7%C3%A3o%20sobre%20jornada%2C%20sal%C3%A1rio%20ou%20FGTS."
                        target="_blank" rel="noopener" data-origem="tema-horas-extras">
@@ -412,7 +424,7 @@
                 </li>
             </ol>
 
-            <p class="lp-nota-legal">
+            <p class="lp-nota-legal" data-enxuto="2">
                 <strong>Prefere tirar a dúvida no escritório?</strong> Dá para agendar e conversar pessoalmente,
                 no Centro de Vitória, em qualquer etapa — inclusive antes de enviar qualquer documento.
                 Basta dizer no primeiro contato que você prefere o atendimento presencial, e o horário é combinado.
@@ -436,8 +448,8 @@
                      width="400" height="400" loading="lazy" decoding="async">
 
                 <div>
-                    <p>Advogado inscrito na Ordem dos Advogados do Brasil, Seccional Espírito Santo, sob o número 27.871. Atua em advocacia e consultoria jurídica a partir do escritório no Centro de Vitória, atendendo pessoas e empresas da Grande Vitória.</p>
-                    <p>No direito do trabalho, o atendimento parte da leitura dos documentos e do relato de quem procura o escritório: contrato, holerites, registros de jornada e o histórico da relação. A partir daí, as alternativas são explicadas em linguagem comum, para que a decisão sobre o que fazer seja tomada com informação — e não no impulso do momento.</p>
+                    <p data-enxuto="3">Advogado inscrito na Ordem dos Advogados do Brasil, Seccional Espírito Santo, sob o número 27.871. Atua em advocacia e consultoria jurídica a partir do escritório no Centro de Vitória, atendendo pessoas e empresas da Grande Vitória.</p>
+                    <p data-enxuto="3">No direito do trabalho, o atendimento parte da leitura dos documentos e do relato de quem procura o escritório: contrato, holerites, registros de jornada e o histórico da relação. A partir daí, as alternativas são explicadas em linguagem comum, para que a decisão sobre o que fazer seja tomada com informação — e não no impulso do momento.</p>
                     <p>O contato pode ser feito por WhatsApp, telefone ou formulário, com atendimento presencial ou a distância.</p>
 
                     <ul class="lp-sobre-dados">
@@ -545,7 +557,7 @@
                 <div class="lp-form-aside">
                     <span class="lp-eyebrow">Contato</span>
                     <h2>Envie seus dados para o escritório</h2>
-                    <p>Descreva brevemente o que aconteceu e o escritório retorna o contato. O atendimento é feito pelo WhatsApp ou por telefone, nos canais abaixo.</p>
+                    <p>Descreva brevemente o que aconteceu e o escritório retorna o contato. <span class="lp-so-desktop">O atendimento é feito pelo WhatsApp ou por telefone, nos canais abaixo.</span><span class="lp-so-mobile">Depois de enviar, o WhatsApp do escritório abre com o resumo já escrito.</span></p>
 
                     <div class="lp-form-alt">
                         <a href="https://wa.me/5527992291973?text=Ol%C3%A1%2C%20gostaria%20de%20orienta%C3%A7%C3%A3o%20sobre%20uma%20quest%C3%A3o%20trabalhista."
@@ -664,6 +676,98 @@
                     </template>
 
                     <div class="lp-form-status" id="lp-form-status" role="status" aria-live="polite" tabindex="-1" hidden></div>
+                </div>
+                <!-- ---------------------------------------------------------
+                     CONTATO NO CELULAR
+                     Bloco exclusivo do celular: existe no HTML, mas o CSS o
+                     mantém fora da tela acima de 720px, onde continua valendo
+                     o #lp-area-form aprovado. Aqui não há servidor nenhum —
+                     os campos são validados no navegador, viram uma mensagem
+                     e a pessoa segue para o WhatsApp do escritório.
+                     --------------------------------------------------------- -->
+                <div class="lp-contato-mobile" id="lp-contato-mobile">
+
+                    <form class="lp-form" id="lp-form-wa" novalidate>
+
+                        <p class="lp-form-abertura">Descreva o caso em poucas linhas. Ao enviar, o WhatsApp do escritório abre com o resumo já escrito — é só tocar em enviar.</p>
+
+                        <div class="lp-campos">
+
+                            <div class="lp-campo lp-campo-full">
+                                <label for="wa-nome">Nome</label>
+                                <input type="text" id="wa-nome" name="nome" autocomplete="name"
+                                       autocapitalize="words" required aria-describedby="erro-wa-nome">
+                                <span class="lp-erro-campo" id="erro-wa-nome" role="alert"></span>
+                            </div>
+
+                            <div class="lp-campo">
+                                <label for="wa-telefone">WhatsApp com DDD</label>
+                                <input type="tel" id="wa-telefone" name="telefone" inputmode="numeric"
+                                       autocomplete="tel" placeholder="(27) 91234-5678" required
+                                       aria-describedby="erro-wa-telefone">
+                                <span class="lp-erro-campo" id="erro-wa-telefone" role="alert"></span>
+                            </div>
+
+                            <div class="lp-campo">
+                                <label for="wa-cidade">Cidade</label>
+                                <select id="wa-cidade" name="cidade" required aria-describedby="erro-wa-cidade">
+                                    <option value="">Selecione</option>
+                                    <option>Vitória</option>
+                                    <option>Vila Velha</option>
+                                    <option>Serra</option>
+                                    <option>Cariacica</option>
+                                    <option>Viana</option>
+                                    <option>Guarapari</option>
+                                    <option>Fundão</option>
+                                    <option>Outra cidade</option>
+                                </select>
+                                <span class="lp-erro-campo" id="erro-wa-cidade" role="alert"></span>
+                            </div>
+
+                            <div class="lp-campo lp-campo-full">
+                                <label for="wa-assunto">Assunto trabalhista</label>
+                                <select id="wa-assunto" name="assunto" required aria-describedby="erro-wa-assunto">
+                                    <option value="">Selecione</option>
+                                    <option>Demissão e rescisão</option>
+                                    <option>Demissão por justa causa</option>
+                                    <option>Rescisão indireta</option>
+                                    <option>Verbas rescisórias não pagas</option>
+                                    <option>Acidente ou doença do trabalho</option>
+                                    <option>Horas extras e jornada</option>
+                                    <option>FGTS e direitos não pagos</option>
+                                    <option>Vínculo de emprego / trabalho sem registro</option>
+                                    <option>Assédio no trabalho</option>
+                                    <option>Outra questão trabalhista</option>
+                                </select>
+                                <span class="lp-erro-campo" id="erro-wa-assunto" role="alert"></span>
+                            </div>
+
+                            <div class="lp-campo lp-campo-full">
+                                <label for="wa-relato">Breve descrição</label>
+                                <textarea id="wa-relato" name="relato" rows="4" maxlength="600"
+                                          placeholder="Em poucas linhas, o que aconteceu." required
+                                          aria-describedby="aviso-wa-relato erro-wa-relato"></textarea>
+                                <span class="lp-aviso-campo" id="aviso-wa-relato">Conte só o essencial. <strong>Não escreva aqui número de documento, senha, dado bancário ou informação de saúde</strong> — isso é combinado depois, já no atendimento.</span>
+                                <span class="lp-erro-campo" id="erro-wa-relato" role="alert"></span>
+                            </div>
+
+                            <div class="lp-consent lp-campo-full">
+                                <input type="checkbox" id="wa-consent" name="consentimento" value="sim" required
+                                       aria-describedby="erro-wa-consent">
+                                <label for="wa-consent">
+                                    Concordo que estes dados sejam usados para iniciar o atendimento pelo WhatsApp e li a <a href="privacidade.html" target="_blank" rel="noopener">Política de Privacidade</a>.
+                                    <span class="lp-erro-campo" id="erro-wa-consent" role="alert"></span>
+                                </label>
+                            </div>
+
+                        </div>
+
+                        <button type="submit" class="lp-btn lp-btn-solid" id="wa-enviar">Enviar dados e continuar no WhatsApp</button>
+
+                        <p class="lp-form-rodape">O que você escrever vai montar uma mensagem no seu próprio WhatsApp, para o número <strong>(27) 99229-1973</strong>. Nada é gravado neste site e nada é enviado antes de você tocar em enviar dentro do WhatsApp.</p>
+                    </form>
+
+                    <div class="lp-form-status" id="wa-status" role="status" aria-live="polite" tabindex="-1" hidden></div>
                 </div>
 
             </div>
