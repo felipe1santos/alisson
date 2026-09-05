@@ -628,6 +628,96 @@
     <svg viewBox="0 0 32 32" width="30" height="30" fill="#fff" aria-hidden="true"><path d="M16 .8C7.6.8.8 7.6.8 16c0 2.7.7 5.3 2 7.6L.8 31.2l7.8-2c2.2 1.2 4.7 1.9 7.4 1.9 8.4 0 15.2-6.8 15.2-15.1S24.4.8 16 .8zm0 27.6c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.6 1.2 1.2-4.5-.3-.5c-1.3-2-2-4.4-2-6.8C3.2 9 8.9 3.2 16 3.2S28.8 9 28.8 16 23.1 28.4 16 28.4zm7-9.4c-.4-.2-2.3-1.1-2.6-1.2-.4-.1-.6-.2-.9.2-.3.4-1 1.2-1.2 1.5-.2.3-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8l.6-.7c.2-.2.3-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5-.4.4-1.4 1.4-1.4 3.4s1.5 3.9 1.7 4.2c.2.3 2.9 4.4 7 6.2 1 .4 1.7.7 2.3.9 1 .3 1.9.3 2.6.2.8-.1 2.3-.9 2.7-1.9.3-.9.3-1.7.2-1.9-.1-.2-.3-.3-.7-.5z"/></svg>
 </a>
 
+<!-- ======================= 12. MODAL DE PRÉ-ATENDIMENTO =======================
+     Os três botões de WhatsApp abrem este painel em vez de irem direto para a
+     conversa. Ele não é cadastro: nada é gravado, nada é enviado a servidor
+     nenhum. Serve para organizar o que a pessoa vai dizer e montar a mensagem
+     que chega ao escritório já com nome, cidade e assunto.
+
+     Fica `hidden` no HTML. Sem JavaScript ele nunca abre — e os links seguem
+     apontando direto para o wa.me, que é o comportamento de reserva.
+     ============================================================================ -->
+<div class="lp-modal" id="lp-modal" hidden>
+    <div class="lp-modal-fundo" data-fechar-modal></div>
+
+    <div class="lp-modal-caixa" role="dialog" aria-modal="true"
+         aria-labelledby="lp-modal-titulo" aria-describedby="lp-modal-sub">
+
+        <button type="button" class="lp-modal-x" id="lp-modal-x" aria-label="Fechar" data-fechar-modal>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+
+        <div class="lp-modal-topo">
+            <span class="lp-modal-eyebrow">Antes de falar com o escritório</span>
+            <h2 id="lp-modal-titulo">Três informações e você segue para o WhatsApp</h2>
+            <p id="lp-modal-sub">Elas montam a sua mensagem, para o escritório já saber do que se trata. Nada é gravado neste site.</p>
+        </div>
+
+        <form class="lp-modal-form" id="lp-modal-form" novalidate>
+            <div class="lp-campos">
+
+                <div class="lp-campo lp-campo-full">
+                    <label for="mw-nome">Nome</label>
+                    <input type="text" id="mw-nome" name="nome" autocomplete="name"
+                           autocapitalize="words" required aria-describedby="erro-mw-nome">
+                    <span class="lp-erro-campo" id="erro-mw-nome" role="alert"></span>
+                </div>
+
+                <div class="lp-campo lp-campo-full">
+                    <label for="mw-cidade">Cidade</label>
+                    <select id="mw-cidade" name="cidade" required aria-describedby="erro-mw-cidade">
+                        <option value="">Selecione</option>
+                        <option>Vitória</option>
+                        <option>Vila Velha</option>
+                        <option>Serra</option>
+                        <option>Cariacica</option>
+                        <option>Viana</option>
+                        <option>Guarapari</option>
+                        <option>Fundão</option>
+                        <option>Outra cidade</option>
+                    </select>
+                    <span class="lp-erro-campo" id="erro-mw-cidade" role="alert"></span>
+                </div>
+
+                <div class="lp-campo lp-campo-full">
+                    <label for="mw-assunto">Assunto</label>
+                    <select id="mw-assunto" name="assunto" required aria-describedby="erro-mw-assunto">
+                        <option value="">Selecione</option>
+                        <option>Demissão ou rescisão</option>
+                        <option>Justa causa</option>
+                        <option>Rescisão indireta</option>
+                        <option>Verbas rescisórias</option>
+                        <option>Horas extras</option>
+                        <option>FGTS ou direitos não pagos</option>
+                        <option>Acidente ou doença do trabalho</option>
+                        <option>Assédio no trabalho</option>
+                        <option>Trabalho sem registro</option>
+                        <option>Reconhecimento de vínculo</option>
+                        <option>Outro assunto trabalhista</option>
+                    </select>
+                    <span class="lp-erro-campo" id="erro-mw-assunto" role="alert"></span>
+                </div>
+
+                <div class="lp-campo lp-campo-full">
+                    <label for="mw-relato">Breve descrição <span class="opcional">(opcional)</span></label>
+                    <textarea id="mw-relato" name="relato" rows="3" maxlength="600"
+                              placeholder="Em poucas linhas, o que aconteceu."></textarea>
+                </div>
+
+            </div>
+
+            <p class="lp-modal-aviso">Não envie documentos, senhas ou dados sensíveis neste primeiro contato. As informações serão usadas apenas para preparar sua mensagem no WhatsApp.</p>
+
+            <button type="submit" class="lp-btn lp-btn-wa" id="mw-enviar">
+                <svg viewBox="0 0 32 32" width="21" height="21" fill="currentColor" aria-hidden="true"><path d="M16 .8C7.6.8.8 7.6.8 16c0 2.7.7 5.3 2 7.6L.8 31.2l7.8-2c2.2 1.2 4.7 1.9 7.4 1.9 8.4 0 15.2-6.8 15.2-15.1S24.4.8 16 .8zm0 27.6c-2.4 0-4.7-.6-6.7-1.8l-.5-.3-4.6 1.2 1.2-4.5-.3-.5c-1.3-2-2-4.4-2-6.8C3.2 9 8.9 3.2 16 3.2S28.8 9 28.8 16 23.1 28.4 16 28.4zm7-9.4c-.4-.2-2.3-1.1-2.6-1.2-.4-.1-.6-.2-.9.2-.3.4-1 1.2-1.2 1.5-.2.3-.4.3-.8.1-.4-.2-1.6-.6-3.1-1.9-1.1-1-1.9-2.2-2.1-2.6-.2-.4 0-.6.2-.8l.6-.7c.2-.2.3-.4.4-.7.1-.3.1-.5 0-.7-.1-.2-.9-2.1-1.2-2.9-.3-.8-.6-.7-.9-.7h-.8c-.3 0-.7.1-1.1.5-.4.4-1.4 1.4-1.4 3.4s1.5 3.9 1.7 4.2c.2.3 2.9 4.4 7 6.2 1 .4 1.7.7 2.3.9 1 .3 1.9.3 2.6.2.8-.1 2.3-.9 2.7-1.9.3-.9.3-1.7.2-1.9-.1-.2-.3-.3-.7-.5z"/></svg>
+                Continuar no WhatsApp
+            </button>
+
+            <p class="lp-modal-rodape">Você será levado ao WhatsApp com a mensagem já escrita. Nada é enviado antes de você tocar em enviar por lá.</p>
+        </form>
+    </div>
+</div>
+
 <script src="js/landing-lead.js" defer></script>
 
 </body>

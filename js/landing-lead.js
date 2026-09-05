@@ -10,10 +10,12 @@
       que dizem de qual grupo veio cada visitante.
    2. Empurrar os eventos de conversão para o dataLayer do GTM:
       lead_whatsapp_click, lead_phone_click, lead_form_submit_success.
-   3. Só exibir o formulário se a lead-api responder ao teste de
-      disponibilidade. Enquanto ela estiver fora, a página mostra os canais
-      que funcionam e nenhum campo é renderizado — ninguém preenche um
-      formulário que falharia no envio.
+   3. Interpor o painel de pré-atendimento entre os três botões de
+      WhatsApp e a conversa: nome, cidade e assunto viram a mensagem que
+      chega ao escritório. Nada é gravado e nada sai da página.
+   4. O suporte ao formulário da lead-api segue no arquivo, inativo: a
+      página não tem mais <template> de formulário, então nem chega a
+      consultar se a API está de pé.
 
    Nenhuma tag é criada aqui: o arquivo só escreve no dataLayer. A instalação
    do contêiner do GTM depende de definir qual conta será a proprietária.
@@ -162,6 +164,10 @@
         base.lead_origem = alvo.getAttribute('data-origem') || 'link';
 
         if (href.indexOf('wa.me/') !== -1 || href.indexOf('api.whatsapp.com') !== -1) {
+            // Os tres botoes do trio nao abrem conversa: abrem o painel de
+            // pre-atendimento. Quem registra a saida deles e a secao 6.
+            if (ORIGEM_MODAL[alvo.getAttribute('data-origem')]) return;
+
             // Os links de WhatsApp abrem em aba nova, então a página não é
             // descarregada e o push chega ao GTM sem corrida.
             evento('lead_whatsapp_click', base);
@@ -453,5 +459,269 @@
                 botao.textContent = rotuloOriginal;
             });
         });
+    }
+    /* ==================================================================
+       6. MODAL DE PRÉ-ATENDIMENTO
+       ==================================================================
+       Os três botões de WhatsApp — topo, final e flutuante — deixam de
+       levar direto para a conversa e passam a abrir este painel. Ele não é
+       cadastro: nada é gravado, nada sai da página. Serve para organizar o
+       que a pessoa vai dizer e entregar ao escritório uma mensagem que já
+       diz quem é, de onde fala e do que se trata.
+
+       O href dos botões continua apontando para o wa.me. Se este arquivo
+       não carregar, ou falhar, o clique segue para a conversa como antes —
+       é o comportamento de reserva, e por isso o preventDefault só acontece
+       depois que o painel existe de fato.
+       ================================================================== */
+
+    var ORIGEM_MODAL = {
+        'hero': 'topo',
+        'cta-final': 'final',
+        'botao-flutuante': 'flutuante'
+    };
+
+    var FOCAVEIS = 'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
+
+    function iniciarModal() {
+        var modal = $('#lp-modal');
+        var form = $('#lp-modal-form');
+        if (!modal || !form) return;      // sem o painel, os links seguem diretos
+
+        var caixa = modal.querySelector('.lp-modal-caixa');
+        var botao = $('#mw-enviar');
+
+        var aberto = false;
+        var origemAtual = null;
+        var gatilho = null;               // botão que abriu, para devolver o foco
+        var comecouNesta = false;         // whatsapp_form_start, uma vez por abertura
+        var jaRedirecionou = false;       // lead_whatsapp_redirect, uma vez e ponto
+
+        /* O que a pessoa digitou fica só aqui, em memória. Fechar sem querer
+           e reabrir não apaga nada; recarregar ou sair da página, sim. */
+        var rascunho = { nome: '', cidade: '', assunto: '', relato: '' };
+
+        var CAMPOS = ['nome', 'cidade', 'assunto', 'relato'];
+        function elDo(nome) { return document.getElementById('mw-' + nome); }
+
+        function guardarRascunho() {
+            CAMPOS.forEach(function (c) {
+                var el = elDo(c);
+                if (el) rascunho[c] = el.value;
+            });
+        }
+        function restaurarRascunho() {
+            CAMPOS.forEach(function (c) {
+                var el = elDo(c);
+                if (el) el.value = rascunho[c] || '';
+            });
+        }
+
+        /* ---------------------------------------------------------------
+           Contexto dos eventos. A descrição escrita pela pessoa NUNCA entra
+           aqui: relato é assunto do advogado, não de ferramenta de medição.
+           --------------------------------------------------------------- */
+        function contexto(extra) {
+            var base = origemCampanha();
+            base.cta_origem = origemAtual || 'desconhecida';
+            base.lead_area = 'trabalhista';
+            base.pagina = window.location.pathname;
+            var assunto = elDo('assunto');
+            if (assunto && assunto.value) base.assunto = assunto.value;
+            if (extra) {
+                for (var k in extra) {
+                    if (Object.prototype.hasOwnProperty.call(extra, k)) base[k] = extra[k];
+                }
+            }
+            return base;
+        }
+
+        /* --------------------------------------------------------------- */
+
+        function erro(campo, alvo, msg) {
+            var span = document.getElementById(alvo);
+            if (span) span.textContent = msg || '';
+            if (!campo) return;
+            if (msg) campo.setAttribute('aria-invalid', 'true');
+            else campo.removeAttribute('aria-invalid');
+            var caixaCampo = campo.closest ? campo.closest('.lp-campo') : null;
+            if (caixaCampo) {
+                if (msg) caixaCampo.setAttribute('data-invalido', 'true');
+                else caixaCampo.removeAttribute('data-invalido');
+            }
+        }
+
+        var REGRAS = [
+            { nome: 'nome', erro: 'erro-mw-nome',
+              vale: function (v) { return v.trim().length >= 2; },
+              msg: 'Informe o seu nome.' },
+            { nome: 'cidade', erro: 'erro-mw-cidade',
+              vale: function (v) { return v !== ''; },
+              msg: 'Selecione a sua cidade.' },
+            { nome: 'assunto', erro: 'erro-mw-assunto',
+              vale: function (v) { return v !== ''; },
+              msg: 'Selecione o assunto.' }
+        ];
+
+        function validar() {
+            var invalidos = [], primeiro = null;
+            REGRAS.forEach(function (r) {
+                var el = elDo(r.nome);
+                if (!el) return;
+                var ok = r.vale(el.value);
+                erro(el, r.erro, ok ? '' : r.msg);
+                if (!ok) { invalidos.push(r.nome); if (!primeiro) primeiro = el; }
+            });
+            return { invalidos: invalidos, primeiro: primeiro };
+        }
+
+        function mensagem() {
+            var nome = textoLimpo(elDo('nome').value, 120);
+            var cidade = elDo('cidade').value;
+            var assunto = elDo('assunto').value;
+            var relato = textoLimpo(elDo('relato').value, 600).replace(/[\s.;,]+$/, '');
+
+            var m = 'Olá, sou ' + nome + ' e moro em ' + cidade + '. ' +
+                    'Meu assunto é ' + assunto + '. ';
+            if (relato) m += 'Resumo: ' + relato + '. ';
+            m += 'Conheci o escritório pelo site e gostaria de solicitar atendimento.';
+            return m;
+        }
+
+        /* ---------------------------------------------------------------
+           Abrir e fechar
+           --------------------------------------------------------------- */
+
+        function abrir(origem, quemAbriu) {
+            if (aberto) return;
+            aberto = true;
+            origemAtual = origem;
+            gatilho = quemAbriu || null;
+            comecouNesta = false;
+
+            modal.hidden = false;
+            document.body.classList.add('lp-modal-aberto');
+            restaurarRascunho();
+
+            evento('whatsapp_modal_open', contexto());
+
+            /* O primeiro campo vazio recebe o foco: quem reabre o painel cai
+               direto no que falta preencher. */
+            var alvo = null;
+            for (var i = 0; i < REGRAS.length && !alvo; i++) {
+                var el = elDo(REGRAS[i].nome);
+                if (el && !el.value) alvo = el;
+            }
+            (alvo || elDo('nome')).focus();
+        }
+
+        function fechar() {
+            if (!aberto) return;
+            guardarRascunho();
+            aberto = false;
+            modal.hidden = true;
+            document.body.classList.remove('lp-modal-aberto');
+            if (gatilho && gatilho.focus) gatilho.focus();
+            gatilho = null;
+        }
+
+        /* Foco preso dentro do painel: Tab não escapa para o fundo. */
+        function prenderFoco(ev) {
+            if (ev.key !== 'Tab') return;
+            var lista = Array.prototype.filter.call(
+                caixa.querySelectorAll(FOCAVEIS),
+                function (el) { return el.offsetParent !== null; });
+            if (!lista.length) return;
+            var primeiro = lista[0], ultimo = lista[lista.length - 1];
+            if (ev.shiftKey && document.activeElement === primeiro) {
+                ev.preventDefault(); ultimo.focus();
+            } else if (!ev.shiftKey && document.activeElement === ultimo) {
+                ev.preventDefault(); primeiro.focus();
+            }
+        }
+
+        document.addEventListener('keydown', function (ev) {
+            if (!aberto) return;
+            if (ev.key === 'Escape') { ev.preventDefault(); fechar(); return; }
+            prenderFoco(ev);
+        });
+
+        Array.prototype.forEach.call(modal.querySelectorAll('[data-fechar-modal]'), function (el) {
+            el.addEventListener('click', fechar);
+        });
+
+        /* ---------------------------------------------------------------
+           Os três botões passam a abrir o painel
+           --------------------------------------------------------------- */
+
+        document.addEventListener('click', function (ev) {
+            var alvo = ev.target && ev.target.closest ? ev.target.closest('a[href*="wa.me"]') : null;
+            if (!alvo) return;
+            var origem = ORIGEM_MODAL[alvo.getAttribute('data-origem')];
+            if (!origem) return;                 // link de WhatsApp fora do trio: segue direto
+
+            ev.preventDefault();
+            abrir(origem, alvo);
+        });
+
+        /* whatsapp_form_start: primeiro toque real num campo, uma vez por
+           abertura do painel. */
+        Array.prototype.forEach.call(form.querySelectorAll('input, select, textarea'), function (campo) {
+            campo.addEventListener('focus', function () {
+                if (comecouNesta) return;
+                comecouNesta = true;
+                evento('whatsapp_form_start', contexto());
+            });
+            campo.addEventListener('blur', function () {
+                var regra = REGRAS.filter(function (r) { return r.nome === campo.id.replace('mw-', ''); })[0];
+                if (regra && campo.value !== '') {
+                    erro(campo, regra.erro, regra.vale(campo.value) ? '' : regra.msg);
+                }
+            });
+        });
+
+        /* ---------------------------------------------------------------
+           Envio
+           --------------------------------------------------------------- */
+
+        form.addEventListener('submit', function (ev) {
+            ev.preventDefault();
+            if (jaRedirecionou) return;
+
+            var r = validar();
+            if (r.invalidos.length) {
+                evento('whatsapp_form_validation_error',
+                       contexto({ campos_invalidos: r.invalidos.join(',') }));
+                if (r.primeiro) r.primeiro.focus();
+                return;
+            }
+
+            guardarRascunho();
+            jaRedirecionou = true;
+
+            var temResumo = textoLimpo(elDo('relato').value, 600).length > 0;
+            evento('whatsapp_form_complete', contexto({ tem_resumo: temResumo }));
+
+            if (botao) {
+                botao.disabled = true;
+                botao.setAttribute('aria-busy', 'true');
+            }
+
+            var destino = 'https://wa.me/' + WHATSAPP + '?text=' + encodeURIComponent(mensagem());
+
+            /* Conversão principal: "Lead - WhatsApp iniciado". Sai uma vez
+               só, no instante anterior ao redirecionamento. */
+            evento('lead_whatsapp_redirect', contexto({ destino: 'wa.me/' + WHATSAPP }));
+
+            /* Mesma aba. window.open depois do envio de um formulário é
+               bloqueado por boa parte dos navegadores móveis. */
+            window.location.assign(destino);
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', iniciarModal);
+    } else {
+        iniciarModal();
     }
 }());

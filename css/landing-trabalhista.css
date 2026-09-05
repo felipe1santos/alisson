@@ -1215,3 +1215,155 @@ body.lp-page [id] { scroll-margin-top: 84px; }
     .lp-mapa,
     .lp-mapa iframe { min-height: 280px; }
 }
+
+/* ==========================================================================
+   12. MODAL DE PRÉ-ATENDIMENTO
+   --------------------------------------------------------------------------
+   Painel que se interpõe entre os três botões de WhatsApp e a conversa.
+   No desktop fica centrado; no celular sobe do rodapé e ocupa quase a tela
+   inteira, com a área de campos rolando por dentro — assim o teclado do
+   aparelho não empurra o botão para fora do alcance.
+   ========================================================================== */
+
+.lp-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 3000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+}
+.lp-modal[hidden] { display: none; }
+
+.lp-modal-fundo {
+    position: absolute;
+    inset: 0;
+    background-color: rgba(6, 16, 27, .72);
+    backdrop-filter: blur(2px);
+    animation: lp-modal-fundo-entra .18s ease-out;
+}
+
+.lp-modal-caixa {
+    position: relative;
+    width: 100%;
+    max-width: 520px;
+    max-height: calc(100vh - 48px);
+    display: flex;
+    flex-direction: column;
+    background-color: var(--lp-paper);
+    border-radius: var(--lp-radius);
+    border-top: 3px solid var(--accent-gold);
+    box-shadow: 0 24px 70px rgba(0, 0, 0, .45);
+    animation: lp-modal-entra .22s cubic-bezier(.22, .68, .32, 1);
+}
+
+@keyframes lp-modal-fundo-entra { from { opacity: 0; } to { opacity: 1; } }
+@keyframes lp-modal-entra {
+    from { opacity: 0; transform: translateY(14px) scale(.985); }
+    to   { opacity: 1; transform: none; }
+}
+
+.lp-modal-x {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    background: none;
+    border: 0;
+    border-radius: var(--lp-radius);
+    color: var(--lp-muted);
+    cursor: pointer;
+    z-index: 2;
+}
+.lp-modal-x:hover { color: var(--lp-ink); background-color: var(--lp-paper-2); }
+
+.lp-modal-topo {
+    padding: 26px 26px 0;
+    flex: none;
+}
+.lp-modal-eyebrow {
+    display: block;
+    font-size: .68rem;
+    font-weight: 700;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: var(--lp-gold-ink);
+    margin-bottom: 9px;
+}
+.lp-modal-topo h2 {
+    font-size: 1.42rem;
+    line-height: 1.2;
+    margin: 0 0 8px;
+    padding-right: 34px;      /* espaço do botão de fechar */
+}
+.lp-modal-topo p {
+    font-size: .92rem;
+    color: var(--lp-ink-soft);
+    margin: 0;
+    line-height: 1.55;
+}
+
+/* Só esta área rola: cabeçalho e botão continuam à vista. */
+.lp-modal-form {
+    padding: 22px 26px 26px;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.lp-modal-form .lp-campos { grid-template-columns: 1fr; gap: 15px; }
+.lp-modal-form .lp-btn { width: 100%; margin-top: 18px; }
+
+.lp-modal-aviso {
+    margin: 16px 0 0;
+    padding-left: 12px;
+    border-left: 2px solid var(--lp-line);
+    font-size: .82rem;
+    line-height: 1.5;
+    color: var(--lp-ink-soft);
+}
+
+.lp-modal-rodape {
+    margin: 14px 0 0;
+    font-size: .8rem;
+    line-height: 1.5;
+    color: var(--lp-muted);
+    text-align: center;
+}
+
+/* O corpo trava enquanto o painel está aberto, senão o fundo rola junto. */
+body.lp-modal-aberto { overflow: hidden; }
+
+@media (max-width: 720px) {
+    .lp-modal { padding: 0; align-items: flex-end; }
+
+    .lp-modal-caixa {
+        max-width: none;
+        max-height: 92vh;
+        max-height: 92dvh;      /* desconta a barra do navegador no celular */
+        border-radius: var(--lp-radius) var(--lp-radius) 0 0;
+        animation: lp-modal-sobe .24s cubic-bezier(.22, .68, .32, 1);
+    }
+    @keyframes lp-modal-sobe {
+        from { transform: translateY(100%); }
+        to   { transform: none; }
+    }
+
+    .lp-modal-topo { padding: 22px 18px 0; }
+    .lp-modal-topo h2 { font-size: 1.24rem; }
+    .lp-modal-form { padding: 18px 18px 22px; }
+
+    /* 16px evita o zoom automático do iOS ao focar um campo. */
+    .lp-modal-form input,
+    .lp-modal-form select,
+    .lp-modal-form textarea { font-size: 16px; }
+    .lp-modal-form .lp-btn { min-height: 56px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .lp-modal-caixa,
+    .lp-modal-fundo { animation: none !important; }
+}
