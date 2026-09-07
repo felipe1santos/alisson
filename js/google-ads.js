@@ -44,8 +44,15 @@
        - lead_telefone: clique no link de telefone (secundária, não é lead
          confirmado: não dá para saber daqui se a ligação foi atendida) */
     var CONVERSOES = {
-        lead_whatsapp:   '',
-        lead_formulario: '',
+        /* "Enviar formulário de lead [01]" — a mesma ação atende os dois
+           caminhos porque os dois são o mesmo fato comercial: o visitante
+           entregou o contato. Separar em duas ações só faria sentido para
+           dar valores diferentes a cada uma. */
+        lead_whatsapp:   'wnLvCLeT4_AcEO6hrdNE',
+        lead_formulario: 'wnLvCLeT4_AcEO6hrdNE',
+
+        /* Ação própria ainda não criada no Google Ads. Vazio = o clique no
+           telefone não é enviado, e nada mais quebra. */
         lead_telefone:   ''
     };
 

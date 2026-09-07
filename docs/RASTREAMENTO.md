@@ -15,6 +15,23 @@ só mede a conversão se a mesma tag que viu o clique do anúncio estiver na
 página onde a conversão acontece — e o visitante costuma ler um artigo do blog
 antes de chamar no WhatsApp. Tag em uma página só perde essas conversões.
 
+## Estado dos rótulos
+
+| Ação no Google Ads | Chave em `CONVERSOES` | Rótulo |
+|---|---|---|
+| Enviar formulário de lead [01] | `lead_whatsapp` | `wnLvCLeT4_AcEO6hrdNE` |
+| Enviar formulário de lead [01] | `lead_formulario` | `wnLvCLeT4_AcEO6hrdNE` |
+| — não criada | `lead_telefone` | vazio |
+
+WhatsApp e formulário apontam para a mesma ação porque são o mesmo fato
+comercial: o visitante entregou o contato. Separar em duas ações só vale a
+pena para dar valores diferentes a cada uma.
+
+O **snippet de evento** que o Google Ads oferece na tela da ação de conversão
+não deve ser colado no `<head>`: do jeito que ele vem, dispara no carregamento
+da página e toda visita viraria lead. O disparo correto é no clique, e é o que
+o `js/google-ads.js` faz. Da tela do Google, só o rótulo interessa.
+
 ## Falta: os rótulos das ações de conversão
 
 O ID `AW-18428416238` sozinho **não registra conversão nenhuma**. Cada ação de
