@@ -14,6 +14,10 @@ if (modal && btn && form) {
         const telefone = document.getElementById("telefone").value;
         const descricao = document.getElementById("descricao").value;
         const mensagem = `Olá, meu nome é ${nome}. \nTelefone: ${telefone}. \n\nGostaria de falar sobre: ${descricao}`;
+        // O modal abre a conversa por window.open, não por clique em link:
+        // o listener do js/google-ads.js nunca veria esse lead. Aba nova, então
+        // a página não é descarregada e não há corrida com o envio da conversão.
+        if (window.abAds) window.abAds.conversao("lead_whatsapp", { pagina: "home-modal" });
         window.open(`https://wa.me/5527992291973?text=${encodeURIComponent(mensagem)}`, "_blank");
         modal.style.display = "none";
         form.reset();
