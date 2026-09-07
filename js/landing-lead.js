@@ -17,8 +17,9 @@
       página não tem mais <template> de formulário, então nem chega a
       consultar se a API está de pé.
 
-   Nenhuma tag é criada aqui: o arquivo só escreve no dataLayer. A instalação
-   do contêiner do GTM depende de definir qual conta será a proprietária.
+   Nenhuma tag é criada aqui. O arquivo escreve no dataLayer e avisa o
+   js/google-ads.js, que é quem conhece a conta do Google Ads e os rótulos
+   das ações de conversão. Trocar de conta ou de rótulo se faz lá, não aqui.
 
    Sem dependências externas. Roda com `defer`.
    ========================================================================== */
@@ -54,7 +55,7 @@
 
     function $(sel, raiz) { return (raiz || document).querySelector(sel); }
 
-    function evento(nome, dados) {
+    function evento(nome, dados, aoTerminar) {
         var payload = { event: nome };
         if (dados) {
             for (var k in dados) {
@@ -62,6 +63,15 @@
             }
         }
         window.dataLayer.push(payload);
+
+        // Quem decide se o evento vale como conversao de Ads e o
+        // js/google-ads.js. Aqui nao se sabe conta nem rotulo: so se
+        // avisa o que acabou de acontecer.
+        if (window.abAds && typeof window.abAds.conversaoPorEvento === 'function') {
+            window.abAds.conversaoPorEvento(nome, dados, aoTerminar);
+            return;
+        }
+        if (aoTerminar) aoTerminar();
     }
 
     function idEvento() {
@@ -711,11 +721,15 @@
 
             /* Conversão principal: "Lead - WhatsApp iniciado". Sai uma vez
                só, no instante anterior ao redirecionamento. */
-            evento('lead_whatsapp_redirect', contexto({ destino: 'wa.me/' + WHATSAPP }));
-
-            /* Mesma aba. window.open depois do envio de um formulário é
-               bloqueado por boa parte dos navegadores móveis. */
-            window.location.assign(destino);
+            evento('lead_whatsapp_redirect', contexto({ destino: 'wa.me/' + WHATSAPP }), function () {
+                /* Mesma aba. window.open depois do envio de um formulário é
+                   bloqueado por boa parte dos navegadores móveis. A navegação
+                   espera o gtag confirmar o envio da conversão: sair antes
+                   disso cancela a requisição e o Google Ads não registra o
+                   lead. O google-ads.js tem tempo limite próprio, então a
+                   conversa abre mesmo com a tag bloqueada. */
+                window.location.assign(destino);
+            });
         });
     }
 
