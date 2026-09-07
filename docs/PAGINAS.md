@@ -32,6 +32,7 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 | `index.html` | ✅ | ✅ | ✅ | indexada |
 | `blog.html` | ✅ | ✅ | ✅ | indexada |
 | `privacidade.html` | ✅ | ✅ | ❌ proposital | `noindex` proposital |
+| `politica-de-publicidade.html` | ✅ | ⏳ deploy | ✅ | criada em 07/09/2026 para a campanha de Ads; link no rodapé de todas as páginas (exceto `privacidade.html`) |
 
 ---
 
