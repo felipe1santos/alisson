@@ -22,37 +22,43 @@
    --------------------------------------------------------------------------
    O ID da conta (AW-...) sozinho não registra conversão nenhuma. Cada ação de
    conversão criada no Google Ads tem um rótulo próprio, e é o par
-   `AW-ID/RÓTULO` que o gtag precisa receber. Enquanto o rótulo estiver vazio
+   `AW-ID/RÓTULO` que o gtag precisa receber. Enquanto o par estiver vazio
    aqui, o evento é ignorado sem quebrar nada — o resto da medição (pageview,
    gclid, Meta Pixel) continua funcionando.
 
    Onde pegar: Google Ads → Metas → Conversões → Ações de conversão → criar
-   ação do tipo "Site" com configuração manual → em "Configurar tag" o Google
-   mostra `send_to: 'AW-18428416238/XXXXXXXXXXXXXXX'`. É a parte depois da
-   barra que entra abaixo.
+   ação do tipo "Site" com configuração manual → em "Ver snippet de evento" o
+   Google mostra o `send_to` completo. É ele que entra abaixo, inteiro: o ID
+   antes da barra diz PARA QUAL CONTA a conversão vai.
 
    Sem dependências externas.
    ========================================================================== */
 (function () {
     'use strict';
 
-    var AW = 'AW-18428416238';
+    /* DUAS CONTAS DE ADS, UMA SÓ RECEBE CONVERSÃO
+       ------------------------------------------------------------------
+       AW_TAG é a tag que já estava instalada no site. AW_ALISSON é o ID de
+       conversão da conta 428-973-0072, a do escritório — foi ele que o
+       Google Ads devolveu ao criar a ação "WhatsApp | Clique no site".
 
-    /* Rótulo de cada ação de conversão. Cole entre as aspas.
-       - lead_whatsapp: conversa aberta no WhatsApp (ação PRINCIPAL, é o lead)
-       - lead_formulario: formulário da lead-api gravado com sucesso
-       - lead_telefone: clique no link de telefone (secundária, não é lead
-         confirmado: não dá para saber daqui se a ligação foi atendida) */
+       Os dois carregam: o pageview da página já sai para os dois destinos,
+       porque as tags estão pareadas do lado do Google. Manter o config do
+       AW_TAG preserva esse destino legítimo; a CONVERSÃO, porém, vai só
+       para a conta do escritório, que é quem paga a campanha. */
+    var AW_TAG     = 'AW-18428416238';
+    var AW_ALISSON = 'AW-18393588578';
+
+    /* send_to completo de cada conversão: 'AW-ID/RÓTULO'.
+       - lead_whatsapp: clique num botão de WhatsApp da landing. Mede
+         INTENÇÃO DE CONTATO — não prova mensagem enviada, nem conversa
+         respondida, nem contratação.
+       - lead_formulario: sem uso. A landing não tem mais formulário; o
+         contato começa direto na conversa.
+       - lead_telefone: sem ação criada no Google Ads. Vazio = não envia. */
     var CONVERSOES = {
-        /* "Enviar formulário de lead [01]" — a mesma ação atende os dois
-           caminhos porque os dois são o mesmo fato comercial: o visitante
-           entregou o contato. Separar em duas ações só faria sentido para
-           dar valores diferentes a cada uma. */
-        lead_whatsapp:   'wnLvCLeT4_AcEO6hrdNE',
-        lead_formulario: 'wnLvCLeT4_AcEO6hrdNE',
-
-        /* Ação própria ainda não criada no Google Ads. Vazio = o clique no
-           telefone não é enviado, e nada mais quebra. */
+        lead_whatsapp:   AW_ALISSON + '/FhGkCK2XwfIcEOLG38JE',
+        lead_formulario: '',
         lead_telefone:   ''
     };
 
@@ -65,12 +71,13 @@
     window.gtag = window.gtag || gtag;
 
     gtag('js', new Date());
-    gtag('config', AW);
+    gtag('config', AW_TAG);
+    gtag('config', AW_ALISSON);
 
     (function () {
         var s = document.createElement('script');
         s.async = true;
-        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + AW;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=' + AW_TAG;
         var primeiro = document.getElementsByTagName('script')[0];
         primeiro.parentNode.insertBefore(s, primeiro);
     }());
@@ -88,7 +95,7 @@
     var TEMPO_LIMITE_CALLBACK = 900; // ms
 
     function conversao(nome, params, callback) {
-        var rotulo = CONVERSOES[nome];
+        var destino = CONVERSOES[nome];
         var seguir = callback;
 
         if (seguir) {
@@ -102,14 +109,14 @@
             window.setTimeout(seguir, TEMPO_LIMITE_CALLBACK);
         }
 
-        if (!rotulo) {
-            // Rótulo ainda não configurado: não há o que enviar, mas a
+        if (!destino) {
+            // Sem ação de conversão configurada: não há o que enviar, mas a
             // navegação não pode ficar presa esperando.
             if (seguir) seguir();
             return;
         }
 
-        var dados = { send_to: AW + '/' + rotulo };
+        var dados = { send_to: destino };
         if (params) {
             for (var k in params) {
                 if (Object.prototype.hasOwnProperty.call(params, k)) dados[k] = params[k];
@@ -144,7 +151,8 @@
     }
 
     window.abAds = {
-        id: AW,
+        id: AW_TAG,
+        idConversao: AW_ALISSON,
         conversao: conversao,
         conversaoPorEvento: conversaoPorEvento,
         rotulos: CONVERSOES
@@ -156,23 +164,37 @@
        Nas landings de campanha o próprio landing-lead.js chama a conversão,
        com o contexto de grupo de anúncio junto. Registrar o clique aqui
        também contaria a mesma conversa duas vezes — daí a checagem.
+
+       A checagem espera o DOM ficar pronto. Este arquivo carrega no <head>,
+       e o js/landing-lead.js entra no fim do <body>: consultar antes disso
+       não encontrava a tag, o listener era registrado mesmo nas landings e
+       cada clique de WhatsApp virava DUAS conversões. Corrigido em
+       09/09/2026, confirmado com um clique por botão da landing.
        ------------------------------------------------------------------ */
 
-    if (document.querySelector('script[src*="landing-lead.js"]')) return;
+    function registrarCliquesAvulsos() {
+        if (document.querySelector('script[src*="landing-lead.js"]')) return;
 
-    document.addEventListener('click', function (ev) {
-        var alvo = ev.target && ev.target.closest ? ev.target.closest('a[href]') : null;
-        if (!alvo) return;
+        document.addEventListener('click', function (ev) {
+            var alvo = ev.target && ev.target.closest ? ev.target.closest('a[href]') : null;
+            if (!alvo) return;
 
-        var href = alvo.getAttribute('href') || '';
+            var href = alvo.getAttribute('href') || '';
 
-        if (href.indexOf('wa.me/') !== -1 || href.indexOf('api.whatsapp.com') !== -1) {
-            conversao('lead_whatsapp', { pagina: window.location.pathname });
-            return;
-        }
+            if (href.indexOf('wa.me/') !== -1 || href.indexOf('api.whatsapp.com') !== -1) {
+                conversao('lead_whatsapp', { pagina: window.location.pathname });
+                return;
+            }
 
-        if (href.indexOf('tel:') === 0) {
-            conversao('lead_telefone', { pagina: window.location.pathname });
-        }
-    }, true);
+            if (href.indexOf('tel:') === 0) {
+                conversao('lead_telefone', { pagina: window.location.pathname });
+            }
+        }, true);
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', registrarCliquesAvulsos);
+    } else {
+        registrarCliquesAvulsos();
+    }
 }());

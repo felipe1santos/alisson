@@ -485,16 +485,17 @@
        depois que o painel existe de fato.
        ================================================================== */
 
-    var ORIGEM_MODAL = {
-        'hero': 'topo',
-        'cta-final': 'final',
-        'botao-flutuante': 'flutuante',
-        'cabecalho': 'cabecalho',
-        'sobre': 'sobre',
-        'localizacao': 'localizacao',
-        'mapa': 'mapa',
-        'rodape': 'rodape'
-    };
+    /* VAZIO DE PROPÓSITO — 09/09/2026.
+       A landing não usa mais painel de pré-atendimento: os botões de
+       WhatsApp abrem a conversa direto. Com o mapa vazio, dois efeitos:
+
+       1. a seção 2 deixa de "pular" o clique e volta a disparar
+          `lead_whatsapp_click`, que é o evento de conversão de hoje;
+       2. o interceptador da seção 6 não reconhece origem nenhuma e nunca
+          chama preventDefault, então o link segue para o wa.me.
+
+       Repor uma chave aqui só faz sentido se o painel voltar ao HTML. */
+    var ORIGEM_MODAL = {};
 
     var FOCAVEIS = 'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
 
