@@ -1,0 +1,28 @@
+<!doctype html><meta charset="utf-8"><title>poster</title>
+<style>
+ html,body{margin:0;background:#0e1218;overflow:hidden}
+ #palco{position:absolute;top:0;left:0;transform-origin:top left;display:flex;flex-wrap:nowrap}
+ .col{overflow:hidden;position:relative;flex:none;border-right:1px solid #33404f;background:#fff}
+ .col iframe{border:0;display:block;position:absolute;left:0}
+</style>
+<body><div id="palco"></div>
+<script>
+const q=new URLSearchParams(location.search);
+const src=q.get('p'), W=+q.get('w'), H=+q.get('h'), COLS=+q.get('c')||9;
+const SLICE=Math.ceil(H/COLS);
+const palco=document.getElementById('palco');
+palco.style.width=(COLS*(W+1))+'px';
+for(let i=0;i<COLS;i++){
+  const d=document.createElement('div');
+  d.className='col'; d.style.width=W+'px'; d.style.height=SLICE+'px';
+  const f=document.createElement('iframe');
+  f.src='/'+src; f.width=W; f.height=H; f.style.top=(-i*SLICE)+'px';
+  d.appendChild(f); palco.appendChild(d);
+}
+function ajustar(){
+  const k=Math.min((innerWidth-6)/(COLS*(W+1)),(innerHeight-6)/SLICE);
+  palco.style.transform='scale('+k+')';
+  document.title='k='+k.toFixed(3)+' slice='+SLICE;
+}
+ajustar(); addEventListener('resize',ajustar);
+</script>

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Revisão das landings antes do deploy</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap">
+<style>
+ :root{
+  --paper:#FBFAF7;--surface:#fff;--surface-2:#F3F1EC;
+  --ink:#16202E;--ink-soft:#4A5568;--muted:#6A7382;
+  --line:#DFDBD2;--line-soft:#EBE7DF;--gold:#9C7420;
+  --good:#2F6B4F;--good-bg:#E4EFE8;
+  --warn:#8A5D14;--warn-bg:#F7EBD4;
+  --crit:#94342C;--crit-bg:#F7E3E0;
+  --shadow:0 1px 2px rgba(15,29,46,.06),0 8px 24px rgba(15,29,46,.05);
+ }
+ @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#10161F;--surface:#161E29;--surface-2:#1D2733;
+  --ink:#E8E6E1;--ink-soft:#B4BCC7;--muted:#8B95A3;
+  --line:#2C3846;--line-soft:#232E3B;--gold:#DCB864;
+  --good:#7FC3A0;--good-bg:#1B2C24;
+  --warn:#E0AE5C;--warn-bg:#2E2617;
+  --crit:#E58A80;--crit-bg:#2E1D1B;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+ }}
+ :root[data-theme="dark"]{
+  --paper:#10161F;--surface:#161E29;--surface-2:#1D2733;
+  --ink:#E8E6E1;--ink-soft:#B4BCC7;--muted:#8B95A3;
+  --line:#2C3846;--line-soft:#232E3B;--gold:#DCB864;
+  --good:#7FC3A0;--good-bg:#1B2C24;
+  --warn:#E0AE5C;--warn-bg:#2E2617;
+  --crit:#E58A80;--crit-bg:#2E1D1B;
+  --shadow:0 1px 2px rgba(0,0,0,.4),0 8px 24px rgba(0,0,0,.35);
+ }
+ *{box-sizing:border-box}
+ body{margin:0;background:var(--paper);color:var(--ink);font-family:"Source Sans 3","Segoe UI",system-ui,sans-serif;font-size:16.5px;line-height:1.62;-webkit-font-smoothing:antialiased}
+ .wrap{max-width:1180px;margin:0 auto;padding:0 24px 90px}
+ header.mast{background:#0F1D2E;color:#F2EEE4;padding:40px 0 34px;margin-bottom:36px;border-bottom:3px solid #B98A34}
+ :root[data-theme="dark"] header.mast,:root:not([data-theme="light"]) header.mast{background:#0B1219}
+ @media (prefers-color-scheme:light){:root:not([data-theme="dark"]) header.mast{background:#0F1D2E}}
+ .mast-in{max-width:1180px;margin:0 auto;padding:0 24px;display:flex;flex-direction:column;gap:12px}
+ .eyebrow{font-family:"IBM Plex Mono",monospace;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#D9C089}
+ h1{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:clamp(27px,4vw,40px);line-height:1.1;margin:0;color:#F6F2E8;text-wrap:balance}
+ .dek{max-width:66ch;color:#C6CEDA;margin:0}
+ .mast-meta{display:flex;flex-wrap:wrap;gap:8px;margin-top:4px;font-family:"IBM Plex Mono",monospace;font-size:11.5px}
+ .mast-meta span{border:1px solid rgba(217,192,137,.35);color:#D9C089;padding:3px 9px;border-radius:2px}
+ section{margin-bottom:46px;scroll-margin-top:16px}
+ .sec-head{display:flex;gap:13px;align-items:baseline;border-bottom:1px solid var(--line);padding-bottom:9px;margin-bottom:20px}
+ .step{font-family:"IBM Plex Mono",monospace;font-size:12px;font-weight:600;color:var(--gold);letter-spacing:.08em;flex:none;padding-top:4px}
+ h2{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:clamp(20px,2.5vw,27px);line-height:1.15;margin:0;text-wrap:balance}
+ h3{font-family:"Fraunces",Georgia,serif;font-weight:600;font-size:18.5px;margin:26px 0 10px}
+ h4{font-size:14.5px;font-weight:700;margin:18px 0 7px}
+ p{margin:0 0 12px;max-width:72ch}
+ ul,ol{margin:0 0 12px;padding-left:22px;max-width:74ch}
+ li{margin-bottom:5px}
+ a{color:var(--gold)}
+ code{font-family:"IBM Plex Mono",monospace;font-size:.87em;background:var(--surface-2);padding:1px 5px;border-radius:2px;word-break:break-all}
+ .tw{overflow-x:auto;border:1px solid var(--line);background:var(--surface);margin-bottom:16px}
+ table{border-collapse:collapse;width:100%;min-width:520px;font-size:14.5px}
+ th,td{padding:9px 12px;text-align:left;border-bottom:1px solid var(--line-soft);vertical-align:top}
+ thead th{background:var(--surface-2);font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);font-weight:600}
+ tbody tr:last-child td{border-bottom:0}
+ td.num{text-align:right;font-variant-numeric:tabular-nums;font-family:"IBM Plex Mono",monospace}
+ td.kw{font-family:"IBM Plex Mono",monospace;font-size:13px}
+ caption{caption-side:bottom;text-align:left;padding:9px 12px;font-size:13px;color:var(--muted);border-top:1px solid var(--line-soft)}
+ .pill{display:inline-block;font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;font-weight:600;padding:2px 7px;border-radius:2px;white-space:nowrap}
+ .p-good{background:var(--good-bg);color:var(--good)}
+ .p-warn{background:var(--warn-bg);color:var(--warn)}
+ .p-crit{background:var(--crit-bg);color:var(--crit)}
+ .p-mute{background:var(--surface-2);color:var(--muted)}
+ .box{border:1px solid var(--line);background:var(--surface);padding:16px 19px;margin:0 0 18px}
+ .box.crit{border-left:4px solid var(--crit);background:var(--crit-bg)}
+ .box.warn{border-left:4px solid var(--warn);background:var(--warn-bg)}
+ .box.good{border-left:4px solid var(--good);background:var(--good-bg)}
+ .box h4{margin-top:0}
+ .box p:last-child,.box ul:last-child,.box ol:last-child{margin-bottom:0}
+ /* ---- ficha da landing ---- */
+ .lp{border:1px solid var(--line);background:var(--surface);margin-bottom:30px;box-shadow:var(--shadow)}
+ .lp-cab{background:var(--surface-2);padding:14px 18px;border-bottom:1px solid var(--line)}
+ .lp-cab h3{margin:0 0 4px;font-size:20px}
+ .lp-cab .url{font-family:"IBM Plex Mono",monospace;font-size:12.5px;color:var(--gold);word-break:break-all;display:block}
+ .lp-cab .fim{font-size:14px;color:var(--ink-soft);margin:6px 0 0;max-width:80ch}
+ .lp-corpo{padding:18px}
+ .shots{display:grid;grid-template-columns:1fr;gap:16px;margin-bottom:16px}
+ .shot{border:1px solid var(--line);background:var(--surface-2)}
+ .shot figcaption{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding:8px 12px;border-bottom:1px solid var(--line)}
+ .shot img{display:block;width:100%;height:auto}
+ .ficha{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:1px;background:var(--line-soft);border:1px solid var(--line)}
+ .ficha div{background:var(--surface);padding:11px 13px}
+ .ficha dt{font-family:"IBM Plex Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:3px}
+ .ficha dd{margin:0;font-size:14.5px;font-weight:600;line-height:1.35}
+ .ficha dd small{display:block;font-weight:400;font-size:13px;color:var(--ink-soft);margin-top:2px;font-family:"IBM Plex Mono",monospace}
+ .txt{margin-top:16px;border-top:1px solid var(--line-soft);padding-top:14px}
+ .txt dl{margin:0;display:grid;grid-template-columns:110px 1fr;gap:7px 14px;font-size:14.5px}
+ .txt dt{font-family:"IBM Plex Mono",monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);padding-top:3px}
+ .txt dd{margin:0;color:var(--ink-soft)}
+ @media (min-width:900px){.shots{grid-template-columns:1fr}}
+ .fine{font-size:14px;color:var(--muted)}
+ hr{border:0;border-top:1px solid var(--line);margin:30px 0}
+ .opcoes{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-top:16px}
+ .opc{border:1px solid var(--line);background:var(--surface);padding:18px;border-top:4px solid var(--gold)}
+ .opc.a{border-top-color:var(--good)}
+ .opc.b{border-top-color:var(--warn)}
+ .opc.c{border-top-color:var(--crit)}
+ .opc b{display:block;font-family:"Fraunces",Georgia,serif;font-size:19px;margin-bottom:6px}
+ .opc p{font-size:14.5px;color:var(--ink-soft);margin:0}
+ a:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+</style>
+</head>
+<body>
+
+<header class="mast">
+ <div class="mast-in">
+  <div class="eyebrow">Documento provisório · não commitar · 04/09/2026</div>
+  <h1>Revisão das landings antes do deploy</h1>
+  <p class="dek">Quatro páginas de destino da campanha trabalhista, capturadas no servidor local. Nada foi commitado, enviado ao GitHub ou publicado. Nenhuma campanha foi criada e nenhuma conversão foi alterada.</p>
+  <div class="mast-meta">
+   <span>branch main</span>
+   <span>0 commits à frente</span>
+   <span>0 arquivos em stage</span>
+   <span>servidor local :8138</span>
+  </div>
+ </div>
+</header>
+
+<div class="wrap">
+
+<div class="box crit">
+ <h4>Estado atual — nada publicado</h4>
+ <ul style="margin-bottom:0">
+  <li><strong>Nenhum commit</strong> foi feito. <strong>Nenhum push.</strong> <strong>Nenhum deploy.</strong></li>
+  <li><strong>Nenhuma campanha</strong> criada no Google Ads.</li>
+  <li>As conversões <code>Purchase</code> e <code>Clique de saída</code> <strong>não foram alteradas</strong> — apenas diagnosticadas.</li>
+  <li>Nenhum saldo adicionado, nenhum cartão tocado.</li>
+ </ul>
+</div>
+
+<!-- ================= LANDINGS ================= -->
+<section id="landings">
+ <div class="sec-head"><span class="step">1</span><h2>As quatro landing pages</h2></div>
+
+ <div class="box warn">
+  <h4>Sobre as capturas</h4>
+  <p><strong>Celular:</strong> a página inteira, do topo ao rodapé, fatiada em colunas lado a lado. Leia da esquerda para a direita — a coluna 1 é o topo, a última é o rodapé. Renderizada em viewport real de 375&nbsp;px.</p>
+  <p style="margin-bottom:0"><strong>Desktop:</strong> os primeiros 1.500&nbsp;px em viewport de 1440&nbsp;px. Não existe captura legível da página desktop inteira numa imagem só — elas têm de 6.725 a 8.686&nbsp;px de altura, e reduzir isso a uma imagem deixaria o texto ilegível. Para a revisão completa em desktop, use a URL local.</p>
+ </div>
+
+ <!-- LP1 -->
+ <article class="lp">
+  <div class="lp-cab">
+   <h3>1 · Trabalhista Grande Vitória <span class="pill p-good">nova</span></h3>
+   <span class="url">http://localhost:8138/advogado-trabalhista-grande-vitoria-es.html</span>
+   <p class="fim"><strong>Finalidade:</strong> destino do grupo 1 (advogado trabalhista local). Recebe as buscas genéricas por advogado trabalhista com nome de cidade. É a página mais ampla das quatro, com os oito assuntos trabalhistas.</p>
+  </div>
+  <div class="lp-corpo">
+   <div class="shots">
+    <figure class="shot"><figcaption>Celular 375 px — página completa (9 colunas, topo → rodapé)</figcaption><img src="_revisao/lp1-trabalhista-mobile.jpg" alt="Página trabalhista Grande Vitória no celular, completa"></figure>
+    <figure class="shot"><figcaption>Desktop 1440 px — primeiros 1.500 px</figcaption><img src="_revisao/lp1-trabalhista-desktop.jpg" alt="Página trabalhista Grande Vitória no desktop"></figure>
+   </div>
+   <dl class="ficha">
+    <div><dt>Título</dt><dd>Direito Trabalhista na Grande Vitória | Advogado Alisson Brandão</dd></div>
+    <div><dt>Telefone</dt><dd>(27) 99229-1973<small>6 links tel:</small></dd></div>
+    <div><dt>WhatsApp</dt><dd>5527992291973<small>4 links wa.me</small></dd></div>
+    <div><dt>Formulário</dt><dd><span class="pill p-good">presente</span><small>6 campos + consentimento</small></dd></div>
+    <div><dt>OAB</dt><dd>OAB/ES 27.871<small>hero, sobre e rodapé</small></dd></div>
+    <div><dt>Conteúdo</dt><dd>2.280 palavras<small>8 cards · 7 perguntas</small></dd></div>
+   </dl>
+   <div class="txt">
+    <dl>
+     <dt>H1</dt><dd>Advogado trabalhista na Grande Vitória</dd>
+     <dt>Subtítulo</dt><dd>Orientação e acompanhamento jurídico em questões trabalhistas: o que foi pago no acerto, jornada, condições do contrato e situações de trabalho sem registro. Cada caso é analisado individualmente, a partir dos documentos e do relato.</dd>
+     <dt>Meta desc.</dt><dd>Orientação e acompanhamento em questões trabalhistas na Grande Vitória. Alisson Brandão, OAB/ES 27.871. Atendimento presencial no Centro de Vitória e online.</dd>
+     <dt>CTA final</dt><dd>Precisa esclarecer uma questão trabalhista?</dd>
+    </dl>
+   </div>
+  </div>
+ </article>
+
+ <!-- LP2 -->
+ <article class="lp">
+  <div class="lp-cab">
+   <h3>2 · Demissão, rescisão e justa causa <span class="pill p-good">nova</span></h3>
+   <span class="url">http://localhost:8138/advogado-demissao-rescisao-grande-vitoria-es.html</span>
+   <p class="fim"><strong>Finalidade:</strong> destino do grupo 2. Recebe quem foi desligado e tem dúvida sobre valores, prazo do acerto ou justa causa aplicada. Conteúdo centrado no termo de rescisão e nas modalidades de desligamento.</p>
+  </div>
+  <div class="lp-corpo">
+   <div class="shots">
+    <figure class="shot"><figcaption>Celular 375 px — página completa (9 colunas, topo → rodapé)</figcaption><img src="_revisao/lp2-demissao-mobile.jpg" alt="Página de demissão e rescisão no celular, completa"></figure>
+    <figure class="shot"><figcaption>Desktop 1440 px — primeiros 1.500 px</figcaption><img src="_revisao/lp2-demissao-desktop.jpg" alt="Página de demissão e rescisão no desktop"></figure>
+   </div>
+   <dl class="ficha">
+    <div><dt>Título</dt><dd>Demissão, Rescisão e Justa Causa | Advogado na Grande Vitória</dd></div>
+    <div><dt>Telefone</dt><dd>(27) 99229-1973<small>6 links tel:</small></dd></div>
+    <div><dt>WhatsApp</dt><dd>5527992291973<small>4 links wa.me</small></dd></div>
+    <div><dt>Formulário</dt><dd><span class="pill p-good">presente</span><small>6 campos + consentimento</small></dd></div>
+    <div><dt>OAB</dt><dd>OAB/ES 27.871<small>hero, sobre e rodapé</small></dd></div>
+    <div><dt>Conteúdo</dt><dd>2.220 palavras<small>8 cards · 6 perguntas</small></dd></div>
+   </dl>
+   <div class="txt">
+    <dl>
+     <dt>H1</dt><dd>Orientação em demissão, rescisão e justa causa</dd>
+     <dt>Subtítulo</dt><dd>O desligamento é o momento em que mais aparecem dúvidas sobre valores, prazos e sobre a modalidade registrada nos documentos. A análise parte do termo de rescisão, dos holerites e do histórico do contrato.</dd>
+     <dt>Meta desc.</dt><dd>Orientação sobre desligamento, cálculos da rescisão e justa causa aplicada. Alisson Brandão, OAB/ES 27.871. Atendimento em Vitória, Vila Velha, Serra e Cariacica.</dd>
+     <dt>CTA final</dt><dd>Precisa esclarecer uma questão sobre o seu desligamento?</dd>
+    </dl>
+   </div>
+  </div>
+ </article>
+
+ <!-- LP3 -->
+ <article class="lp">
+  <div class="lp-cab">
+   <h3>3 · Acidente e doença do trabalho <span class="pill p-warn">adaptada</span></h3>
+   <span class="url">http://localhost:8138/advogado-acidente-de-trabalho-vitoria-es.html</span>
+   <p class="fim"><strong>Finalidade:</strong> destino do grupo 3. Era um artigo de blog; virou landing mantendo todo o conteúdo técnico anterior (CAT, NTEP, estabilidade do art. 118, auxílio-acidente, Súmula 15 do STJ) e ganhando hero, formulário e eventos de conversão. <strong>É a única das quatro que já está no ar hoje</strong> — a versão em produção é a antiga.</p>
+  </div>
+  <div class="lp-corpo">
+   <div class="shots">
+    <figure class="shot"><figcaption>Celular 375 px — página completa (11 colunas, topo → rodapé)</figcaption><img src="_revisao/lp3-acidente-mobile.jpg" alt="Página de acidente de trabalho no celular, completa"></figure>
+    <figure class="shot"><figcaption>Desktop 1440 px — primeiros 1.500 px</figcaption><img src="_revisao/lp3-acidente-desktop.jpg" alt="Página de acidente de trabalho no desktop"></figure>
+   </div>
+   <dl class="ficha">
+    <div><dt>Título</dt><dd>Acidente de Trabalho e Doença Ocupacional | Grande Vitória</dd></div>
+    <div><dt>Telefone</dt><dd>(27) 99229-1973<small>6 links tel:</small></dd></div>
+    <div><dt>WhatsApp</dt><dd>5527992291973<small>4 links wa.me</small></dd></div>
+    <div><dt>Formulário</dt><dd><span class="pill p-good">presente</span><small>6 campos + consentimento</small></dd></div>
+    <div><dt>OAB</dt><dd>OAB/ES 27.871<small>hero, sobre e rodapé</small></dd></div>
+    <div><dt>Conteúdo</dt><dd>2.834 palavras<small>8 cards · 6 perguntas</small></dd></div>
+   </dl>
+   <div class="txt">
+    <dl>
+     <dt>H1</dt><dd>Acidente de trabalho e doença ocupacional</dd>
+     <dt>Subtítulo</dt><dd>Orientação sobre a emissão da CAT, o afastamento, a garantia de emprego prevista em lei e a responsabilidade do empregador. Acidente de trajeto e doença relacionada à função também entram nessa análise.</dd>
+     <dt>Meta desc.</dt><dd>Orientação sobre CAT, estabilidade, auxílio-acidente e doença ocupacional. Alisson Brandão, OAB/ES 27.871. Vitória, Vila Velha, Serra e Cariacica.</dd>
+     <dt>CTA final</dt><dd>Sofreu acidente de trabalho ou tem doença relacionada à função?</dd>
+    </dl>
+   </div>
+  </div>
+ </article>
+
+ <!-- LP4 -->
+ <article class="lp">
+  <div class="lp-cab">
+   <h3>4 · Horas extras, salário e FGTS <span class="pill p-good">nova</span></h3>
+   <span class="url">http://localhost:8138/advogado-direitos-trabalhistas-nao-pagos-grande-vitoria-es.html</span>
+   <p class="fim"><strong>Finalidade:</strong> destino do grupo 4. Recebe quem ainda está empregado ou saiu recentemente e tem dúvida sobre jornada, adicionais, salário atrasado ou depósitos de FGTS. Reconhecimento de vínculo e assédio moral ficaram de fora, conforme sua decisão.</p>
+  </div>
+  <div class="lp-corpo">
+   <div class="shots">
+    <figure class="shot"><figcaption>Celular 375 px — página completa (9 colunas, topo → rodapé)</figcaption><img src="_revisao/lp4-naopagos-mobile.jpg" alt="Página de horas extras, salário e FGTS no celular, completa"></figure>
+    <figure class="shot"><figcaption>Desktop 1440 px — primeiros 1.500 px</figcaption><img src="_revisao/lp4-naopagos-desktop.jpg" alt="Página de horas extras, salário e FGTS no desktop"></figure>
+   </div>
+   <dl class="ficha">
+    <div><dt>Título</dt><dd>Horas Extras, Salário e FGTS | Advogado na Grande Vitória</dd></div>
+    <div><dt>Telefone</dt><dd>(27) 99229-1973<small>6 links tel:</small></dd></div>
+    <div><dt>WhatsApp</dt><dd>5527992291973<small>4 links wa.me</small></dd></div>
+    <div><dt>Formulário</dt><dd><span class="pill p-good">presente</span><small>6 campos + consentimento</small></dd></div>
+    <div><dt>OAB</dt><dd>OAB/ES 27.871<small>hero, sobre e rodapé</small></dd></div>
+    <div><dt>Conteúdo</dt><dd>2.132 palavras<small>8 cards · 6 perguntas</small></dd></div>
+   </dl>
+   <div class="txt">
+    <dl>
+     <dt>H1</dt><dd>Horas extras, salário e FGTS não pagos</dd>
+     <dt>Subtítulo</dt><dd>Quando a jornada cumprida não bate com o que aparece no holerite, quando o salário atrasa ou quando os depósitos de FGTS não estão completos, o caminho começa por organizar as informações e entender o que os documentos mostram.</dd>
+     <dt>Meta desc.</dt><dd>Orientação sobre jornada, horas extras, salário atrasado e FGTS não depositado. Alisson Brandão, OAB/ES 27.871. Vitória, Vila Velha, Serra e Cariacica.</dd>
+     <dt>CTA final</dt><dd>Precisa esclarecer uma questão de jornada ou pagamento?</dd>
+    </dl>
+   </div>
+  </div>
+ </article>
+</section>
+
+<!-- ================= ARQUIVOS ================= -->
+<section id="arquivos">
+ <div class="sec-head"><span class="step">2</span><h2>Arquivos criados e alterados</h2></div>
+ <div class="tw">
+  <table>
+   <thead><tr><th>Arquivo</th><th>Ação</th><th>O que mudou</th></tr></thead>
+   <tbody>
+    <tr><td class="kw">advogado-trabalhista-grande-vitoria-es.html</td><td><span class="pill p-good">novo</span></td><td>Landing do grupo 1</td></tr>
+    <tr><td class="kw">advogado-demissao-rescisao-grande-vitoria-es.html</td><td><span class="pill p-good">novo</span></td><td>Landing do grupo 2</td></tr>
+    <tr><td class="kw">advogado-direitos-trabalhistas-nao-pagos-grande-vitoria-es.html</td><td><span class="pill p-good">novo</span></td><td>Landing do grupo 4</td></tr>
+    <tr><td class="kw">css/landing-trabalhista.css</td><td><span class="pill p-good">novo</span></td><td>CSS isolado das landings. Todo seletor preso a <code>.lp-*</code> — o <code>style.css</code> não foi tocado, nenhuma outra página muda de aparência</td></tr>
+    <tr><td class="kw">js/landing-lead.js</td><td><span class="pill p-good">novo</span></td><td>Captura de gclid/gbraid/wbraid e UTMs, três eventos de dataLayer, validação e envio do formulário</td></tr>
+    <tr><td class="kw">img/lp/ (4 arquivos)</td><td><span class="pill p-good">novo</span></td><td>Retrato 400×400 em WebP (27&nbsp;KB → 13&nbsp;KB) e foto da reunião em WebP 800/1200 + fallback JPG (200&nbsp;KB → 37&nbsp;KB)</td></tr>
+    <tr><td class="kw">advogado-acidente-de-trabalho-vitoria-es.html</td><td><span class="pill p-warn">alterado</span></td><td>Convertida de artigo para landing. Conteúdo técnico preservado; removido "especialista"; +791/−256 linhas</td></tr>
+    <tr><td class="kw">index.html</td><td><span class="pill p-warn">alterado</span></td><td>Revisão ética da OAB — detalhe na seção 4</td></tr>
+    <tr><td class="kw">sitemap.xml</td><td><span class="pill p-warn">alterado</span></td><td>+3 URLs (58 → 61)</td></tr>
+    <tr><td class="kw">docs/PAGINAS.md</td><td><span class="pill p-warn">alterado</span></td><td>+3 linhas na tabela do trabalhista; placar 8 → 11; total 55 → 58</td></tr>
+    <tr><td class="kw">lead-api/src/db.js</td><td><span class="pill p-warn">alterado</span></td><td>Colunas <code>gclid</code>, <code>gbraid</code>, <code>wbraid</code> + migração idempotente por ALTER</td></tr>
+    <tr><td class="kw">lead-api/src/rotas-lead.js</td><td><span class="pill p-warn">alterado</span></td><td>Passagem dos três identificadores de clique</td></tr>
+    <tr><td class="kw">lead-api/test/rotas-lead.test.js</td><td><span class="pill p-warn">alterado</span></td><td>+2 testes cobrindo as colunas novas</td></tr>
+    <tr><td class="kw">revisao-landings-alisson-antes-do-deploy.html</td><td><span class="pill p-mute">provisório</span></td><td>Este documento. <strong>Não deve ser commitado</strong></td></tr>
+    <tr><td class="kw">_revisao/ (13 arquivos)</td><td><span class="pill p-mute">provisório</span></td><td>Capturas e ferramentas de captura. <strong>Não devem ser commitadas</strong></td></tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+<!-- ================= TESTES ================= -->
+<section id="testes">
+ <div class="sec-head"><span class="step">3</span><h2>Status de cada teste</h2></div>
+ <div class="tw">
+  <table>
+   <thead><tr><th>Teste</th><th>Resultado</th><th>Detalhe</th></tr></thead>
+   <tbody>
+    <tr><td>Suíte da <code>lead-api</code></td><td><span class="pill p-good">passou</span></td><td>89 de 89, incluindo os 2 testes novos</td></tr>
+    <tr><td>HTTP das 4 páginas (local)</td><td><span class="pill p-good">passou</span></td><td>200 nas quatro</td></tr>
+    <tr><td>H1 único por página</td><td><span class="pill p-good">passou</span></td><td>1 em cada</td></tr>
+    <tr><td>JSON-LD</td><td><span class="pill p-good">passou</span></td><td>LegalService + BreadcrumbList + FAQPage, válidos nas quatro</td></tr>
+    <tr><td>FAQ do schema × texto visível</td><td><span class="pill p-good">passou</span></td><td>7/7, 6/6, 6/6, 6/6 — zero divergência de caractere</td></tr>
+    <tr><td>Canonical</td><td><span class="pill p-good">passou</span></td><td>URL absoluta com <code>www</code> nas quatro</td></tr>
+    <tr><td>Imagens quebradas</td><td><span class="pill p-good">passou</span></td><td>0</td></tr>
+    <tr><td>Imagens sem <code>alt</code></td><td><span class="pill p-good">passou</span></td><td>0</td></tr>
+    <tr><td>Campos sem <code>label</code></td><td><span class="pill p-good">passou</span></td><td>0</td></tr>
+    <tr><td>Rolagem horizontal</td><td><span class="pill p-good">passou</span></td><td>Nenhuma, em 375 e 1440</td></tr>
+    <tr><td>Links internos quebrados</td><td><span class="pill p-good">passou</span></td><td>Nenhum</td></tr>
+    <tr><td>Console do navegador</td><td><span class="pill p-good">passou</span></td><td>Zero mensagens</td></tr>
+    <tr><td>Requisições 404</td><td><span class="pill p-good">passou</span></td><td>Nenhuma; sem chamadas a ipapi.co/ipwho.is</td></tr>
+    <tr><td>Evento na visualização de página</td><td><span class="pill p-good">passou</span></td><td><code>dataLayer</code> vazio no load — nenhuma conversão por pageview</td></tr>
+    <tr><td><code>lead_whatsapp_click</code></td><td><span class="pill p-good">passou</span></td><td>Dispara com <code>lead_origem</code> correto (hero, cabeçalho, cta-final, botão-flutuante)</td></tr>
+    <tr><td><code>lead_phone_click</code></td><td><span class="pill p-good">passou</span></td><td>Dispara em todos os <code>tel:</code></td></tr>
+    <tr><td>Validação dos campos</td><td><span class="pill p-good">passou</span></td><td>5 erros corretos com foco no primeiro inválido; DDD e nono dígito validados</td></tr>
+    <tr><td>Mensagem de erro (API fora)</td><td><span class="pill p-good">passou</span></td><td>Mostra erro, enfileira, e <strong>não</strong> dispara evento de sucesso</td></tr>
+    <tr><td>Mensagem de sucesso (API local real)</td><td><span class="pill p-good">passou</span></td><td>HTTP 201 → <code>lead_form_submit_success</code> → lead gravado no SQLite com gclid, gbraid, wbraid, UTMs e telefone E.164</td></tr>
+    <tr><td>Política de privacidade</td><td><span class="pill p-good">passou</span></td><td>Link no formulário e no rodapé das quatro; <code>privacidade.html</code> responde 200</td></tr>
+    <tr><td>Navegação por teclado</td><td><span class="pill p-good">passou</span></td><td>Skip link é o primeiro focável; foco visível em todos os controles</td></tr>
+    <tr><td>Expressões proibidas pela OAB</td><td><span class="pill p-good">passou</span></td><td>Varredura de 20 termos nas 4 landings + home: zero ocorrências</td></tr>
+    <tr><td>Core Web Vitals</td><td><span class="pill p-warn">parcial</span></td><td>Medição própria: TTFB 39–64&nbsp;ms, DOM pronto 75–88&nbsp;ms, páginas de 9 a 51&nbsp;KB. <strong>Lighthouse/PSI não rodou</strong> — a API respondeu 429 (cota diária esgotada) e a interface travou. Só dá para medir de verdade depois do deploy</td></tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+<!-- ================= OAB ================= -->
+<section id="oab">
+ <div class="sec-head"><span class="step">4</span><h2>Revisão ética — o que foi corrigido na home</h2></div>
+ <div class="tw">
+  <table>
+   <thead><tr><th>Antes</th><th>Depois</th></tr></thead>
+   <tbody>
+    <tr><td>Avaliação: <em>"Ótimo advogado, muito atencioso e rápido. <strong>Ganha todas!</strong>"</em> — no card visível e no JSON-LD</td><td><span class="pill p-crit">removida</span> das duas ocorrências. A avaliação no Google <strong>não</strong> foi tocada</td></tr>
+    <tr><td>"a análise inicial pelo WhatsApp é gratuita e os honorários só são cobrados em caso de êxito"</td><td>"O valor varia conforme a complexidade do caso e a forma de contratação é definida por escrito, depois da análise da situação."</td></tr>
+    <tr><td>"e <strong>a Justiça garante</strong> a devolução em dobro dos valores"</td><td>"e a legislação prevê hipóteses de devolução em dobro dos valores, além de eventual reparação por danos morais, conforme o que for demonstrado em cada caso."</td></tr>
+    <tr><td>"É possível obter <strong>liminar em poucos dias</strong> para garantir o tratamento"</td><td>"Nesses casos é possível pedir tutela de urgência em juízo, e a concessão depende da análise do julgador diante das provas apresentadas."</td></tr>
+    <tr><td>"É possível <strong>limpar o nome rapidamente</strong> por liminar e ainda ser indenizado"</td><td>"é possível pedir a retirada do registro em juízo, inclusive por tutela de urgência, e discutir a reparação por danos morais. O cabimento e o prazo dependem da análise das provas de cada caso."</td></tr>
+    <tr><td>"Advogado <strong>especialista</strong> em fraudes bancárias"</td><td>"Atuação em fraudes bancárias"</td></tr>
+    <tr><td>"advogado <strong>especialista</strong> em acidente de trabalho Vitória ES" (lista de termos de busca)</td><td><span class="pill p-crit">removido</span> junto com a lista inteira de 26 termos, que era keyword stuffing</td></tr>
+   </tbody>
+  </table>
+ </div>
+ <p class="fine">Varredura final: <strong>zero</strong> ocorrências de "ganha todas", "resultado garantido", "indenização certa", "a Justiça garante", "liminar em poucos", "limpar o nome rapid", "análise gratuita", "consulta gratuita", "paga se ganhar", "caso de êxito", "melhor advogado", "especialista", "garantimos" e "sem compromisso" nas cinco páginas do escopo.</p>
+</section>
+
+<!-- ================= GIT ================= -->
+<section id="git">
+ <div class="sec-head"><span class="step">5</span><h2>Estado do Git</h2></div>
+ <div class="tw">
+  <table>
+   <thead><tr><th>Item</th><th>Valor</th></tr></thead>
+   <tbody>
+    <tr><td>Branch atual</td><td><code>main</code></td></tr>
+    <tr><td>Último commit</td><td><code>f2f17a7</code> — feat(seo): 4 paginas de direito do passageiro aereo e cartao de autor na sidebar</td></tr>
+    <tr><td>Commits à frente do remoto</td><td><strong>0</strong></td></tr>
+    <tr><td>Arquivos em stage</td><td><strong>0</strong></td></tr>
+    <tr><td>Confirmação</td><td><span class="pill p-good">nenhum commit</span> <span class="pill p-good">nenhum push</span></td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <h3>Arquivos novos (não rastreados)</h3>
+ <div class="tw"><table><tbody>
+  <tr><td class="kw">?? advogado-demissao-rescisao-grande-vitoria-es.html</td></tr>
+  <tr><td class="kw">?? advogado-direitos-trabalhistas-nao-pagos-grande-vitoria-es.html</td></tr>
+  <tr><td class="kw">?? advogado-trabalhista-grande-vitoria-es.html</td></tr>
+  <tr><td class="kw">?? css/landing-trabalhista.css</td></tr>
+  <tr><td class="kw">?? img/lp/</td></tr>
+  <tr><td class="kw">?? js/landing-lead.js</td></tr>
+  <tr><td class="kw">?? revisao-landings-alisson-antes-do-deploy.html <span class="pill p-mute">provisório</span></td></tr>
+  <tr><td class="kw">?? _revisao/ <span class="pill p-mute">provisório</span></td></tr>
+ </tbody></table></div>
+
+ <h3>Arquivos modificados e resumo do diff</h3>
+ <div class="tw">
+  <table>
+   <thead><tr><th>Arquivo</th><th class="num">Linhas</th><th>Alteração</th></tr></thead>
+   <tbody>
+    <tr><td class="kw">advogado-acidente-de-trabalho-vitoria-es.html</td><td class="num">791</td><td>+++++++++--------</td></tr>
+    <tr><td class="kw">index.html</td><td class="num">23</td><td>+++-------</td></tr>
+    <tr><td class="kw">lead-api/src/db.js</td><td class="num">28</td><td>++++++++--</td></tr>
+    <tr><td class="kw">lead-api/test/rotas-lead.test.js</td><td class="num">21</td><td>++++++++++</td></tr>
+    <tr><td class="kw">docs/PAGINAS.md</td><td class="num">7</td><td>++++++---</td></tr>
+    <tr><td class="kw">lead-api/src/rotas-lead.js</td><td class="num">6</td><td>++++++</td></tr>
+    <tr><td class="kw">sitemap.xml</td><td class="num">3</td><td>+++</td></tr>
+   </tbody>
+   <caption>7 arquivos alterados, 623 inserções, 256 remoções.</caption>
+  </table>
+ </div>
+</section>
+
+<!-- ================= GOOGLE ADS ================= -->
+<section id="ads">
+ <div class="sec-head"><span class="step">6</span><h2>A contradição da "Performance Max-1"</h2></div>
+
+ <div class="box warn">
+  <h4>Resposta direta: era uma campanha real, mas na visão da conta administradora, e hoje ela não existe mais na conta do cliente</h4>
+  <p>Reconstruindo o que aconteceu, com honestidade sobre o que é prova e o que é dedução:</p>
+  <ol style="margin-bottom:0">
+   <li><strong>O que eu vi às ~14h50:</strong> o painel <em>Visão geral</em> da conta administradora <strong>Agencia Brandao (182-289-9615)</strong>, no cartão "Campanhas", listava <code>Performance Max-1</code> com R$&nbsp;20,85 / 1.093 cliques / 6,73% CTR nos últimos 7 dias. No cartão "Contas", logo abaixo, a conta <em>Alisson Brandão</em> aparecia com <strong>exatamente os mesmos números</strong>.</li>
+   <li><strong>Interpretação:</strong> o painel do MCC agrega as campanhas das subcontas. Aqueles números eram da campanha rodando <em>dentro</em> da conta 428-973-0072 — <strong>não</strong> era rascunho, nem elemento de interface, nem outra conta.</li>
+   <li><strong>O que encontrei às ~16h50 e depois:</strong> a lista de campanhas da conta do cliente está vazia mesmo com os 9 status marcados, e a busca pelo nome não retorna nada.</li>
+   <li><strong>Conclusão:</strong> a campanha foi <strong>removida</strong> em algum momento — os totais históricos permanecem no nível da conta (16.249 impressões, 1.093 cliques, R$&nbsp;20,85), que é exatamente o comportamento esperado do Google Ads depois que uma campanha é excluída.</li>
+  </ol>
+ </div>
+
+ <div class="box crit">
+  <h4>O que eu não consegui provar visualmente — e por quê</h4>
+  <ul style="margin-bottom:0">
+   <li><strong>Quem removeu e quando.</strong> O histórico de alterações padrão cobre os últimos 7 dias <em>terminando ontem</em> e não mostra remoção de campanha. Para cobrir hoje seria preciso trocar o período, e o seletor de datas não aparece na barra da página de Campanhas nesta versão da interface.</li>
+   <li><strong>Período "Todo o período".</strong> Mesmo motivo: não há seletor de data visível nessa tela. <em>Observação técnica:</em> o período não altera <strong>quais</strong> campanhas aparecem na lista, só as métricas das colunas — a existência é determinada pelo filtro de status, que eu apliquei por completo.</li>
+   <li><strong>Captura da busca pelo nome.</strong> Executei a busca por "Performance" e a interface respondeu <em>"Nenhuma campanha correspondente"</em>, mas não consegui salvar essa captura: a partir daí a página do Google Ads passou a falhar — capturas expirando por timeout de CDP e cliques caindo em elementos errados por descompasso de coordenadas. Foram 6 tentativas.</li>
+  </ul>
+ </div>
+
+ <p><strong>Não afirmo mais do que provei.</strong> O que está demonstrado nas imagens abaixo é: a conta é a 428-973-0072, a lista de campanhas está vazia com todos os status marcados, há 0 rascunhos, e os totais históricos continuam na conta. O que é dedução — e está marcado como tal — é que a campanha existia e foi removida.</p>
+
+ <div class="shots" style="grid-template-columns:1fr;gap:18px">
+  <figure class="shot"><figcaption>1 · Conta 428-973-0072 · sem filtros · "Você não tem campanhas ativas" · Rascunhos em andamento: 0</figcaption><img src="_revisao/ads1-campanhas-sem-filtro.jpg" alt="Página de campanhas da conta sem filtros"></figure>
+  <figure class="shot"><figcaption>2 · Filtro com os 9 status (Qualificada, Pausada, Removida, Finalizada, Pendente e variantes) → "Nenhuma campanha corresponde aos seus filtros"</figcaption><img src="_revisao/ads2-filtro-9-status.jpg" alt="Filtro de status completo sem resultados"></figure>
+  <figure class="shot"><figcaption>3 · Mesma tela recarregada mais tarde · totais da conta: 16.249 impressões · 1.093 cliques · R$ 20,85</figcaption><img src="_revisao/ads3-campanhas-recarregado.jpg" alt="Página de campanhas recarregada"></figure>
+ </div>
+
+ <div class="box">
+  <p style="margin-bottom:0"><strong>Posso tentar de novo.</strong> Se você quiser a prova que faltou — histórico de alterações com período ampliado e a captura da busca pelo nome — eu volto ao Google Ads numa nova tentativa. A interface estava instável; numa sessão nova costuma responder.</p>
+ </div>
+</section>
+
+<!-- ================= CONVERSOES ================= -->
+<section id="conversoes">
+ <div class="sec-head"><span class="step">7</span><h2>Conversões — diagnóstico, sem alteração</h2></div>
+
+ <p>Duas ações de conversão foram criadas em <strong>03/09/2026 às 21:04</strong> por <code>alissonbrandao.adv@gmail.com</code> pelo <strong>app do Google Ads para celular</strong>, segundo o histórico de alterações. O mesmo registro mostra: <em>"A conversão foi criada"</em> e <em>"As metas padrão da conta mudaram: Purchases (Website) adicionado"</em>.</p>
+
+ <div class="tw">
+  <table>
+   <thead><tr><th>Campo</th><th>Purchase</th><th>Clique de saída</th></tr></thead>
+   <tbody>
+    <tr><td>Origem da conversão</td><td>Site</td><td>Site</td></tr>
+    <tr><td>Categoria / meta padrão</td><td>Compras</td><td>Cliques de saída</td></tr>
+    <tr><td>Status de acompanhamento</td><td><span class="pill p-crit">Inativo</span></td><td><span class="pill p-crit">Inativo</span></td></tr>
+    <tr><td>Otimização de ações</td><td><strong>Principal</strong></td><td><strong>Principal</strong></td></tr>
+    <tr><td>Contagem</td><td>Todas</td><td>Uma</td></tr>
+    <tr><td>Janela de conversão</td><td>30 dias</td><td>30 dias</td></tr>
+    <tr><td>Incluída nas metas da conta</td><td>Sim</td><td>Sim</td></tr>
+    <tr><td>Conversões registradas</td><td class="num">0,00</td><td class="num">0,00</td></tr>
+    <tr><td>Valor registrado</td><td class="num">0,00</td><td class="num">0,00</td></tr>
+    <tr><td>Última atividade</td><td colspan="2"><span class="pill p-mute">nenhuma</span> — status "Inativo" significa que a ação nunca recebeu dado</td></tr>
+    <tr><td>Método de instalação</td><td colspan="2"><span class="pill p-warn">não confirmado</span> — exigiria abrir a ficha de cada ação, o que não consegui por causa da instabilidade da interface. Como não há tag do Google em nenhuma página do site, na prática nenhuma delas está instalada</td></tr>
+    <tr><td>Campanhas que usam</td><td colspan="2"><span class="pill p-good">nenhuma</span> — a conta não tem campanhas</td></tr>
+   </tbody>
+  </table>
+ </div>
+
+ <div class="shots" style="grid-template-columns:1fr;gap:18px">
+  <figure class="shot"><figcaption>4 · Resumo de metas — grupos 1 e 2 vazios, grupo 3 com "Compras" zerado</figcaption><img src="_revisao/ads4-conversoes-resumo.jpg" alt="Resumo das metas de conversão"></figure>
+  <figure class="shot"><figcaption>5 · Lista das ações — Purchase e Clique de saída, ambas Inativo e Principal</figcaption><img src="_revisao/ads5-conversoes-lista.jpg" alt="Lista das ações de conversão"></figure>
+ </div>
+
+ <div class="box warn">
+  <h4>Por que isso importa</h4>
+  <p>"Purchase" é meta de comércio eletrônico, não de escritório de advocacia. "Clique de saída" é ação criada automaticamente e de valor quase nulo para qualificar lead. As duas estão marcadas como <strong>Principal</strong>, ou seja, seriam o alvo de otimização se a conta migrasse para lances automáticos.</p>
+  <p style="margin-bottom:0">Enquanto a estratégia for <em>Maximizar cliques</em>, elas não afetam o lance. <strong>Nada foi alterado.</strong> A recomendação — para quando você autorizar — é rebaixá-las de Principal para Secundária antes de qualquer troca de estratégia, e criar as três ações corretas: <code>Contato_WhatsApp</code>, <code>Contato_Telefone</code> e <code>Formulario_Enviado</code>.</p>
+ </div>
+</section>
+
+<!-- ================= DEPENDE DO DEPLOY ================= -->
+<section id="pendencias">
+ <div class="sec-head"><span class="step">8</span><h2>O que ainda depende do deploy</h2></div>
+ <div class="tw">
+  <table>
+   <thead><tr><th>Item</th><th>Situação hoje</th><th>Destrava quando</th></tr></thead>
+   <tbody>
+    <tr><td>3 URLs de destino em produção</td><td><span class="pill p-crit">404</span> As páginas existem só no disco local</td><td>Commit + push + Deploy no Coolify</td></tr>
+    <tr><td>Formulário funcionando de verdade</td><td><span class="pill p-crit">bloqueado</span> <code>lead.alissonbrandao.com.br</code> não resolve DNS</td><td>Subir a <code>lead-api</code> no Coolify com <code>ALLOWED_ORIGINS</code> do domínio</td></tr>
+    <tr><td>Eventos virarem conversão no Ads</td><td><span class="pill p-crit">bloqueado</span> Os três eventos existem no <code>dataLayer</code>, mas não há contêiner do GTM</td><td>Você definir a conta proprietária do GTM</td></tr>
+    <tr><td>Criação da campanha</td><td><span class="pill p-crit">bloqueado</span> Anúncio com URL final em 404 é reprovado por destino não funcional</td><td>Depois do deploy</td></tr>
+    <tr><td>Medição real de Core Web Vitals</td><td><span class="pill p-warn">parcial</span> PSI/Lighthouse não rodou (cota 429)</td><td>Depois do deploy, com a URL pública</td></tr>
+    <tr><td>Indexação das 3 páginas novas</td><td><span class="pill p-mute">pendente</span> Já estão no <code>sitemap.xml</code></td><td>Depois do deploy, solicitar no Search Console</td></tr>
+    <tr><td>Veiculação dos anúncios</td><td><span class="pill p-crit">bloqueado</span> Saldo R$ 0,00</td><td>Você recarregar</td></tr>
+   </tbody>
+  </table>
+ </div>
+</section>
+
+<hr>
+
+<section id="decisao">
+ <div class="sec-head"><span class="step">9</span><h2>Sua decisão</h2></div>
+ <p>Nada acontece sem a sua escolha. Não vou prosseguir automaticamente.</p>
+ <div class="opcoes">
+  <div class="opc a">
+   <b>A — Aprovar</b>
+   <p>Aprovar as páginas e autorizar <strong>commit + push</strong> para <code>origin/main</code>. Depois disso você clica em Deploy no Coolify. Os arquivos provisórios (<code>revisao-landings…</code> e <code>_revisao/</code>) ficam de fora do commit.</p>
+  </div>
+  <div class="opc b">
+   <b>B — Corrigir</b>
+   <p>Solicitar correções nas páginas. Me diga o que ajustar — texto, layout, ordem das seções, campos do formulário — e eu refaço antes de qualquer commit.</p>
+  </div>
+  <div class="opc c">
+   <b>C — Interromper</b>
+   <p>Interromper o projeto. Os arquivos ficam no disco, sem commit. Nada foi publicado e a conta do Google Ads segue sem campanha.</p>
+  </div>
+ </div>
+</section>
+
+<p class="fine">Documento gerado em 04/09/2026. Provisório, marcado <code>noindex</code>, e não deve entrar no repositório. Nenhum commit, push, deploy ou criação de campanha foi realizado. Nenhuma conversão foi alterada. Nenhum saldo adicionado.</p>
+
+</div>
+</body>
+</html>
