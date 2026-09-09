@@ -56,6 +56,12 @@ function criarRotasLead({ config, db, capi }) {
       fbclid: recortar(req.body.fbclid, 255),
       fbp: recortar(req.body.fbp, 255),
       fbc: recortar(req.body.fbc, 255),
+      // Identificadores de clique do Google Ads. O gbraid e o wbraid
+      // substituem o gclid quando o rastreamento entre apps/iOS impede o
+      // gclid — precisam ser guardados junto, não no lugar dele.
+      gclid: recortar(req.body.gclid, 255),
+      gbraid: recortar(req.body.gbraid, 255),
+      wbraid: recortar(req.body.wbraid, 255),
       ip,
       user_agent: recortar(req.headers['user-agent'], 400),
       event_id: recortar(req.body.event_id, 64),

@@ -26,6 +26,9 @@ CREATE TABLE IF NOT EXISTS leads (
   fbclid        TEXT,
   fbp           TEXT,
   fbc           TEXT,
+  gclid         TEXT,
+  gbraid        TEXT,
+  wbraid        TEXT,
   ip            TEXT,
   user_agent    TEXT,
   event_id      TEXT,
@@ -41,9 +44,31 @@ CREATE INDEX IF NOT EXISTS idx_leads_ip      ON leads(ip, created_at);
 const CAMPOS = [
   'nome', 'telefone', 'telefone_e164', 'area', 'descricao', 'consentimento',
   'pagina_origem', 'referrer', 'utm_source', 'utm_medium', 'utm_campaign',
-  'utm_content', 'utm_term', 'fbclid', 'fbp', 'fbc', 'ip', 'user_agent',
+  'utm_content', 'utm_term', 'fbclid', 'fbp', 'fbc',
+  'gclid', 'gbraid', 'wbraid', 'ip', 'user_agent',
   'event_id',
 ];
+
+// Colunas acrescentadas depois que o schema original já podia estar em
+// produção. O CREATE TABLE IF NOT EXISTS não altera tabela existente, então
+// cada uma entra por ALTER e o erro de "duplicate column" é ignorado — é
+// assim que a migração fica idempotente sem tabela de controle de versão.
+const COLUNAS_NOVAS = [
+  ['gclid', 'TEXT'],
+  ['gbraid', 'TEXT'],
+  ['wbraid', 'TEXT'],
+];
+
+function migrarColunas(sqlite) {
+  const existentes = new Set(
+    sqlite.prepare('PRAGMA table_info(leads)').all().map((c) => c.name)
+  );
+  for (const [nome, tipo] of COLUNAS_NOVAS) {
+    if (!existentes.has(nome)) {
+      sqlite.exec(`ALTER TABLE leads ADD COLUMN ${nome} ${tipo}`);
+    }
+  }
+}
 
 function abrirBanco(caminho) {
   const sqlite = new DatabaseSync(caminho);
@@ -51,6 +76,7 @@ function abrirBanco(caminho) {
   // Em :memory: o SQLite ignora, e tudo bem.
   sqlite.exec('PRAGMA journal_mode = WAL');
   sqlite.exec(SCHEMA);
+  migrarColunas(sqlite);
 
   const stmtInserir = sqlite.prepare(
     `INSERT INTO leads (created_at, ${CAMPOS.join(', ')})

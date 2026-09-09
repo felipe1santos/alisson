@@ -75,6 +75,27 @@ test('guarda origem, UTMs e cookies do Meta', async () => comServidor(async (s) 
   assert.ok(lead.user_agent);
 }));
 
+test('guarda os identificadores de clique do Google Ads', async () => comServidor(async (s) => {
+  await postar(s.base, {
+    ...CORPO,
+    gclid: 'Cj0KCQjw-gclid-exemplo',
+    gbraid: 'gbraid-exemplo',
+    wbraid: 'wbraid-exemplo',
+  });
+  const [lead] = s.db.listarLeads({});
+  assert.strictEqual(lead.gclid, 'Cj0KCQjw-gclid-exemplo');
+  assert.strictEqual(lead.gbraid, 'gbraid-exemplo');
+  assert.strictEqual(lead.wbraid, 'wbraid-exemplo');
+}));
+
+test('lead sem parâmetro de clique grava as colunas como null', async () => comServidor(async (s) => {
+  await postar(s.base, CORPO);
+  const [lead] = s.db.listarLeads({});
+  assert.strictEqual(lead.gclid, null);
+  assert.strictEqual(lead.gbraid, null);
+  assert.strictEqual(lead.wbraid, null);
+}));
+
 test('recusa corpo inválido com 400 e não grava', async () => comServidor(async (s) => {
   const r = await postar(s.base, { ...CORPO, consentimento: false });
   assert.strictEqual(r.status, 400);
