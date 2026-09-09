@@ -96,7 +96,7 @@ Legenda das colunas: **Criada** (arquivo existe no repo) · **No ar** (responde 
 | Página | Criada | No ar | Sitemap | Indexação |
 |---|---|---|---|---|
 | `advogado-trabalhista-vitoria-es.html` (landing) | ✅ | ✅ | ✅ | indexada (confirmada 04/08/2026) |
-| `advogado-trabalhista-grande-vitoria-es.html` (landing Ads) | ✅ 04/09/2026 | ⏳ aguardando deploy | ✅ | não solicitada |
+| `advogado-trabalhista-grande-vitoria-es.html` (landing Ads) | ✅ 04/09/2026 | ✅ 09/09/2026 (confirmado no ar) | ✅ | não solicitada |
 | `advogado-trabalhista-vila-velha-es.html` (landing geo) | ✅ 13/08/2026 | ✅ 13/08/2026 | ✅ | indexação solicitada (13/08/2026) |
 | `advogado-trabalhista-cariacica-es.html` (landing geo) | ✅ 13/08/2026 | ✅ 13/08/2026 | ✅ | indexação solicitada (13/08/2026) |
 | `advogado-acidente-de-trabalho-vitoria-es.html` (landing) | ✅ 13/08/2026 | ✅ 13/08/2026 | ✅ | indexação solicitada (13/08/2026) |

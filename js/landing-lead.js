@@ -488,7 +488,12 @@
     var ORIGEM_MODAL = {
         'hero': 'topo',
         'cta-final': 'final',
-        'botao-flutuante': 'flutuante'
+        'botao-flutuante': 'flutuante',
+        'cabecalho': 'cabecalho',
+        'sobre': 'sobre',
+        'localizacao': 'localizacao',
+        'mapa': 'mapa',
+        'rodape': 'rodape'
     };
 
     var FOCAVEIS = 'a[href], button:not([disabled]), input, select, textarea, [tabindex]:not([tabindex="-1"])';
