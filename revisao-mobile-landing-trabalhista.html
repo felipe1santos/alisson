@@ -1,0 +1,654 @@
+<!doctype html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Revisão Mobile — Landing Trabalhista</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,600&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --tinta:#141a1d; --tinta-2:#41525a; --tenue:#6d8189;
+  --papel:#f6f4ef; --papel-2:#ffffff; --linha:#ddd8cd; --linha-2:#eae6dd;
+  --petroleo:#0f4c5c; --petroleo-fundo:#e3f0f3;
+  --ok:#1c6b4b; --ok-bg:#e6f2ec;
+  --alerta:#8a5a12; --alerta-bg:#fbf1e0;
+  --erro:#9c2f26; --erro-bg:#fbecea;
+  --serif:"Newsreader",Georgia,serif;
+  --sans:"IBM Plex Sans",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --tinta:#e9e6df; --tinta-2:#b3bfc4; --tenue:#8b9aa0;
+  --papel:#101619; --papel-2:#182126; --linha:#2b383e; --linha-2:#223035;
+  --petroleo:#8fd0e0; --petroleo-fundo:#14313a;
+  --ok:#7fd3ab; --ok-bg:#12291f;
+  --alerta:#e3b567; --alerta-bg:#2b2113;
+  --erro:#f0968c; --erro-bg:#2e1614;
+}}
+:root[data-theme="dark"]{
+  --tinta:#e9e6df; --tinta-2:#b3bfc4; --tenue:#8b9aa0;
+  --papel:#101619; --papel-2:#182126; --linha:#2b383e; --linha-2:#223035;
+  --petroleo:#8fd0e0; --petroleo-fundo:#14313a;
+  --ok:#7fd3ab; --ok-bg:#12291f;
+  --alerta:#e3b567; --alerta-bg:#2b2113;
+  --erro:#f0968c; --erro-bg:#2e1614;
+}
+
+*{box-sizing:border-box}
+body{margin:0;background:var(--papel);color:var(--tinta);font-family:var(--sans);font-size:16px;line-height:1.6}
+.env{max-width:1080px;margin:0 auto;padding:0 24px}
+h1,h2,h3{font-family:var(--serif);font-weight:600;text-wrap:balance;line-height:1.15;margin:0}
+a{color:var(--petroleo)}
+code{font-family:var(--mono);font-size:.86em}
+
+.capa{border-bottom:1px solid var(--linha);padding:52px 0 40px}
+.selo{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+      color:var(--ok);border:1px solid var(--ok);border-radius:999px;padding:4px 12px;margin-bottom:18px}
+.capa h1{font-size:clamp(2rem,4.6vw,3.1rem);margin-bottom:14px}
+.capa .sub{font-size:1.08rem;color:var(--tinta-2);max-width:64ch;margin:0}
+.meta{display:flex;flex-wrap:wrap;gap:26px;margin-top:28px;font-size:.86rem;color:var(--tenue)}
+.meta b{display:block;font-family:var(--mono);font-size:.94rem;color:var(--tinta);font-weight:500}
+
+.caixa{margin:34px 0 0;padding:22px 24px;border-radius:4px;border-left:4px solid var(--ok);
+       background:var(--ok-bg);color:var(--ok)}
+.caixa.aviso{border-left-color:var(--alerta);background:var(--alerta-bg);color:var(--alerta)}
+.caixa.info{border-left-color:var(--petroleo);background:var(--petroleo-fundo);color:var(--tinta)}
+.caixa h2{font-family:var(--sans);font-size:1.05rem;font-weight:700;margin-bottom:8px;color:inherit}
+.caixa.info h2{color:var(--petroleo)}
+.caixa p{margin:0 0 10px;color:inherit;font-size:.95rem;line-height:1.6}
+.caixa p:last-child{margin-bottom:0}
+.caixa code{background:rgba(0,0,0,.07);padding:1px 5px;border-radius:3px}
+
+section{padding:48px 0;border-bottom:1px solid var(--linha-2)}
+.rotulo{font-size:.68rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;color:var(--tenue);
+        display:block;margin-bottom:9px}
+section > .env > h2{font-size:1.75rem;margin-bottom:8px}
+h3.sub{font-family:var(--sans);font-size:.95rem;font-weight:700;margin:32px 0 14px;letter-spacing:.01em}
+.intro{color:var(--tinta-2);max-width:70ch;margin:0 0 26px}
+
+.painel{display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));gap:1px;background:var(--linha);
+        border:1px solid var(--linha);border-radius:4px;overflow:hidden}
+.painel div{background:var(--papel-2);padding:18px 18px 16px}
+.painel .n{font-family:var(--mono);font-size:1.5rem;font-weight:500;line-height:1.1;letter-spacing:-.02em;
+           font-variant-numeric:tabular-nums}
+.painel .n.bom{color:var(--ok)} .painel .n.aviso{color:var(--alerta)}
+.painel .r{font-size:.76rem;color:var(--tenue);margin-top:5px;line-height:1.35}
+
+.rolagem{overflow-x:auto;border:1px solid var(--linha);border-radius:4px;background:var(--papel-2)}
+table{border-collapse:collapse;width:100%;font-size:.87rem}
+th,td{text-align:left;padding:10px 14px;border-bottom:1px solid var(--linha-2);vertical-align:top}
+th{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;color:var(--tenue);font-weight:700;background:var(--papel)}
+tr:last-child td{border-bottom:0}
+td.num{font-family:var(--mono);text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+td.mono{font-family:var(--mono);font-size:.82rem;white-space:nowrap}
+.baixa{color:var(--ok);font-weight:600} .alta{color:var(--alerta);font-weight:600}
+.pil{display:inline-block;font-size:.7rem;font-weight:700;padding:2px 8px;border-radius:999px;white-space:nowrap}
+.pil.ok{background:var(--ok-bg);color:var(--ok)}
+.pil.av{background:var(--alerta-bg);color:var(--alerta)}
+.pil.er{background:var(--erro-bg);color:var(--erro)}
+
+.fluxos{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:22px}
+.fluxo{border:1px solid var(--linha);border-radius:4px;background:var(--papel-2);padding:20px 22px 22px}
+.fluxo h3{font-family:var(--sans);font-size:.95rem;font-weight:700;margin-bottom:14px}
+.fluxo ol{margin:0;padding-left:0;list-style:none;counter-reset:p}
+.fluxo li{counter-increment:p;position:relative;padding:7px 0 7px 30px;font-size:.88rem;color:var(--tinta-2);
+          border-bottom:1px dotted var(--linha-2)}
+.fluxo li:last-child{border-bottom:0}
+.fluxo li::before{content:counter(p);position:absolute;left:0;top:7px;font-family:var(--mono);font-size:.72rem;
+                  color:var(--tenue);border:1px solid var(--linha);border-radius:50%;width:19px;height:19px;
+                  display:grid;place-items:center}
+.fluxo.velho{border-color:var(--erro)} .fluxo.velho li::before{border-color:var(--erro);color:var(--erro)}
+.fluxo.novo{border-color:var(--ok)} .fluxo.novo li::before{border-color:var(--ok);color:var(--ok)}
+
+figure{margin:0 0 26px}
+figure img{width:100%;height:auto;display:block;border:1px solid var(--linha);border-radius:4px;background:#fff}
+figcaption{font-size:.79rem;color:var(--tenue);margin-top:8px;line-height:1.45}
+.par{display:grid;grid-template-columns:1fr;gap:22px}
+@media (min-width:860px){.par{grid-template-columns:1fr 1fr}}
+
+.checks{columns:2;column-gap:34px;margin:0;padding:0;list-style:none}
+@media (max-width:700px){.checks{columns:1}}
+.checks li{break-inside:avoid;padding:5px 0 5px 24px;position:relative;font-size:.86rem;color:var(--tinta-2)}
+.checks li::before{content:"";position:absolute;left:2px;top:11px;width:10px;height:6px;
+                   border-left:2px solid var(--ok);border-bottom:2px solid var(--ok);transform:rotate(-45deg)}
+.checks li b{color:var(--tinta);font-weight:600}
+
+.bloco{font-family:var(--mono);font-size:.8rem;line-height:1.65;background:var(--papel-2);border:1px solid var(--linha);
+       border-left:3px solid var(--petroleo);border-radius:4px;padding:14px 16px;overflow-x:auto;margin:0 0 18px}
+.bloco.quebra{white-space:pre-wrap}
+.nota{font-size:.85rem;color:var(--tenue);border-left:2px solid var(--linha);padding-left:14px;margin:18px 0 0;max-width:74ch}
+
+.passos{counter-reset:s;list-style:none;padding:0;margin:0}
+.passos li{counter-increment:s;position:relative;padding:14px 0 14px 46px;border-bottom:1px solid var(--linha-2)}
+.passos li:last-child{border-bottom:0}
+.passos li::before{content:counter(s);position:absolute;left:0;top:14px;width:30px;height:30px;border-radius:50%;
+                   background:var(--petroleo);color:var(--papel);display:grid;place-items:center;
+                   font-family:var(--mono);font-size:.85rem;font-weight:500}
+.passos b{display:block;margin-bottom:3px}
+.passos span{font-size:.88rem;color:var(--tinta-2)}
+
+footer{padding:38px 0 60px;font-size:.8rem;color:var(--tenue)}
+</style>
+</head>
+<body>
+
+<header class="capa">
+  <div class="env">
+    <span class="selo">Pronto para deploy</span>
+    <h1>Landing trabalhista — celular direto para o WhatsApp</h1>
+    <p class="sub">Sem Formspree, sem lead-api, sem banco de dados. O formulário do celular valida no
+       navegador, monta a mensagem e leva a pessoa ao WhatsApp do escritório. O desktop voltou a ser,
+       elemento por elemento, o do commit aprovado.</p>
+    <div class="meta">
+      <div>Página<b>advogado-trabalhista-grande-vitoria-es.html</b></div>
+      <div>Base<b>commit 2fa012a</b></div>
+      <div>Arquivos<b>3 alterados</b></div>
+      <div>Testes<b>98 aprovados · 0 falhas</b></div>
+    </div>
+
+    <div class="caixa">
+      <h2>Todos os testes passaram</h2>
+      <p>58 checagens de estrutura em cada uma das quatro larguras de celular, 14 do fluxo de validação,
+         9 da sequência de eventos, 17 da mensagem gerada — e a comparação de 96 elementos do desktop
+         em 1366 e 1440&nbsp;px, sem uma diferença sequer.</p>
+      <p><b>Zero requisições de rede saem da página no celular.</b> Verificado interceptando
+         <code>fetch</code>, <code>XMLHttpRequest</code> e <code>sendBeacon</code> durante todo o fluxo.</p>
+    </div>
+  </div>
+</header>
+
+<!-- ============ 1. O QUE MUDOU DESDE A REVISÃO ANTERIOR ============ -->
+<section>
+  <div class="env">
+    <span class="rotulo">1 · Correções desta rodada</span>
+    <h2>Sete pedidos, sete respostas</h2>
+    <div class="rolagem">
+      <table>
+        <thead><tr><th style="width:1%">#</th><th>Pedido</th><th>O que foi feito</th><th style="width:1%">Prova</th></tr></thead>
+        <tbody>
+          <tr><td class="mono">1</td><td>Remover o Formspree por completo</td>
+              <td>Nenhum <code>action</code>, nenhum <code>fetch</code>, nenhum endpoint de exemplo, nenhum botão travado, nenhuma mensagem de indisponibilidade. O formulário do celular funciona só no navegador.</td>
+              <td><span class="pil ok">§4</span></td></tr>
+          <tr><td class="mono">2</td><td>Fluxo direto para o WhatsApp</td>
+              <td>Valida → monta a mensagem → <code>encodeURIComponent</code> → <code>window.location.assign</code> na própria aba, para <code>5527992291973</code>. Erro não abre o WhatsApp.</td>
+              <td><span class="pil ok">§5</span></td></tr>
+          <tr><td class="mono">3</td><td>Privacidade explícita</td>
+              <td>Aviso ao lado da descrição, consentimento citando o uso pelo WhatsApp, link para a Política de Privacidade e rodapé dizendo que nada é gravado no site.</td>
+              <td><span class="pil ok">§4</span></td></tr>
+          <tr><td class="mono">4</td><td>Cinco eventos, sem <code>lead_form_success</code></td>
+              <td><code>view</code>, <code>start</code>, <code>submit</code>, <code>validation_error</code>, <code>whatsapp_redirect</code>. Um por tentativa.</td>
+              <td><span class="pil ok">§6</span></td></tr>
+          <tr><td class="mono">5</td><td>Desktop literalmente preservado</td>
+              <td>Seção de contato restaurada do commit, com o formulário em <code>&lt;template&gt;</code> e os atalhos originais. 96 elementos medidos, zero diferenças.</td>
+              <td><span class="pil ok">§2</span></td></tr>
+          <tr><td class="mono">6</td><td>Assuntos compreensíveis sem clique</td>
+              <td>Os 8 cartões mostram título e texto inteiro, sem link e sem “Ler mais”. O recolhimento sobrou só para os 8 parágrafos de detalhe jurídico.</td>
+              <td><span class="pil ok">§7</span></td></tr>
+          <tr><td class="mono">7</td><td>Fotografia sem esticar</td>
+              <td>210 a 264&nbsp;px conforme o aparelho, sempre abaixo dos 400&nbsp;px do arquivo. Dimensões declaradas, sem <code>lazy</code>, com <code>fetchpriority="high"</code>.</td>
+              <td><span class="pil ok">§8</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 2. DESKTOP ============ -->
+<section>
+  <div class="env">
+    <span class="rotulo">2 · Regressão do desktop</span>
+    <h2>Nenhuma diferença, em nenhum ponto da página</h2>
+    <p class="intro">Na revisão anterior o bloco de contato do desktop tinha mudado, e tudo abaixo dele
+       havia descido 496&nbsp;px. Isso foi desfeito: a seção <code>#contato</code> voltou a ser a do
+       commit <code>2fa012a</code>, com o aviso de indisponibilidade e o formulário em
+       <code>&lt;template&gt;</code> ligado à <code>lead-api</code>. A experiência nova vive num bloco
+       separado, que o CSS mantém fora da tela acima de 720&nbsp;px.</p>
+
+    <div class="painel">
+      <div><div class="n bom">96</div><div class="r">elementos com geometria idêntica</div></div>
+      <div><div class="n bom">0</div><div class="r">diferenças, nem de 1 px</div></div>
+      <div><div class="n bom">0</div><div class="r">mudanças de posição, cor, peso ou corpo de fonte</div></div>
+      <div><div class="n bom">7.580</div><div class="r">altura da página antes e depois, em px</div></div>
+    </div>
+
+    <p class="intro" style="margin-top:26px">Foram medidos, para cada elemento: posição x e y, largura,
+       altura, <code>display</code>, <code>visibility</code>, <code>opacity</code>, corpo da fonte, cor e
+       peso — na versão do commit e na nova, carregadas na mesma sessão do navegador, em 1366 e
+       1440&nbsp;px. Os únicos itens que aparecem no relatório de diferenças são elementos que <b>não
+       existiam antes</b> e que no desktop medem zero por zero:</p>
+
+    <div class="rolagem">
+      <table>
+        <thead><tr><th>Elemento novo</th><th>No desktop</th><th>Medido</th></tr></thead>
+        <tbody>
+          <tr><td><code>.lp-contato-mobile</code> (com <code>#lp-form-wa</code> e <code>#wa-enviar</code>)</td><td><code>display:none</code></td><td class="mono">0 × 0</td></tr>
+          <tr><td><code>.lp-identity-chips</code></td><td><code>display:none</code></td><td class="mono">0 × 0</td></tr>
+          <tr><td><code>.lp-header-oab</code></td><td><code>display:none</code></td><td class="mono">0 × 0</td></tr>
+          <tr><td><code>.lp-so-mobile</code> × 2</td><td><code>display:none</code></td><td class="mono">0 × 0</td></tr>
+          <tr><td><code>.lp-realce</code> × 10</td><td>herda peso e cor do parágrafo</td><td class="mono">16,48px · #4a5768 · 400</td></tr>
+          <tr><td><code>.lp-so-desktop</code> × 2</td><td>envolve texto que já existia</td><td class="mono">16,48px · #4a5768 · 400</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nota">As dez marcações em negrito medem exatamente o mesmo corpo, a mesma cor e o mesmo peso
+       do parágrafo em volta. No desktop elas são invisíveis; o azul petróleo só entra abaixo de 720&nbsp;px.</p>
+
+    <h3 class="sub">A página inteira, lado a lado</h3>
+    <div class="par">
+      <figure>
+        <img src="_revisao/mobile/v2-desktop-antes.jpg" alt="Desktop 1366 px na versão do commit 2fa012a">
+        <figcaption><b>ANTES</b> — 1366 px, versão do commit <code>2fa012a</code>. Página inteira em seis fatias.</figcaption>
+      </figure>
+      <figure>
+        <img src="_revisao/mobile/v2-desktop-depois.jpg" alt="Desktop 1366 px depois das alterações: idêntico">
+        <figcaption><b>DEPOIS</b> — mesma largura, mesma fatia, mesma escala. Os dois arquivos JPEG têm
+          59.481 e 59.479 bytes: dois bytes de diferença de compressão.</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. FLUXO ============ -->
+<section>
+  <div class="env">
+    <span class="rotulo">3 · Fluxo do celular</span>
+    <h2>De quinze saídas para uma</h2>
+    <div class="fluxos">
+      <div class="fluxo velho">
+        <h3>Como era</h3>
+        <ol>
+          <li>Cabeçalho com telefone e botão “Contato”.</li>
+          <li>Cartão de perfil espremido, foto de 68 px.</li>
+          <li>Botão de WhatsApp + “Solicitar contato”.</li>
+          <li>Oito cartões, cada um levando ao formulário.</li>
+          <li>Três blocos temáticos, cada um com seu botão verde.</li>
+          <li>Telefones no “quem atende”, na localização e no rodapé.</li>
+          <li>“O envio de formulário está temporariamente indisponível”.</li>
+          <li>CTA final repetindo WhatsApp, formulário e telefone.</li>
+          <li>Botão flutuante o tempo inteiro. <b>Quinze saídas.</b></li>
+        </ol>
+      </div>
+      <div class="fluxo novo">
+        <h3>Como ficou</h3>
+        <ol>
+          <li>Cabeçalho com a marca e OAB/ES 27.871. Nenhuma ação.</li>
+          <li>Título e uma linha de apresentação.</li>
+          <li><b>Fotografia grande</b>, nome, OAB e três credenciais.</li>
+          <li>Assuntos em sequência, texto inteiro, sem link nem botão.</li>
+          <li>Blocos temáticos com “Ler mais” só no detalhe jurídico.</li>
+          <li>Atendimento, escritório, quem atende, onde atendemos, FAQ.</li>
+          <li><b>Um formulário, no fim.</b></li>
+          <li>Valida, monta a mensagem e abre o WhatsApp.</li>
+          <li>Rodapé. <b>Uma saída só.</b></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="rolagem" style="margin-top:26px">
+      <table>
+        <thead><tr><th>Largura</th><th class="num">Altura antes</th><th class="num">Altura depois</th><th class="num">Variação</th>
+                   <th class="num">WhatsApp</th><th class="num">Telefone</th><th>Formulário</th></tr></thead>
+        <tbody>
+          <tr><td>1440 px · desktop</td><td class="num">7.580</td><td class="num">7.580</td><td class="num baixa">0%</td><td class="num">8 → 8</td><td class="num">7 → 7</td><td>igual ao commit</td></tr>
+          <tr><td>1366 px · desktop</td><td class="num">7.580</td><td class="num">7.580</td><td class="num baixa">0%</td><td class="num">8 → 8</td><td class="num">7 → 7</td><td>igual ao commit</td></tr>
+          <tr><td><b>430 px</b></td><td class="num">12.199</td><td class="num">10.590</td><td class="num baixa">−13,2%</td><td class="num baixa">8 → 0</td><td class="num baixa">7 → 0</td><td><span class="pil ok">WhatsApp direto</span></td></tr>
+          <tr><td><b>412 px</b></td><td class="num">12.544</td><td class="num">10.729</td><td class="num baixa">−14,5%</td><td class="num baixa">8 → 0</td><td class="num baixa">7 → 0</td><td><span class="pil ok">WhatsApp direto</span></td></tr>
+          <tr><td><b>390 px</b></td><td class="num">13.104</td><td class="num">10.835</td><td class="num baixa">−17,3%</td><td class="num baixa">8 → 0</td><td class="num baixa">7 → 0</td><td><span class="pil ok">WhatsApp direto</span></td></tr>
+          <tr><td><b>360 px</b></td><td class="num">13.889</td><td class="num">11.597</td><td class="num baixa">−16,5%</td><td class="num baixa">8 → 0</td><td class="num baixa">7 → 0</td><td><span class="pil ok">WhatsApp direto</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nota">O número <b>(27) 99229-1973</b> continua legível no celular, em quatro lugares —
+       cartão do advogado, localização, rodapé e rodapé do formulário. O que saiu foi o link clicável,
+       não a informação.</p>
+  </div>
+</section>
+
+<!-- ============ 4. FORMULÁRIO ============ -->
+<section>
+  <div class="env">
+    <span class="rotulo">4 · Formulário do celular</span>
+    <h2>Seis campos e nenhum servidor</h2>
+    <div class="rolagem" style="margin-bottom:26px">
+      <table>
+        <thead><tr><th>Campo</th><th>Tipo</th><th>Validação</th></tr></thead>
+        <tbody>
+          <tr><td>Nome</td><td>texto</td><td>nome e sobrenome, mínimo 5 caracteres</td></tr>
+          <tr><td>WhatsApp com DDD</td><td>tel · <code>inputmode="numeric"</code></td><td>DDD 11–99, 10 ou 11 dígitos, celular começando em 9, recusa dígito repetido, aceita colar com +55</td></tr>
+          <tr><td>Cidade</td><td>select · 8 opções</td><td>obrigatória</td></tr>
+          <tr><td>Assunto trabalhista</td><td>select · 10 opções</td><td>obrigatório</td></tr>
+          <tr><td>Breve descrição</td><td>textarea · até 600 caracteres</td><td>mínimo 15 caracteres</td></tr>
+          <tr><td>Consentimento</td><td>checkbox</td><td>obrigatório</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="caixa info">
+      <h2>Privacidade, no lugar onde a pessoa está escrevendo</h2>
+      <p><b>Ao lado da descrição:</b> “Conte só o essencial. <b>Não escreva aqui número de documento, senha,
+         dado bancário ou informação de saúde</b> — isso é combinado depois, já no atendimento.”</p>
+      <p><b>No consentimento:</b> “Concordo que estes dados sejam usados para iniciar o atendimento pelo
+         WhatsApp e li a <u>Política de Privacidade</u>.” O link abre <code>privacidade.html</code>.</p>
+      <p><b>No rodapé do formulário:</b> “O que você escrever vai montar uma mensagem no seu próprio
+         WhatsApp, para o número (27) 99229-1973. <b>Nada é gravado neste site</b> e nada é enviado antes
+         de você tocar em enviar dentro do WhatsApp.”</p>
+    </div>
+
+    <p class="intro" style="margin-top:26px">Não existem campos ocultos de rastreio dentro do formulário —
+       verificado: zero <code>input[type=hidden]</code>. Os parâmetros de campanha continuam guardados em
+       <code>sessionStorage</code> para atribuição, mas <b>não entram na mensagem</b> nem viajam para lugar
+       nenhum. Nada é escrito em <code>localStorage</code>.</p>
+
+    <figure style="margin-top:26px">
+      <img src="_revisao/mobile/v2-mobile-390-b.jpg" alt="Formulário do celular com os seis campos, aviso de privacidade e botão dourado">
+      <figcaption>390 px — o formulário no fim da página, com os avisos de privacidade e o botão
+        “Enviar dados e continuar no WhatsApp”. Sem tarja de erro, sem botão travado.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 5. A MENSAGEM ============ -->
+<section>
+  <div class="env">
+    <span class="rotulo">5 · A mensagem</span>
+    <h2>O que chega ao WhatsApp</h2>
+    <p class="intro">Teste feito na aba real, com a janela estreitada para largura de celular, usando um
+       nome com acento e apóstrofo e um relato com aspas, símbolos e 300 caracteres. A URL abaixo é a que
+       o navegador realmente abriu.</p>
+
+    <div class="bloco quebra">Olá, sou José D'Ávila Gonçalves-Muñoz e moro em Vila Velha. Meu assunto é
+Demissão por justa causa. Resumo: Fui demitido por "justa causa" &amp; não recebi
+nada. Trabalhei das 22h às 5h (adicional noturno) + 50% de horas extras nunca
+pagos. O RH disse: «procure seus direitos». Tenho holerites de 2024/2025,
+extrato do FGTS e mensagens; meu supervisor ameaçou 100% da equipe. Preciso
+saber se ainda dá tempo. Preenchi o formulário no site e gostaria de solicitar
+atendimento.</div>
+
+    <ul class="checks">
+      <li><b>Destino:</b> <code>api.whatsapp.com/send/?phone=<b>5527992291973</b></code></li>
+      <li><b>471 caracteres</b> — nada truncado.</li>
+      <li>Acentos, cedilha e til preservados.</li>
+      <li>Apóstrofo em <code>D'Ávila</code> preservado.</li>
+      <li>Aspas retas e angulares preservadas.</li>
+      <li><code>&amp;</code>, <code>+</code>, <code>%</code> e <code>/</code> preservados.</li>
+      <li>Sem ponto duplicado no meio da frase.</li>
+      <li><b>Sem gclid</b>, sem wbraid, sem gbraid.</li>
+      <li><b>Sem UTM</b> de nenhum tipo.</li>
+      <li>Termina no pedido de atendimento.</li>
+    </ul>
+
+    <p class="nota">A atribuição de campanha viaja no evento do <code>dataLayer</code>, não na conversa:
+       <code>lead_grupo</code>, <code>lead_criativo</code>, <code>lead_termo</code>, <code>lead_rede</code>.
+       O advogado recebe o relato da pessoa, não parâmetros de anúncio.</p>
+  </div>
+</section>
+
+<!-- ============ 6. EVENTOS ============ -->
+<section>
+  <div class="env">
+    <span class="rotulo">6 · Eventos</span>
+    <h2>Cinco eventos, um por tentativa</h2>
+    <div class="rolagem" style="margin-bottom:24px">
+      <table>
+        <thead><tr><th>Evento</th><th>Quando dispara</th><th>Verificado</th></tr></thead>
+        <tbody>
+          <tr><td><code>lead_form_view</code></td><td>o formulário entra na tela</td><td><span class="pil ok">sim</span></td></tr>
+          <tr><td><code>lead_form_start</code></td><td>primeiro toque num campo — três toques geram um evento só</td><td><span class="pil ok">sim</span></td></tr>
+          <tr><td><code>lead_form_submit</code></td><td><b>só com o formulário válido</b></td><td><span class="pil ok">sim</span></td></tr>
+          <tr><td><code>lead_form_validation_error</code></td><td>botão apertado com campo inválido; traz a lista dos campos</td><td><span class="pil ok">sim</span></td></tr>
+          <tr><td><code>lead_whatsapp_redirect</code></td><td>imediatamente antes do redirecionamento</td><td><span class="pil ok">sim</span></td></tr>
+          <tr><td><code>lead_form_success</code></td><td>não existe — nenhum servidor confirma armazenamento</td><td><span class="pil ok">ausente</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">Sequências medidas</h3>
+    <div class="bloco">carregar a página        →  (nenhum evento)
+tocar em 3 campos        →  lead_form_start                        × 1
+botão com tudo vazio     →  lead_form_validation_error             × 1
+telefone inválido        →  lead_form_validation_error             × 1
+sem consentimento        →  lead_form_validation_error             × 1
+botão válido, 3 toques   →  lead_form_submit → lead_whatsapp_redirect  × 1 cada</div>
+
+    <p class="intro">O último evento antes de sair da página, na íntegra:</p>
+    <div class="bloco quebra">{ "event": "lead_whatsapp_redirect", "lead_grupo": "111", "lead_criativo": "222",
+  "lead_termo": "advogado trabalhista", "lead_dispositivo": "m", "lead_rede": "g",
+  "lead_area": "trabalhista", "lead_origem": "formulario-mobile",
+  "lead_destino": "wa.me/5527992291973" }</div>
+    <p class="nota">Nenhum dado pessoal no evento: nem nome, nem telefone, nem o relato.
+       Nenhum contêiner de GTM foi instalado e nenhum ID de Google Ads ou GA4 foi criado —
+       os eventos ficam preparados no <code>dataLayer</code> e só isso.
+       Quando a conversão for configurada, <code>lead_whatsapp_redirect</code> é a principal.</p>
+  </div>
+</section>
+
+<!-- ============ 7. ASSUNTOS ============ -->
+<section>
+  <div class="env">
+    <span class="rotulo">7 · Assuntos e leitura</span>
+    <h2>Entender sem precisar tocar em nada</h2>
+    <p class="intro">Os oito cartões mostram o texto inteiro. Nenhum é link, nenhum tem botão, nenhum tem
+       “Ler mais”. Medido em 390&nbsp;px:</p>
+
+    <div class="rolagem" style="margin-bottom:24px">
+      <table>
+        <thead><tr><th>Cartão</th><th class="num">Caracteres visíveis</th><th>Recolhido</th><th>É link</th></tr></thead>
+        <tbody>
+          <tr><td>Verbas rescisórias não pagas</td><td class="num">140</td><td><span class="pil ok">não</span></td><td><span class="pil ok">não</span></td></tr>
+          <tr><td>Horas extras</td><td class="num">150</td><td><span class="pil ok">não</span></td><td><span class="pil ok">não</span></td></tr>
+          <tr><td>Rescisão indireta</td><td class="num">157</td><td><span class="pil ok">não</span></td><td><span class="pil ok">não</span></td></tr>
+          <tr><td>Assédio moral no trabalho</td><td class="num">176</td><td><span class="pil ok">não</span></td><td><span class="pil ok">não</span></td></tr>
+          <tr><td>Reconhecimento de vínculo</td><td class="num">149</td><td><span class="pil ok">não</span></td><td><span class="pil ok">não</span></td></tr>
+          <tr><td>Demissão e diferenças no acerto</td><td class="num">125</td><td><span class="pil ok">não</span></td><td><span class="pil ok">não</span></td></tr>
+          <tr><td>Acidente de trabalho</td><td class="num">122</td><td><span class="pil ok">não</span></td><td><span class="pil ok">não</span></td></tr>
+          <tr><td>Doença ocupacional</td><td class="num">126</td><td><span class="pil ok">não</span></td><td><span class="pil ok">não</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p class="intro">O recolhimento sobrou para <b>oito parágrafos de detalhe jurídico</b> — os que trazem
+       prazos, artigos de lei e percentuais. Em todos eles as primeiras linhas já entregam a orientação;
+       o “Ler mais” abre a fundamentação.</p>
+
+    <div class="rolagem">
+      <table>
+        <thead><tr><th>Onde</th><th class="num">Linhas visíveis</th><th>O que fica escondido até o toque</th></tr></thead>
+        <tbody>
+          <tr><td>Apresentação do topo</td><td class="num">3</td><td>a frase sobre análise individual</td></tr>
+          <tr><td>Introdução dos assuntos</td><td class="num">3</td><td>a orientação de rolar até o formulário</td></tr>
+          <tr><td>Demissão, verbas e justa causa</td><td class="num">3</td><td>prazo de dez dias, artigo 482 da CLT, rescisão indireta</td></tr>
+          <tr><td>Acidente e doença do trabalho</td><td class="num">3</td><td>prazo da CAT, artigo 118 da Lei 8.213/91, FGTS no afastamento</td></tr>
+          <tr><td>Horas extras, salário e FGTS</td><td class="num">3</td><td>intervalo suprimido, adicional noturno, banco de horas</td></tr>
+          <tr><td>Nota sobre atendimento presencial</td><td class="num">2</td><td>como agendar e as alternativas a distância</td></tr>
+          <tr><td>Biografia — 2 parágrafos</td><td class="num">3</td><td>detalhamento da atuação</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3 class="sub">Destaques em azul petróleo</h3>
+    <p class="intro">Doze trechos em negrito <code>#0f4c5c</code> — prazos, percentuais e termos que a
+       pessoa procura ao passar o olho. Sobre o fundo escuro do topo usam <code>#93d3e2</code>.
+       Contraste medido: <b>9,51:1</b> e <b>9,52:1</b>, contra o mínimo de 4,5:1 do nível AA.
+       Acima de 720&nbsp;px herdam peso e cor do texto — no desktop, invisíveis.</p>
+
+    <figure style="margin-top:24px">
+      <img src="_revisao/mobile/v2-mobile-390-a.jpg" alt="Celular em 390 px: foto grande, cartões com texto inteiro, destaques em azul petróleo">
+      <figcaption>390 px — primeira metade. Cartões com o texto completo e sem “Ler mais”; o botão só
+        aparece nos blocos temáticos e nos parágrafos longos. Destaques em azul petróleo visíveis em
+        “reconhecer a sua situação”, “equipara ao acidente de trabalho” e “até oito horas diárias e
+        quarenta e quatro semanais”.</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- ============ 8. FOTOGRAFIA ============ -->
+<section>
+  <div class="env">
+    <span class="rotulo">8 · Fotografia</span>
+    <h2>Grande, sem esticar</h2>
+    <div class="rolagem" style="margin-bottom:22px">
+      <table>
+        <thead><tr><th>Tela</th><th class="num">Exibida</th><th class="num">Arquivo</th><th class="num">Densidade</th><th>Recorte no rosto</th></tr></thead>
+        <tbody>
+          <tr><td>360 px</td><td class="num">210 × 210</td><td class="num">400 × 400</td><td class="num">1,90×</td><td><span class="pil ok">nenhum</span></td></tr>
+          <tr><td>390 px</td><td class="num">233 × 233</td><td class="num">400 × 400</td><td class="num">1,72×</td><td><span class="pil ok">nenhum</span></td></tr>
+          <tr><td>412 px</td><td class="num">250 × 250</td><td class="num">400 × 400</td><td class="num">1,60×</td><td><span class="pil ok">nenhum</span></td></tr>
+          <tr><td>430 px</td><td class="num">264 × 264</td><td class="num">400 × 400</td><td class="num">1,51×</td><td><span class="pil ok">nenhum</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="intro">Origem: <code>img/lp/alisson-brandao-retrato-400.webp</code>, gerado de
+       <code>fotos/alisson-brandao-advogado.jpg</code> — 400 × 400, mesma imagem, 12,5&nbsp;KB em vez de
+       27&nbsp;KB. A largura é limitada a 300&nbsp;px no CSS, então a imagem nunca é exibida maior que o
+       arquivo. Proporção 1:1 igual à do original, sem corte. <code>width</code> e <code>height</code>
+       declarados, sem <code>loading="lazy"</code>, com <code>fetchpriority="high"</code> e
+       <code>&lt;link rel="preload"&gt;</code> no cabeçalho.</p>
+
+    <div class="caixa aviso">
+      <h2>Pendência registrada: precisamos de um retrato maior</h2>
+      <p>Este é o único retrato do Alisson no projeto. A outra foto em que ele aparece
+         (<code>fotos/reuniao-alisson-brandao-cliente-vitoria.jpg</code>, 1600 × 1067) mostra-o de perfil,
+         olhando para o papel — não serve como apresentação.</p>
+      <p>Com 400&nbsp;px de origem e telas de 3× de densidade, a foto aparece um pouco macia.
+         <b>Um retrato de 1200 × 1200 px resolve</b>, e é a melhoria visual mais relevante que depende de
+         material novo. Ampliar o arquivo atual não acrescentaria nitidez nenhuma.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. TESTES ============ -->
+<section>
+  <div class="env">
+    <span class="rotulo">9 · Testes</span>
+    <h2>98 verificações</h2>
+    <div class="painel" style="margin-bottom:28px">
+      <div><div class="n bom">58 × 4</div><div class="r">estrutura, em 360, 390, 412 e 430 px</div></div>
+      <div><div class="n bom">14</div><div class="r">validação, foco e rede</div></div>
+      <div><div class="n bom">9</div><div class="r">sequência de eventos</div></div>
+      <div><div class="n bom">17</div><div class="r">mensagem gerada</div></div>
+    </div>
+
+    <h3 class="sub">Validação e envio</h3>
+    <ul class="checks">
+      <li><b>Formulário vazio:</b> não abre o WhatsApp, 6 mensagens de erro, foco em “Nome”.</li>
+      <li><b>Telefone inválido:</b> não abre o WhatsApp, erro mostrado.</li>
+      <li><b>Sem consentimento:</b> não abre o WhatsApp, erro mostrado.</li>
+      <li><b>Dados preservados</b> em todas as tentativas recusadas.</li>
+      <li><b>Três toques seguidos:</b> um envio e um redirecionamento.</li>
+      <li><b>Telefone:</b> 10 formatos — 4 aceitos, 6 recusados, incluindo <code>+55</code> colado.</li>
+      <li><b>Redirecionamento:</b> número <code>5527992291973</code>, na própria aba.</li>
+      <li><b>Zero requisições</b> de <code>fetch</code>, <code>XHR</code> ou <code>sendBeacon</code>.</li>
+      <li><b>localStorage vazio</b> — nenhum lead guardado no navegador.</li>
+    </ul>
+
+    <h3 class="sub">Estrutura, nas quatro larguras</h3>
+    <ul class="checks">
+      <li>Zero WhatsApp visível ou alcançável pelo teclado.</li>
+      <li>Zero <code>tel:</code> clicável; número segue legível.</li>
+      <li>Bloco de contato do desktop oculto no celular.</li>
+      <li>Nenhuma mensagem de “formulário indisponível”.</li>
+      <li>Nenhum elemento escondido ocupando espaço.</li>
+      <li>Sem rolagem horizontal.</li>
+      <li>Todo campo com <code>&lt;label for&gt;</code> e obrigatório.</li>
+      <li>Campos com 40 px ou mais; botão com 70 px.</li>
+      <li>Fonte dos campos em 16 px — o iOS não dá zoom.</li>
+      <li>Nenhum campo pede CPF, RG, senha ou cartão.</li>
+      <li>As 9 âncoras dos sitelinks presentes.</li>
+      <li>Os 10 assuntos trabalhistas exigidos no texto.</li>
+      <li>Nenhuma promessa de resultado nem “consulta grátis”.</li>
+      <li>Um <code>&lt;h1&gt;</code>; 3 blocos JSON-LD válidos.</li>
+      <li>Imagens sem quebra, com <code>alt</code>, <code>width</code> e <code>height</code>.</li>
+      <li>Console limpo em duas cargas seguidas.</li>
+    </ul>
+
+    <h3 class="sub">Sem JavaScript</h3>
+    <p class="intro">Carregada num quadro sem permissão de script — nenhum script rodou:</p>
+    <ul class="checks">
+      <li><b>10.364 caracteres</b> de texto continuam na tela.</li>
+      <li>Os 46 parágrafos aparecem inteiros, sem recolhimento.</li>
+      <li>Os 3 blocos temáticos completos, com prazos e artigos de lei.</li>
+      <li>Formulário do celular presente, com os 6 campos.</li>
+      <li>Nada com opacidade zero — os efeitos só existem se o script rodar.</li>
+    </ul>
+
+    <h3 class="sub">Movimento e acessibilidade</h3>
+    <p class="intro">Quarenta e quatro blocos entram com uma transição curta: opacidade, 16&nbsp;px de
+       deslocamento e um realce dourado momentâneo na borda dos cartões. Cada bloco anima uma vez e depois
+       fica parado. É CSS puro disparado por <code>IntersectionObserver</code>, sem biblioteca.</p>
+    <p class="intro">Sob <code>prefers-reduced-motion: reduce</code>, uma regra com <code>!important</code>
+       zera opacidade, deslocamento, transição e animação — o conteúdo aparece direto, no lugar definitivo.
+       O JavaScript também consulta a preferência e nem chega a marcar os blocos.</p>
+    <p class="intro"><b>Três salvaguardas</b>, porque conteúdo escondido por causa de efeito é conteúdo
+       perdido: as classes são postas pelo JavaScript, então sem script nada some; um temporizador de três
+       segundos revela qualquer bloco que o observador tenha deixado para trás; e a impressão força tudo
+       visível e expandido.</p>
+  </div>
+</section>
+
+<!-- ============ 10. ARQUIVOS ============ -->
+<section>
+  <div class="env">
+    <span class="rotulo">10 · Arquivos</span>
+    <h2>O que foi alterado</h2>
+    <div class="rolagem">
+      <table>
+        <thead><tr><th>Arquivo</th><th class="num">Linhas</th><th>O que mudou</th></tr></thead>
+        <tbody>
+          <tr><td><code>advogado-trabalhista-grande-vitoria-es.html</code></td><td class="num">+122 / −8</td>
+              <td>Bloco <code>.lp-contato-mobile</code> com o formulário do WhatsApp, inserido depois do
+                  <code>#lp-area-form</code> intacto; etiquetas de credencial; OAB no cabeçalho;
+                  12 marcações <code>&lt;b class="lp-realce"&gt;</code>; 8 marcações <code>data-enxuto</code>;
+                  frases separadas entre desktop e celular.</td></tr>
+          <tr><td><code>css/landing-trabalhista.css</code></td><td class="num">+338</td>
+              <td>Seções 12 e 13, inteiras dentro de <code>@media (max-width:720px)</code>, mais quatro
+                  declarações <code>display:none</code> e o reforço de impressão.</td></tr>
+          <tr><td><code>js/landing-lead.js</code></td><td class="num">+445 / −8</td>
+              <td>Seção 6 nova, com o formulário do WhatsApp, os cinco eventos, o recolhimento de texto,
+                  a remoção dos desvios e a entrada suave. As seções 1 a 5 são as do commit, agora
+                  condicionadas a <code>!MOBILE.matches</code>.</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <p class="nota">Nada mais foi tocado: <code>index.html</code>, <code>sitemap.xml</code>, as outras
+       landings, a <code>lead-api</code> e o <code>css/style.css</code> continuam como estavam.</p>
+  </div>
+</section>
+
+<!-- ============ 11. PENDÊNCIAS ============ -->
+<section style="border-bottom:0">
+  <div class="env">
+    <span class="rotulo">11 · Pendências e riscos</span>
+    <h2>O que fica para depois</h2>
+    <div class="rolagem" style="margin-bottom:26px">
+      <table>
+        <thead><tr><th>Ponto</th><th>Situação</th><th>Sugestão</th></tr></thead>
+        <tbody>
+          <tr><td><b>Retrato em 400 px</b></td><td>Único disponível. Limitado a 300 px para não esticar.</td><td>Uma foto de 1200 px melhora bastante a primeira dobra.</td></tr>
+          <tr><td><b>Nenhum lead é guardado</b></td><td>Por decisão desta etapa. Se a pessoa não tocar em enviar dentro do WhatsApp, o contato se perde.</td><td>É o custo de não ter servidor. Quando quiser histórico, a <code>lead-api</code> volta.</td></tr>
+          <tr><td><b><code>lead-api</code> no desktop</b></td><td>Continua fora do ar, então o desktop segue mostrando o aviso e os atalhos de WhatsApp — comportamento do commit, preservado a seu pedido.</td><td>Posso levar o formulário direto ao WhatsApp para o desktop também; é uma linha de CSS.</td></tr>
+          <tr><td><b>Sem tag do Google</b></td><td>Os 5 eventos estão no <code>dataLayer</code>, mas não há GTM instalado.</td><td>Nada vira conversão no Google Ads até definirmos o contêiner.</td></tr>
+          <tr><td><b>Ordem das seções</b></td><td>A foto do escritório está dentro de “Como o escritório conduz o atendimento”.</td><td>Mantida assim para não mexer no desktop. Reordenar dá trabalho e ganho pequeno.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="caixa">
+      <h2>PRONTO PARA DEPLOY NO COOLIFY</h2>
+      <p>Commit e push feitos na <code>main</code>. O deploy é seu:
+         <code>http://187.77.34.112:8000</code> → projeto do site → <b>Deploy</b>.</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="env">
+    Documento provisório de revisão · não indexado · base: commit <code>2fa012a</code> ·
+    nenhum deploy realizado, nenhum GTM instalado, nenhuma conversão criada, nenhuma campanha ativada.
+  </div>
+</footer>
+
+</body>
+</html>

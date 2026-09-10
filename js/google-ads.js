@@ -49,6 +49,17 @@
     var AW_TAG     = 'AW-18428416238';
     var AW_ALISSON = 'AW-18393588578';
 
+    /* GA4 da propriedade "Alisson Brandao Advocacia - Site", criada em
+       09/09/2026. Instalado por este arquivo, e não pela opção "usar a tag
+       do Google do seu site" do Analytics — aquela avisava que as definições
+       de "Agencia Brandao" substituiriam as da tag existente, e a instrução
+       era não sobrescrever destino nenhum.
+
+       O GA4 aqui é para RELATÓRIO. A conversão do Google Ads continua indo
+       direto pelo par AW-ID/rótulo abaixo; nada é importado do GA4 para o
+       Ads, senão o mesmo clique contaria duas vezes. */
+    var GA4 = 'G-D91FYKQD5C';
+
     /* send_to completo de cada conversão: 'AW-ID/RÓTULO'.
        - lead_whatsapp: clique num botão de WhatsApp da landing. Mede
          INTENÇÃO DE CONTATO — não prova mensagem enviada, nem conversa
@@ -73,6 +84,7 @@
     gtag('js', new Date());
     gtag('config', AW_TAG);
     gtag('config', AW_ALISSON);
+    gtag('config', GA4);
 
     (function () {
         var s = document.createElement('script');
@@ -141,7 +153,24 @@
         lead_phone_click:          'lead_telefone'
     };
 
+    /* O mesmo clique também vira `generate_lead` no GA4 — só para relatório.
+       Vai apenas contexto: área e de qual botão partiu. Nome, telefone e
+       relato não existem mais nesta página, e nada disso entraria aqui. */
+    function espelharNoGa4(evento, params) {
+        if (!GA4) return;
+        if (evento !== 'lead_whatsapp_click' && evento !== 'lead_whatsapp_redirect') return;
+        try {
+            window.gtag('event', 'generate_lead', {
+                send_to: GA4,
+                lead_area: (params && params.lead_area) || null,
+                lead_origem: (params && (params.lead_origem || params.cta_origem)) || null
+            });
+        } catch (e) { /* relatório nunca pode atrapalhar o lead */ }
+    }
+
     function conversaoPorEvento(evento, params, callback) {
+        espelharNoGa4(evento, params);
+
         var nome = POR_EVENTO[evento];
         if (!nome) {
             if (callback) callback();
